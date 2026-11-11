@@ -1,0 +1,935 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+
+<title>Real Talk Parent Hub</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: essentials first. Every section shows one short, doable thing; details sit behind
+   "Show more". Sunny campaign world: sky hero, then Know / Talk / Act bands, then help + game. */
+:root{
+  --sky:#BFE4F6; --sky-2:#E3F3FB;
+  --sun:#FFE37F; --sun-2:#FFF5CC;
+  --ink:#17362B; --ink-soft:#4C6158;
+  --leaf:#2F5A3B; --leaf-2:#E3EDE4;
+  --coral:#DC6545; --coral-2:#FBE3DA;
+  --plum:#7C5CD6; --plum-2:#ECE6FB;
+  --teal:#1F8FA6; --teal-2:#DAF0F4; --blue:#8CCBEE;
+  --paper:#FFFBF2; --card:#FFFFFF; --line:#E6E0D2;
+  --on-dark:#FFFBF2; --dark:#17362B; --dark-2:#22493B;
+  --shadow:0 2px 0 rgba(23,54,43,.08),0 10px 30px rgba(23,54,43,.08);
+  --f-display:'Bricolage Grotesque',ui-rounded,'Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r-lg:28px; --r-md:18px;
+  color-scheme:light; /* deliberately single-theme: a bright, sunny world for every viewer */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--leaf);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.c-coral{color:var(--coral)} .c-leaf{color:var(--leaf)}
+.t-violent{--tc:var(--coral);--tc2:var(--coral-2)}
+.t-explicit{--tc:var(--plum);--tc2:var(--plum-2)}
+.t-selfharm{--tc:var(--teal);--tc2:var(--teal-2)}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sky)}
+.nav.scrolled{box-shadow:0 6px 20px rgba(23,54,43,.10)}
+.nav .wrap{display:flex;align-items:center;gap:20px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:22px;background:var(--card);padding:6px 16px 6px 8px;border-radius:999px;box-shadow:var(--shadow)}
+.logo img{width:46px;height:46px;display:block;margin:-4px 0}
+.navlinks{display:flex;gap:4px;margin-left:auto}
+.navlinks a{text-decoration:none;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px}
+.navlinks a:hover{background:var(--sky-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:13px 24px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.green{background:var(--leaf);color:#fff}
+.btn.white{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.urgent{background:var(--coral);color:#fff;padding:10px 18px;font-size:15px}
+.btn.small{padding:9px 16px;font-size:14px}
+
+/* hero */
+.hero{background:var(--sky);padding-block:20px 56px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,62px);font-weight:800;line-height:1.02;margin:14px 0 20px;font-variation-settings:"opsz" 48}
+.hero .lead{font-size:clamp(17px,1.7vw,20px);max-width:42ch;color:var(--ink-soft)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.gnote{margin-top:14px;font-size:14px;line-height:1.5;color:var(--ink-soft);max-width:46ch}
+.hero-art{width:100%;max-width:560px;justify-self:end}
+.hero-art svg{width:100%;height:auto;display:block}
+.s-ground{fill:var(--sun)} .s-ground2{fill:var(--leaf-2)} .s-path{fill:none;stroke:var(--card);stroke-width:30;stroke-linecap:round}
+.s-dash{fill:none;stroke:var(--sun);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
+.s-cloud{fill:var(--card)} .s-sun{fill:var(--sun)} .s-tree{fill:var(--leaf)} .s-trunk{fill:var(--ink)}
+.s-coral{fill:var(--coral)} .s-teal{fill:var(--teal)} .s-card{fill:var(--card)} .s-panel{fill:var(--sky-2)}
+.s-skin1{fill:#C98A5E} .s-skin2{fill:#F1C7A3} .s-hair1{fill:#2B1E17} .s-hair2{fill:#6B3F22}
+.s-face{fill:#17362B} .s-faces{stroke:#17362B;fill:none;stroke-linecap:round} .s-cheek{fill:var(--coral);opacity:.45}
+.s-num{font-family:var(--f-display);font-weight:800;font-size:22px;fill:#fff}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bob{animation:bob 4s ease-in-out infinite;transform-box:fill-box}
+
+/* "3 things" */
+.three{padding-block:64px 20px}
+.three h2{font-size:clamp(30px,4vw,46px);font-weight:800}
+.three .sub{color:var(--ink-soft);margin:8px 0 26px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.thing{border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:transform .2s}
+.thing:hover{transform:translateY(-4px)}
+.thing .n{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;color:#fff;transform:rotate(-6deg)}
+.thing h3{font-size:24px;font-weight:800}
+.thing p{color:var(--ink-soft);font-size:15.5px;flex:1}
+.thing .go{font-weight:700;font-size:15px}
+.k1{background:var(--coral-2)} .k1 .n{background:var(--coral)}
+.k2{background:var(--leaf-2)} .k2 .n{background:var(--leaf)}
+.k3{background:var(--teal-2)} .k3 .n{background:var(--teal)}
+
+/* sections */
+section.band{padding-block:72px}
+.band.white{background:var(--card)}
+.band.sky{background:var(--sky-2)}
+.sec-head{margin-bottom:28px;max-width:62ch}
+.sec-head .meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.time{font-size:13px;font-weight:700;background:var(--sun-2);padding:3px 10px;border-radius:999px}
+.sec-head h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;margin-top:10px}
+.sec-head p{color:var(--ink-soft);margin-top:10px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tab{border:2px solid var(--line);background:var(--card);padding:9px 16px;border-radius:999px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.tab i{width:11px;height:11px;border-radius:50%;background:var(--tc)}
+.tab[aria-selected="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+
+/* know */
+.know-card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.kc-lead{background:var(--tc2);padding:24px 30px;display:flex;gap:18px;align-items:center}
+.kc-lead .ic{flex:0 0 46px;height:46px;border-radius:14px;background:var(--tc);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:26px;transform:rotate(-6deg)}
+.kc-lead p{font-family:var(--f-display);font-weight:700;font-size:clamp(19px,2vw,23px);line-height:1.3}
+.kc-body{padding:24px 30px 28px;display:grid;gap:24px}
+.kc-label{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--paper);border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14.5px;font-weight:600;line-height:1.3}
+.signgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sign{border:2px solid var(--tc2);border-radius:var(--r-md);padding:16px;display:flex;flex-direction:column;gap:10px;font-weight:600;font-size:15.5px;line-height:1.4}
+.sign .sn{width:30px;height:30px;border-radius:10px;background:var(--tc);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:15px}
+.mini.stack{grid-template-columns:1fr}
+.box .bsub{font-size:14.5px;color:var(--ink-soft);margin:-4px 0 14px}
+.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.item{display:flex;flex-direction:column;gap:12px;padding:16px;border:2px solid var(--line);border-radius:var(--r-md);font-size:15px;font-weight:500;line-height:1.4;min-width:0}
+.item .ii{width:38px;height:38px;border-radius:12px;background:var(--tc2);display:grid;place-items:center}
+.item .ii svg{width:22px;height:22px;fill:none;stroke:var(--tc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ul.clean{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.clean li{position:relative;padding-left:24px}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--tc,var(--leaf))}
+.flag{margin-top:16px;background:var(--coral-2);border-radius:var(--r-md);padding:12px 14px;font-size:15px}
+.flag a{font-weight:700}
+details.more{margin-top:14px}
+details.more > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:9px 16px;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 2px var(--line)}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::after{content:"+";font-size:18px;line-height:1}
+details.more[open] > summary::after{content:"–"}
+details.more .inner{margin-top:16px;display:grid;gap:16px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{background:var(--card);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow);min-width:0}
+.box h4{font-size:18px;font-weight:700;margin-bottom:10px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fcard{border:0;padding:0;background:none;text-align:left;perspective:900px}
+.fcard .in{position:relative;min-height:330px;transition:transform .5s;transform-style:preserve-3d}
+.fcard.flip .in{transform:rotateY(180deg)}
+.fcard .f,.fcard .b{position:absolute;inset:0;border-radius:var(--r-md);padding:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;gap:8px}
+.fcard .f{background:var(--card);box-shadow:var(--shadow)}
+.fcard .f q{font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1.15}
+.fcard .f span{font-size:13.5px;color:var(--ink-soft);flex:1}
+.fcard .f em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--coral)}
+.fcard .b{background:var(--dark);color:var(--on-dark);transform:rotateY(180deg);font-size:13.5px;line-height:1.45}
+.fcard .b b{font-family:var(--f-display);font-size:17px;line-height:1.2;color:var(--sun)}
+.fcard .lbl{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.fcard .f .lbl{flex:0 0 auto}
+.fcard .b .lbl{color:var(--on-dark);opacity:.7}
+.fcard .b .src{font-size:11.5px;opacity:.6}
+.fcard .b .try{margin-top:auto;background:rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;font-weight:600}
+
+/* talk */
+.promise{background:var(--sun);border-radius:36px;padding:36px;display:grid;grid-template-columns:1fr 1.3fr;gap:28px;align-items:center;margin-bottom:22px}
+.promise h3{font-size:clamp(24px,2.8vw,32px);font-weight:800}
+.promise p.why{margin-top:10px;font-size:15.5px}
+.promise blockquote{margin:0;background:var(--card);border-radius:var(--r-lg);padding:24px 26px;font-family:var(--f-display);font-weight:700;font-size:clamp(21px,2.3vw,27px);line-height:1.3;position:relative}
+.promise blockquote small{display:block;font-family:var(--f-body);font-weight:600;font-size:13px;color:var(--ink-soft);margin-top:10px}
+.tips-h{font-size:clamp(22px,2.4vw,28px);font-weight:800;margin-bottom:14px}
+.tipn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--paper);font-family:var(--f-display);font-weight:800;font-size:17px;transform:rotate(-6deg);margin-bottom:10px}
+.twotips{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px}
+.tip{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow)}
+.tip h4{font-size:20px;font-weight:700;margin-bottom:6px}
+.tip p{font-size:15.5px;color:var(--ink-soft)}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.panel{border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel.light{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line)}
+.panel.dark{background:var(--dark);color:var(--on-dark)}
+.panel h3{font-size:24px;font-weight:800}
+.panel .hint{font-size:14.5px;opacity:.75}
+.sit{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tc)}
+.say{border-radius:var(--r-md);padding:14px 16px;font-size:16px;line-height:1.5}
+.say.avoid{background:var(--coral-2)} .say.try{background:var(--leaf-2)}
+.say small{display:block;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.say.avoid small{color:var(--coral)} .say.try small{color:var(--leaf)}
+.say.avoid p{text-decoration:line-through;text-decoration-color:rgba(240,103,74,.6);text-decoration-thickness:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row .count{font-size:13px;font-weight:700;opacity:.7;margin-left:auto}
+.nextbtn{border:0;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px}
+.panel.dark .nextbtn{background:var(--sun);color:#17362B}
+.seg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:999px;padding:4px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:none;color:var(--on-dark);font-weight:700;font-size:13.5px;padding:7px 12px;border-radius:999px}
+.seg button[aria-pressed="true"]{background:var(--sun);color:#17362B}
+.qcard{background:rgba(255,255,255,.08);border-radius:var(--r-md);padding:20px;border-top:4px solid var(--tc);flex:1;display:flex;flex-direction:column;gap:10px}
+.qcard p{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2.2vw,24px);line-height:1.25}
+.qcard small{font-size:14px;opacity:.75}
+.copy{border:0;background:rgba(255,255,255,.14);color:var(--on-dark);border-radius:999px;padding:9px 14px;font-size:14px;font-weight:700}
+.copy.done{background:var(--leaf);color:#fff}
+.talktool{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);border-radius:var(--r-lg);padding:28px;display:grid;gap:30px}
+.tt-top{display:grid;gap:14px}
+.tt-controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.tt-top h3{font-size:26px;font-weight:800}
+.talktool .hint{font-size:15px;color:var(--ink-soft);margin-top:4px}
+.tt-head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.tt-sec h4{font-size:20px;font-weight:800}
+.agepick{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink-soft)}
+.seg2{display:inline-flex;background:var(--card);box-shadow:inset 0 0 0 2px var(--line);border-radius:999px;padding:3px}
+.seg2 button{border:0;background:none;padding:6px 14px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink)}
+.seg2 button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr auto;column-gap:20px;row-gap:0}
+.talktool .hint a{color:var(--leaf);font-weight:700}
+.qcol{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:12px;min-width:0}
+.moment{justify-self:start;align-self:start;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--card);box-shadow:inset 0 0 0 2px var(--line);padding:5px 12px;border-radius:999px;color:var(--ink-soft)}
+.qb{position:relative;border-radius:28px;padding:22px 66px 24px 22px;margin-bottom:14px;display:flex;align-items:center}
+.qb p{font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.3}
+.qb::after{content:"";position:absolute;left:34px;bottom:-15px;width:30px;height:18px;background:inherit;clip-path:polygon(0 0,100% 0,10% 100%)}
+.qb .face{position:absolute;right:14px;top:14px;width:40px;height:40px}
+.qb .face circle:first-child{stroke:#1d1d1b;stroke-width:2}
+.qcol:nth-child(3n+1) .qb{background:var(--coral);color:#fff}
+.qcol:nth-child(3n+1) .tail{color:var(--coral)}
+.qcol:nth-child(3n+2) .tail{color:var(--blue)}
+.qcol:nth-child(3n) .tail{color:var(--sun)}
+.qcol:nth-child(3n+2) .qb{background:var(--blue)}
+.qcol:nth-child(3n) .qb{background:var(--sun)}
+.then{font-size:15px;line-height:1.45;color:var(--ink-soft);background:var(--card);border-radius:14px;padding:10px 14px;box-shadow:inset 0 0 0 2px var(--line);align-self:start}
+.then b{color:var(--ink)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.thread{background:var(--card);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;min-width:0}
+.thread h5{font-family:var(--f-display);font-size:18px;font-weight:700;margin:-6px 0 4px}
+.cb{position:relative;max-width:90%;border-radius:22px;padding:12px 16px;font-size:15.5px;line-height:1.4}
+.cb small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.cb .face{position:absolute;top:10px;width:32px;height:32px}
+.cb.kid{align-self:flex-start;background:var(--blue);font-weight:600;border-bottom-left-radius:6px;padding-left:52px}
+.cb.kid .face{left:10px}
+.cb.no{align-self:flex-end;background:#EEEBE3;color:var(--ink-soft);font-size:14.5px}
+.cb.no p{text-decoration:line-through;text-decoration-color:rgba(76,97,88,.5)}
+.cb.yes{align-self:flex-end;background:var(--coral);color:#fff;font-weight:600;border-bottom-right-radius:6px;padding-right:52px}
+.cb.yes .face{right:10px}
+.planlist{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.habit{border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--card);box-shadow:var(--shadow)}
+.habit .htop{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.habit .hnum{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--paper);font-family:var(--f-display);font-weight:800;font-size:17px;transform:rotate(-6deg)}
+.habit .hic{width:44px;height:44px;border-radius:50%;background:var(--leaf-2);display:grid;place-items:center;color:var(--leaf)}
+.habit .hic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.habit h4{font-family:var(--f-display);font-size:20px;font-weight:800}
+.habit p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.habit a{font-weight:700;color:var(--leaf)}
+
+/* act */
+.sos-note{margin-top:16px;font-size:14px;color:var(--ink-soft);text-align:center}
+.sos-note b{color:var(--ink)}
+.emergency{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;background:var(--coral);color:#fff;border-radius:var(--r-lg);padding:18px 24px;margin-bottom:28px}
+.emergency b{font-family:var(--f-display);font-size:21px}
+.emergency .nums{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.emergency .nums span{background:rgba(255,255,255,.22);border-radius:999px;padding:6px 14px;font-weight:700;white-space:nowrap}
+.picker{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.pick{border:2px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:14px 16px;text-align:left;font-weight:600;font-size:15.5px;display:flex;gap:12px;align-items:center;line-height:1.3}
+.pick i{flex:0 0 12px;height:12px;border-radius:4px;background:var(--tc);transform:rotate(45deg)}
+.pick .u{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--sun-2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pick[aria-pressed="true"]{border-color:var(--ink);box-shadow:var(--shadow)}
+.plan-out{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:28px;min-width:0}
+.plan-out .empty{color:var(--ink-soft);text-align:center;padding:18px 0;font-weight:600}
+.plan-out .top{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.tagpill{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--tc2);color:var(--tc)}
+.plan-out h3{font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.plan-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;margin-top:20px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:38px;height:38px;border-radius:12px;background:var(--tc2);color:var(--tc);font-family:var(--f-display);font-weight:800;font-size:18px;display:grid;place-items:center}
+ol.steps b{display:block;font-family:var(--f-display);font-size:18px;line-height:1.25;margin-top:6px}
+ol.steps span{display:block;font-size:15px;color:var(--ink-soft);margin-top:2px}
+.side{display:grid;gap:12px;align-content:start}
+.saythis{background:var(--leaf-2);border-radius:var(--r-md);padding:16px 18px}
+.saythis small,.callbox small{font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf)}
+.saythis p{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.3;margin-top:4px}
+.callbox{background:var(--sun-2);border-radius:var(--r-md);padding:16px 18px}
+.callbox small{color:var(--ink)}
+.callbox div{font-weight:700;margin-top:6px}
+.warnnote{background:var(--coral-2);border-radius:var(--r-md);padding:14px 16px;font-size:15px}
+
+/* helplines */
+.save3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.help{background:var(--card);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);min-width:0}
+.help .for{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.help h4{font-size:20px;font-weight:700}
+.help p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);flex:1}
+.help p b{color:var(--ink)}
+.num{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.num strong{font-family:var(--f-display);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;user-select:all}
+.num a{font-family:var(--f-display);font-weight:800;font-size:20px;color:var(--leaf)}
+.num button{border:0;background:var(--sun-2);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700}
+.num button.done{background:var(--leaf);color:#fff}
+.hrs{font-size:13px;color:var(--ink-soft)}
+.allhelp{margin-top:22px}
+.hpick{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
+.hq{font-weight:700;font-size:15px}
+.hchips{flex-wrap:wrap}
+.htable{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:14px}
+.hcard{background:var(--card);border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;min-width:0}
+.hname{font-family:var(--f-display);font-weight:800;font-size:16px;line-height:1.25;text-decoration:none;color:var(--ink)}
+.hname span{font-size:12px;color:var(--ink-soft)}
+.hname:hover{color:var(--leaf)}
+.hfoot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:4px}
+.hfoot strong{font-family:var(--f-display);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.hfoot button{border:0;background:var(--sun-2);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700}
+.hfoot button.done{background:var(--leaf);color:#fff}
+.hfoot .hrs{flex-basis:100%;font-size:12.5px}
+.hreport{font-weight:700;font-size:15px;color:var(--leaf)}
+.hcard b{font-family:var(--f-display);font-size:17px;line-height:1.25}
+.hcard p{font-size:14px;line-height:1.45;color:var(--ink-soft);flex:1}
+.hcard .callif{font-weight:700;color:var(--ink)}
+.hcard .num strong{font-size:22px}
+.hcard .num a{font-size:17px}
+.hrow{background:var(--card);border-radius:var(--r-md);padding:14px 18px;display:grid;grid-template-columns:1.2fr 2fr auto;gap:16px;align-items:center}
+.hrow b{font-family:var(--f-display);font-size:17px}
+.hrow p{font-size:14px;color:var(--ink-soft)}
+.hrow .num{margin:0;justify-content:flex-end}
+.hrow .num strong{font-size:19px}
+.hrow .num a{font-size:17px}
+.help .site,.hrow .site{font-size:13.5px;font-weight:700;color:var(--leaf);text-decoration:none}
+.help .site{margin-top:4px}
+.report{margin-top:14px;background:var(--sky);border-radius:var(--r-lg);padding:20px 22px;display:flex;align-items:center;gap:18px;box-shadow:var(--shadow)}.report .for{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}.report h4{font-size:20px;font-weight:700;margin:4px 0}.report p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin:0}.report p b{color:var(--ink)}.report .go{flex:0 0 auto;background:var(--ink);color:#fff;font-weight:700;font-size:15px;text-decoration:none;padding:12px 18px;border-radius:999px;white-space:nowrap}.report .go:hover{transform:translateY(-2px)}@media (max-width:640px){.report{flex-direction:column;align-items:flex-start}}.verify{margin-top:14px;font-size:14px;color:var(--ink-soft)}
+
+/* game */
+.game{background:var(--dark);color:var(--on-dark);border-radius:44px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+.game h2{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin-top:14px}
+.game p{opacity:.85;margin-top:14px;max-width:46ch}
+.soon{display:inline-block;background:var(--sun);color:#17362B;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.how{display:grid;gap:10px}
+.how div{background:var(--dark-2);border-radius:var(--r-md);padding:14px 16px;display:flex;gap:12px;align-items:center;font-weight:600}
+.how b{font-family:var(--f-display);font-size:22px;color:var(--sun);flex:0 0 28px}
+.game .btn.play{background:var(--sun);color:#17362B;margin-top:24px}
+.game .btn.play:hover{background:#FFD447}
+
+footer{padding-block:56px 64px;font-size:14px;color:var(--ink-soft)}
+footer details summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details.srcs{margin-top:0}
+.srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-top:16px}
+.srcg{background:var(--card);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow);min-width:0}
+.srcg h5{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:16px;font-weight:800;color:var(--ink);margin:0 0 12px}
+.srcg h5 i{width:10px;height:10px;border-radius:50%;background:var(--tc)}
+.srcg ul{list-style:none;margin:0;padding:0;display:grid}
+.srcg li{display:grid;gap:4px;font-size:13.5px;line-height:1.45;padding:11px 0;border-top:1px solid var(--line)}
+.srcg li:first-child{border-top:0;padding-top:0}
+.srcg .cite{color:var(--ink-soft)}
+.srcg .cite a{color:var(--ink);font-weight:600;text-decoration-color:var(--line);text-underline-offset:2px}
+.srcg .used{font-size:12.5px;color:var(--ink-soft);opacity:.85;padding-left:16px;position:relative}
+.srcg .used::before{content:"↳";position:absolute;left:0;top:0}
+.t-talk{--tc:var(--leaf)} .t-help{--tc:var(--sun)} .t-bg{--tc:var(--line)}
+
+footer a{color:var(--ink)}
+footer .about{margin-top:18px;max-width:70ch}
+
+@media (max-width:900px){
+  .fgrid{grid-template-columns:repeat(3,1fr)}
+  .picker{grid-template-columns:1fr 1fr}
+  .plan-grid,.promise{grid-template-columns:1fr}
+  .hrow{grid-template-columns:1fr;gap:6px}
+  .hrow .num{justify-content:flex-start}
+  .igrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .navlinks{display:none}
+  .nav .btn.urgent{margin-left:auto}
+  .qgrid{grid-template-columns:1fr;grid-template-rows:none;row-gap:24px}
+  .qcol{grid-row:auto;grid-template-rows:none}
+  .talktool{padding:20px}
+  .hero .wrap,.tgrid,.know-card,.mini,.twotips,.duo,.planlist,.save3,.game{grid-template-columns:1fr}
+  .hero-art{justify-self:center}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .picker{grid-template-columns:1fr}
+  section.band{padding-block:56px}
+  .promise,.game{padding:22px;border-radius:28px}
+  .signgrid{grid-template-columns:1fr}
+  .kc-lead,.kc-body{padding-left:20px;padding-right:20px}
+  .emergency .nums{margin-left:0}
+}
+@media (max-width:440px){.fgrid,.igrid{grid-template-columns:1fr}}
+
+/* ===== Motion: playful but calm. All of it switches off for reduced-motion users. ===== */
+@keyframes pop{0%{opacity:0;transform:translateY(14px) scale(.96)}60%{opacity:1;transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+@keyframes dash{to{stroke-dashoffset:-140}}
+@keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}30%{transform:rotate(6deg) scale(1.08)}60%{transform:rotate(-10deg)}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+.pop{animation:pop .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+/* hero plays in on load, no JS needed */
+.hero .eyebrow,.hero h1,.hero .lead,.hero .ctas{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{animation-delay:.08s}.hero .lead{animation-delay:.2s}.hero .ctas{animation-delay:.32s}
+.hero-art{animation:pop .9s cubic-bezier(.2,.8,.2,1) .15s both}
+.s-dash{animation:dash 7s linear infinite}
+.sway{animation:sway 3.5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.sway.d2{animation-delay:-1.2s}.sway.d3{animation-delay:-2.4s}
+/* faces blink */
+.face .eye{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
+.qcol:nth-child(2) .face .eye,.cb .face .eye{animation-delay:1.5s}
+.qcol:nth-child(3) .face .eye{animation-delay:3s}
+/* scroll reveal: only hides things once JS has confirmed it can reveal them */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+/* hover and press feedback */
+.btn:active,.tab:active,.pick:active,.seg2 button:active,.nextbtn:active{transform:scale(.96)}
+.tab,.pick,.seg2 button,.hcard,.qb,.tip,.habit,.help,.srcg{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.tab:hover{transform:translateY(-2px)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--tc);background:var(--tc2)}
+.tab[aria-selected="true"]:hover{background:var(--tc);border-color:var(--tc)}
+.seg2 button:hover:not([aria-pressed="true"]){background:var(--leaf-2)}
+.pick:hover:not([aria-pressed="true"]){border-color:var(--tc);background:var(--tc2)}
+.navlinks a:hover{background:var(--card)}
+.btn.green:hover{background:#264A31}
+.btn.white:hover{background:var(--sun-2)}
+.btn.urgent:hover{background:#C9563A}
+details.more > summary:hover{background:var(--sun-2)}
+.pick:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.qb:hover{transform:translateY(-3px) rotate(-.6deg)}
+.qcol:nth-child(2) .qb:hover{transform:translateY(-3px) rotate(.6deg)}
+.tip:hover,.habit:hover,.help:hover,.hcard:hover{transform:translateY(-3px)}
+.thing:hover .n,.tip:hover .tipn,.habit:hover .hnum{animation:wiggle .5s ease}
+.fcard:hover .in{transform:translateY(-4px)}
+.fcard.flip:hover .in{transform:rotateY(180deg) translateY(-4px)}
+.logo:hover img{animation:wiggle .5s ease}
+.num button.done,.copy.done{animation:bump .3s ease}
+.navlinks a.active{background:var(--card);box-shadow:var(--shadow)}
+
+/* hand-drawn ink, to match the logo illustration */
+.fig > rect,.fig > circle.s-skin1,.fig > circle.s-skin2,.fig > path.s-hair1,.fig > path.s-hair2{stroke:#1d1d1b;stroke-width:2.2;stroke-linejoin:round}
+.s-bubble{fill:var(--sun);stroke:#1d1d1b;stroke-width:2.4;stroke-linejoin:round}
+.s-hair1{fill:#2B2725}
+.sway > rect:not(.s-trunk){stroke:#1d1d1b;stroke-width:2}
+.thing .n,.tipn,.hnum,.sign .sn{box-shadow:0 0 0 2px #1d1d1b inset}
+.qb{box-shadow:inset 0 0 0 2.5px #1d1d1b}
+.qb::after{display:none}
+.qb .tail{position:absolute;left:30px;bottom:-16px;width:34px;height:22px;overflow:visible}
+
+/* animated hero illustration: layers cut from the drawing, moving gently */
+.hero-art{max-width:600px}
+.scene{position:relative;aspect-ratio:2000/1493;border-radius:32px;overflow:hidden;box-shadow:0 0 0 2.5px #1d1d1b,0 14px 34px rgba(23,54,43,.16);background:#F9F5E9}
+.scene .base{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene .lyr{position:absolute;height:auto;display:block;will-change:transform}
+.scene .bubble img{width:100%;display:block}
+@keyframes sunbob{0%,100%{transform:translate(var(--px,0),var(--py,0)) rotate(-4deg)}50%{transform:translate(var(--px,0),calc(var(--py,0px) - 8px)) rotate(4deg)}}
+@keyframes drift{0%,100%{transform:translate(calc(var(--px,0px) - 14px),var(--py,0))}50%{transform:translate(calc(var(--px,0px) + 14px),var(--py,0))}}
+@keyframes talk{0%,8%{transform:translate(var(--px,0),var(--py,0)) scale(.2);opacity:0}16%{transform:translate(var(--px,0),var(--py,0)) scale(1.08);opacity:1}22%,86%{transform:translate(var(--px,0),var(--py,0)) scale(1);opacity:1}54%{transform:translate(var(--px,0),calc(var(--py,0px) - 5px)) scale(1)}94%,100%{transform:translate(var(--px,0),var(--py,0)) scale(.2);opacity:0}}
+@keyframes typing{0%,60%,100%{transform:translate(-50%,-50%)}30%{transform:translate(-50%,-110%)}}
+.scene .sun{animation:sunbob 7s ease-in-out infinite;transform-origin:50% 50%}
+.scene .c1{animation:drift 14s ease-in-out infinite}
+.scene .c2{animation:drift 11s ease-in-out -4s infinite}
+.scene .c3{animation:drift 16s ease-in-out -8s infinite}
+.scene .bubble{animation:talk 6s cubic-bezier(.2,.8,.2,1) .8s infinite both;transform-origin:8% 96%}
+.tdot{position:absolute;width:8%;aspect-ratio:1;border-radius:50%;background:#1d1d1b;transform:translate(-50%,-50%);animation:typing 1.1s ease-in-out infinite}
+.tdot:nth-of-type(2){animation-delay:.15s}.tdot:nth-of-type(3){animation-delay:.3s}
+@media (prefers-reduced-motion:reduce){.scene .bubble{opacity:1}}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}.pop{animation:none}}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="logo" viewBox="0 0 40 40">
+    <!-- speech bubble between them -->
+    <path d="M22 2h11a5 5 0 0 1 5 5v2a5 5 0 0 1-5 5h-6l-4 3.5 .8-3.6A5 5 0 0 1 17 9V7a5 5 0 0 1 5-5z" fill="#FFD447"/>
+    <circle cx="23" cy="8" r="1.3" fill="#17362B"/><circle cx="27.5" cy="8" r="1.3" fill="#17362B"/><circle cx="32" cy="8" r="1.3" fill="#17362B"/>
+    <!-- parent -->
+    <rect x="3" y="29" width="18" height="16" rx="8" fill="#2E8A4E"/>
+    <circle cx="12" cy="21" r="7.5" fill="#C98A5E"/>
+    <path d="M4.4 20.5Q4.6 12.6 12 13.4Q19.4 12.6 19.6 20.5Q15 16.2 4.4 20.5Z" fill="#2B1E17"/>
+    <circle cx="9.7" cy="21.6" r="1.1" fill="#17362B"/><circle cx="14.3" cy="21.6" r="1.1" fill="#17362B"/>
+    <path d="M9.6 24.4q2.4 2 4.8 0" stroke="#17362B" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <!-- child -->
+    <rect x="23" y="33" width="14" height="12" rx="6" fill="#F0674A"/>
+    <circle cx="30" cy="27.5" r="6" fill="#F1C7A3"/>
+    <path d="M23.9 27.2Q23.8 20.8 30 21.4Q36.2 20.8 36.1 27.2Q33 23.6 23.9 27.2Z" fill="#6B3F22"/>
+    <circle cx="28.2" cy="28" r=".95" fill="#17362B"/><circle cx="31.8" cy="28" r=".95" fill="#17362B"/>
+    <path d="M28.2 30.3q1.8 1.5 3.6 0" stroke="#17362B" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</defs></svg>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="logo.png" alt="" width="46" height="46">Real Talk</a>
+    <div class="navlinks">
+      <a href="#top">Home</a>
+      <a href="#know">Know</a>
+      <a href="#talk">Talk</a>
+      <a href="#act">Act</a>
+      <a href="play.html">Play together</a>
+    </div>
+    <a class="btn urgent" href="#act">Something happened online?</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">For parents of kids aged 7 to 12</span>
+      <h1>Your child may come across <span class="c-coral">harmful content online.</span> You can help them <span class="c-leaf">navigate it.</span></h1>
+      <p class="lead">A simple conversation shows you how they see things, and keeps you part of their online world. Not sure how to begin? Our interactive game gets the conversation going.</p>
+      <div class="ctas">
+        <a class="btn green" href="#start">See how to help →</a>
+        <a class="btn white" href="play.html">Try the game now</a>
+      </div>
+    </div>
+    <div class="hero-art" id="hero-art">
+      <div class="scene">
+        <img class="base" src="hero/base.jpg" alt="A parent and child walk along a winding path past three signposts: Know, Talk and Act. The parent is talking, and the child smiles up at them holding a tablet." width="1200" height="896">
+        <img class="lyr sun" data-depth="10" src="hero/sun.png" alt="" style="left:69.1%;top:4.15%;width:22.1%">
+        <img class="lyr cloud c1" data-depth="18" src="hero/cloud1.png" alt="" style="left:8.45%;top:12.59%;width:20.65%">
+        <img class="lyr cloud c2" data-depth="12" src="hero/cloud2.png" alt="" style="left:46.75%;top:7.5%;width:15.05%">
+        <img class="lyr cloud c3" data-depth="22" src="hero/cloud3.png" alt="" style="left:59.8%;top:36.24%;width:15.55%">
+        <div class="lyr bubble" data-depth="6" style="left:39.05%;top:27.19%;width:15.25%">
+          <img src="hero/bubble.png" alt="">
+          <span class="tdot" style="left:30.5%;top:47.4%"></span><span class="tdot" style="left:49.2%;top:47%"></span><span class="tdot" style="left:68.2%;top:46.6%"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ THE 1-MINUTE VERSION ============ -->
+<section class="three" id="start">
+  <div class="wrap">
+    <h2>How you can help, in three steps</h2>
+    <p class="sub">Tap a step to go to its short guide.</p>
+    <div class="tgrid">
+      <a class="thing k1" href="#know"><span class="n">1</span><h3>Know the risks</h3><p>Most kids come across harmful content by accident, through autoplay, pop-ups or links from friends.</p><span class="go">What to look out for →</span></a>
+      <a class="thing k2" href="#talk"><span class="n">2</span><h3>Talk about it</h3><p>Promise they won't get in trouble for telling you. Then ask, and listen.</p><span class="go">What to say →</span></a>
+      <a class="thing k3" href="#act"><span class="n">3</span><h3>Act if something happens</h3><p>Stay calm and thank them for telling you. Then follow a simple plan.</p><span class="go">What to do →</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KNOW ============ -->
+<section class="band" id="know">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="meta"><span class="eyebrow">Step 1 · Know</span></div>
+      <h2>What should I watch out for?</h2>
+      <p>Choose a type of content to see where kids find it and the signs to look out for.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Topic" data-group="know"></div>
+    <div id="know-panel"></div>
+  </div>
+</section>
+
+<!-- ============ TALK ============ -->
+<section class="band white" id="talk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="meta"><span class="eyebrow">Step 2 · Talk</span></div>
+      <h2>How do I bring it up?</h2>
+      <p>No big lecture needed. Short chats, often, work best.</p>
+    </div>
+
+    <h3 class="tips-h">Before you start: 3 tips</h3>
+    <div class="promise">
+      <div>
+        <span class="tipn">1</span>
+        <h3 style="margin-top:12px">Let them know they can come to you</h3>
+        <p class="why">Children often keep quiet about what they see online because they worry they'll get in trouble. Telling them early makes it easier for them to come to you.</p>
+      </div>
+      <blockquote>"If you ever see something online that upsets or confuses you, you can always tell me. I won't be angry."<small>Use your own words, and say it again every now and then.</small></blockquote>
+    </div>
+    <div class="twotips">
+      <div class="tip"><span class="tipn">2</span><h4>Pick a calm moment</h4><p>A car ride or walk home works well. Avoid right after a meltdown or at bedtime.</p></div>
+      <div class="tip"><span class="tipn">3</span><h4>Ask, then listen</h4><p>Let your child do most of the talking. Ask about "kids at school" first. It's easier than talking about themselves.</p></div>
+    </div>
+
+    <div class="talktool" id="talktool">
+      <div class="tt-top">
+        <div><h3>Easy ways to start</h3><p class="hint">Choose a topic and your child's age to get easy ways to start the chat.</p></div>
+        <div class="tt-controls">
+          <div class="tabs" role="tablist" aria-label="Topic" data-group="talk" style="margin:0"></div>
+          <div class="agepick">Child's age <div class="seg2" id="age-seg"><button aria-pressed="true" data-v="young">7–9</button><button aria-pressed="false" data-v="old">10–12</button></div></div>
+        </div>
+      </div>
+      <div class="tt-sec">
+        <div class="tt-head"><div><h4>Start the conversation</h4><p class="hint">Give a reason first, like "Some parents told me…", so the question doesn't come out of nowhere. Adapted from <a href="https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content" target="_blank" rel="noopener">Digital for Life</a>.</p></div></div>
+        <div class="qgrid" id="qgrid"></div>
+      </div>
+    </div>
+
+    <details class="more" style="margin-top:24px">
+      <summary>Ready for more? 3 family habits</summary>
+      <div class="inner"><div class="planlist">
+        <div class="habit h1"><div class="htop"><span class="hnum">1</span><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"/><path d="M2 21h20"/><circle cx="15" cy="12" r="1" fill="currentColor"/></svg></span></div>
+          <h4>An open door</h4><p>Agree as a family that anyone can bring up something they saw online, and no one gets in trouble for it.</p></div>
+        <div class="habit h2"><div class="htop"><span class="hnum">2</span><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="15.5" cy="11.5" r="1" fill="currentColor"/><circle cx="17.5" cy="13.5" r="1" fill="currentColor"/></svg></span></div>
+          <h4>15 minutes of co-play</h4><p>Once a week, sit with your child while they play or scroll. Ask, "Who's your favourite creator? What do you like about them?"</p></div>
+        <div class="habit h3"><div class="htop"><span class="hnum">3</span><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span></div>
+          <h4>Tech-free times</h4><p>No devices at dinner, and devices charge outside the bedroom at night. Want it in writing? Try TOUCH's <a href="https://www.touch.org.sg/get-assistance/tips-and-articles/first-device-campaign.html" target="_blank" rel="noopener">Tech Agreement</a>.</p></div>
+      </div></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ ACT ============ -->
+<section class="band sky" id="act">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="meta"><span class="eyebrow">Step 3 · Act</span></div>
+      <h2>Something happened online? Here's how to handle it.</h2>
+      <p>Most of the time, a calm chat at home is all it takes. Pick what happened to see how to react and support your child.</p>
+    </div>
+    <div class="picker" id="picker"></div>
+    <div class="plan-out" id="plan-out" aria-live="polite"><p class="empty">Pick a situation above to see what to do.</p></div>
+    <p class="sos-note">In an emergency, call <b>999</b> (Police) or <b>995</b> (Ambulance). For emotional support any time, SOS is on <b>1767</b>.</p>
+  </div>
+</section>
+
+<!-- ============ HELP ============ -->
+<section class="band" id="helplines">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Who can help</span>
+      <h2>Three numbers worth saving</h2>
+      <p>Save these in your phone today. You'll know where to turn if you ever need to.</p>
+    </div>
+    <div class="save3">
+      <div class="help"><span class="for">Emotional crisis · 24 hours</span><h4>Samaritans of Singapore (SOS)</h4><p><b>What it is:</b> a free, confidential helpline where trained volunteers listen.<br><b>Call if:</b> your child (or you) feels hopeless, is in emotional crisis, or talks about not wanting to live.</p><div class="num"><strong>1767</strong><button data-num="1767">Copy</button></div><span class="hrs">Or WhatsApp CareText: 9151 1767</span><a class="site" href="https://www.sos.org.sg" target="_blank" rel="noopener">sos.org.sg ↗</a></div>
+      <div class="help"><span class="for">Online harms · for parents</span><h4>Help123 (TOUCH Cyber Wellness)</h4><p><b>What it is:</b> a free helpline for parents and kids about problems online. Not for emergencies.<br><b>Call if:</b> your child saw something upsetting, is being bullied online, or is gaming too much and you want advice.</p><div class="num"><strong>1800 6123 123</strong><button data-num="18006123123">Copy</button></div><span class="hrs">Mon to Fri, 9am to 6pm</span><a class="site" href="https://www.help123.sg" target="_blank" rel="noopener">help123.sg ↗</a></div>
+      <div class="help"><span class="for">For your child</span><h4>Tinkle Friend</h4><p><b>What it is:</b> a free helpline and chat just for primary school kids, run by Singapore Children's Society.<br><b>Share it so:</b> your child has someone to talk to about anything worrying them, at school, at home or online.</p><div class="num"><strong>1800 2744 788</strong><button data-num="18002744788">Copy</button></div><span class="hrs">Calls Mon to Fri, 2.30pm to 5pm · chat online</span><a class="site" href="https://www.tinklefriend.sg" target="_blank" rel="noopener">tinklefriend.sg ↗</a></div>
+    </div><div class="report"><div><span class="for">Report it · Online Safety Commission</span><h4>Report online harm to the OSC</h4><p><b>What it is:</b> a Singapore government agency that can get harmful posts taken down.<br><b>Report if:</b> someone shares intimate or abusive images of your child, posts their personal details (doxxing), or harasses or stalks them online. For harassment or stalking, report to the app or platform first. Under 18? A parent or trusted adult can report with your child's permission.</p></div><a class="go" href="https://report.osc.gov.sg/" target="_blank" rel="noopener">Report a harm ↗</a></div>
+    <details class="more allhelp">
+      <summary>More helplines, by what you need</summary>
+      <div class="hpick"><p class="hq">What do you need?</p><div class="seg2 hchips" id="hchips"></div></div>
+      <div class="htable" id="htable"></div>
+    </details>
+    <p class="verify">Checked against official sources, Nov 2026. Tap a name to confirm on its website.</p>
+  </div>
+</section>
+
+<!-- ============ GAME ============ -->
+<section class="band" id="game" style="padding-top:0">
+  <div class="wrap">
+    <div class="game">
+      <div>
+        <span class="soon">New · Master Chefs</span>
+        <h2>Not sure how to start? Play it together.</h2>
+        <p>A cooking game for you and your child. Answer everyday online moments side by side. When your answers differ, you talk it through, and the conversation starts on its own.</p>
+        <a class="btn play" href="play.html">Play the game →</a>
+      </div>
+      <div class="how">
+        <div><b>1</b>Pick a dish. Each one is a topic.</div>
+        <div><b>2</b>Your child picks an answer, then you do</div>
+        <div><b>3</b>Collect a sticker for every dish you finish</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <details class="more srcs">
+      <summary>Sources, and where we used them</summary>
+      <div class="srcgrid">
+      <div class="srcg t-violent"><h5><i></i>Know · Violent content</h5><ul>
+          <li><span class="cite">Team resource: "Beyond the Screen: Understanding Online Aggression &amp; Violent Content"</span><span class="used">Main points, signs to watch for, and what it looks like</span></li>
+          <li><span class="cite">Hasan, Bègue &amp; Bushman (2012). <a href="https://research.vu.nl/en/publications/viewing-the-world-through-blood-red-tinted-glasses-the-hostile-ex/" target="_blank" rel="noopener">Hostile expectation bias and violent games</a>. <em>J. of Experimental Social Psychology</em></span><span class="used">"Why are you griefing me?!"</span></li>
+          <li><span class="cite">Greitemeyer &amp; McLatchie (2011). <a href="https://www.psychologicalscience.org/journals/psychological-science/0956797611403320/" target="_blank" rel="noopener">Denying humanness to others</a>. <em>Psychological Science</em></span><span class="used">"They're just an NPC."</span></li>
+          <li><span class="cite">Lobel et al. (2017). <a href="https://research.tilburguniversity.edu/en/publications/video-gaming-and-childrens-psychosocial-wellbeing-a-longitudinal-/" target="_blank" rel="noopener">Video gaming and children's psychosocial wellbeing</a>. <em>J. of Youth and Adolescence</em></span><span class="used">"Winner takes all!"</span></li>
+          <li><span class="cite">Hobbs &amp; Grafe (2015). <a href="https://firstmonday.org/ojs/index.php/fm/article/view/5981" target="_blank" rel="noopener">YouTube pranking across cultures</a>. <em>First Monday</em></span><span class="used">"It was just a joke, chill!"</span></li>
+          <li><span class="cite">Suler (2004). <a href="https://pubmed.ncbi.nlm.nih.gov/15257832/" target="_blank" rel="noopener">The online disinhibition effect</a>. <em>CyberPsychology &amp; Behavior</em></span><span class="used">"It's just online."</span></li>
+      </ul></div>
+      <div class="srcg t-explicit"><h5><i></i>Know · Explicit content</h5><ul>
+          <li><span class="cite">Children's Commissioner for England (2023). <a href="https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf" target="_blank" rel="noopener">"A lot of it is actually just abuse"</a></span><span class="used">"It just popped up!" and "Everyone in my class has seen it."</span></li>
+          <li><span class="cite">Swansea University &amp; NSPCC Cymru. <a href="https://projects.swan.ac.uk/onlinegroomingcommunication/" target="_blank" rel="noopener">Online grooming communication research</a></span><span class="used">"My online friend said it's our secret."</span></li>
+          <li><span class="cite">Internet Watch Foundation (2023). <a href="https://iwf.org.uk/media/rzzas5vq/review-of-the-rshe-statutory-guidance-iwf-response.pdf" target="_blank" rel="noopener">Self-generated imagery of children aged 7 to 10</a></span><span class="used">"They just wanted a photo."</span></li>
+      </ul></div>
+      <div class="srcg t-selfharm"><h5><i></i>Know · Self-harm content</h5><ul>
+          <li><span class="cite">Dazzi et al. (2014). <a href="https://www.cambridge.org/core/product/FCAEE9E5BC840D76CF10AEBECD921AC9" target="_blank" rel="noopener">Does asking about suicide induce suicidal ideation?</a> <em>Psychological Medicine</em></span><span class="used">"Ugh, kms lol.", plus the advice to ask directly in Talk and Act</span></li>
+          <li><span class="cite">US CDC (2008). <a href="https://pubmed.ncbi.nlm.nih.gov/18272955/" target="_blank" rel="noopener">Strangulation deaths from the "choking game"</a>. <em>MMWR</em></span><span class="used">"It's just a challenge."</span></li>
+          <li><span class="cite">Amnesty International (2023). <a href="https://www.amnesty.org.uk/knowledge-hub/all-resources/report-driven-into-darkness/" target="_blank" rel="noopener">Driven into Darkness</a></span><span class="used">"These sad videos are so relatable."</span></li>
+          <li><span class="cite">AboutKidsHealth, SickKids. <a href="https://www.aboutkidshealth.ca/suicide-risk-in-children-and-teens-signs-and-symptoms" target="_blank" rel="noopener">Suicide risk in children and teens: signs</a></span><span class="used">"Everyone would be better off without me."</span></li>
+      </ul></div>
+      <div class="srcg t-talk"><h5><i></i>Talk and Act</h5><ul>
+          <li><span class="cite">Digital for Life, IMDA (2023). <a href="https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content" target="_blank" rel="noopener">How to talk to your child about inappropriate content</a></span><span class="used">Conversation starters and when to ask them, the 3 tips, and the block / report / filter steps in Act</span></li>
+          <li><span class="cite">TOUCH Community Services. <a href="https://www.touch.org.sg/get-assistance/tips-and-articles/first-device-campaign.html" target="_blank" rel="noopener">First Device Campaign</a></span><span class="used">Tech Agreement link in the family habits</span></li>
+      </ul></div>
+      <div class="srcg t-help"><h5><i></i>Who can help</h5><ul>
+          <li><span class="cite">Each organisation's own website  (linked on every helpline card)</span><span class="used">Numbers and hours, checked November 2026</span></li>
+          <li><span class="cite">Ministry of Health (2025). <a href="https://www.moh.gov.sg/newsroom/national-mindline-1771-to-provide--round-the-clock-support-for-mental-health/" target="_blank" rel="noopener">National mindline 1771</a></span><span class="used">mindline 1771, which replaced the old IMH helpline</span></li><li><span class="cite">Online Safety Commission (2026). <a href="https://www.osc.gov.sg/what-you-can-report/" target="_blank" rel="noopener">What you can report</a></span><span class="used">The OSC reporting card: harm types, platform-first rule, and reporting for under-18s</span></li>
+      </ul></div>
+      <div class="srcg t-bg"><h5><i></i>Background reading</h5><ul>
+          <li><span class="cite">UK DSIT (2026). <a href="https://www.gov.uk/government/news/is-your-child-influenced-by-toxic-content-new-government-campaign-supports-parents-to-talk-about-harmful-online-content" target="_blank" rel="noopener">Campaign to help parents talk about harmful online content</a></span><span class="used">Inspiration for the campaign approach. Not quoted on this page</span></li>
+          <li><span class="cite">MCI Online Safety Poll (2023); MDDI survey (2025) </span><span class="used">Context on online harms in Singapore. Not quoted on this page</span></li>
+      </ul></div>
+      </div>
+    </details>
+    <p class="about">Real Talk is a student health communication campaign helping parents in Singapore talk with their children about violent, explicit and self-harm content online. It gives general guidance and does not replace professional advice.</p>
+  </div>
+</footer>
+
+<script>
+const TOPICS={
+  violent:{label:"Violent",cls:"t-violent"},
+  explicit:{label:"Explicit",cls:"t-explicit"},
+  selfharm:{label:"Self-harm",cls:"t-selfharm"}
+};
+
+const KNOW={
+  violent:{
+    lead:"Fight videos and aggressive gaming can teach kids that hurting people is normal, funny, or how you win.",
+    where:"Fight clips on Shorts and TikTok, gory videos that autoplay, prank videos where someone gets hurt.",
+    signs:["Big meltdowns after gaming","Calling people \"noob\" or \"trash\", laughing when someone gets hurt","Nightmares or new fears"],
+    looks:["Fight compilations and \"street fight\" clips","Gory clips that autoplay after a harmless video","M18 shooting games streamed by popular creators","Real news footage of attacks forwarded in class chats"],
+    affects:["Fear, anxiety and nightmares","Less empathy: game violence hides real pain","Kids aged 7 to 12 are learning how the world works, and may decide aggression earns respect","Copying moves, words or pranks"]
+  },
+  explicit:{
+    lead:"Sexual content reaches kids through pop-ups, innocent searches, and sometimes from adults trying to groom them.",
+    where:"Pop-up ads in free games, searches like \"kissing\", links in class or game chats, strangers asking for photos.",
+    signs:["Hiding the screen or switching apps quickly","Sexual words or knowledge beyond their age","A new \"online friend\" who gives gifts or game credits"],
+    looks:["Sexual pop-up ads inside free games and apps","Innocent searches that bring up explicit videos","Links shared as a \"joke\" in chats","Someone sending sexual pictures, or asking for photos"],
+    affects:["Confusion, shame or distress","Unhealthy ideas about bodies, respect and consent","Curiosity that leads to searching for more","Makes grooming easier, because sexual talk starts to feel normal"]
+  },
+  selfharm:{
+    lead:"Some content makes sadness look beautiful, or makes hurting yourself look like a game. Kids this age may not see the danger.",
+    where:"\"Sad aesthetic\" edits, dangerous choking or breath-holding \"challenges\", jokes like \"kms\" in chats.",
+    signs:["Pulling away from friends or things they love","Saying \"I wish I wasn't here\"","Unexplained cuts or bruises, or covering up in hot weather"],
+    looks:["Edits and songs that make pain look beautiful","Dangerous \"challenges\" that can injure or kill","Images of self-harm injuries in posts","Jokes like \"kms\" (\"kill myself\") in chats and games"],
+    affects:["Can make hurting yourself seem like a normal way to cope","\"Challenges\" can cause serious injury","A feed full of sad content can deepen a low mood","Kids may not know it's okay to ask for help"],
+    flag:true
+  }
+};
+const FAMILIAR={
+ violent:[
+  ["Why are you griefing me?!","\"Griefing\" means ruining someone's game on purpose. Said when a sibling bumps them by accident.","Seeing accidents as attacks","Violent games can make players expect others to be hostile, so small accidents feel like attacks.","Do you think they meant to do it?","Hasan, Bègue & Bushman, 2012"],
+  ["They're just an NPC.","An NPC is a background game character. Said about a classmate having a hard time.","Seeing people as less real","Violent games have been linked to seeing others as less human, which makes it easier to ignore their feelings.","How do you think they felt?","Greitemeyer & McLatchie, 2011"],
+  ["Winner takes all!","Said when they refuse to take turns or share during play.","Winning over being kind","In children aged 7 to 11, lots of competitive gaming was linked to being less kind and helpful over time.","What makes a game fun for everyone?","Lobel et al., 2017"],
+  ["It was just a joke, chill!","Said after teasing someone until they cried, sometimes while filming it.","Thinking hurt is funny","Many prank videos are edited to make someone's fear or upset look entertaining.","Was it funny for them too?","Hobbs & Grafe, 2015"],
+  ["It's just online.","Said after posting mean comments in the class chat.","Thinking online doesn't count","People often act more harshly online than face to face, because they feel unseen and anonymous.","Would you say that to their face?","Suler, 2004"]
+ ],
+ explicit:[
+  ["It just popped up!","Said when they quickly close the tablet as you walk in.","It found them by accident","Nearly 4 in 10 young people say they have stumbled across porn by accident.","Oh, okay. You're not in trouble. Where did it come from?","Children's Commissioner for England, 2023"],
+  ["Everyone in my class has seen it.","Said when a sexual video or word comes up with friends.","It can feel normal early","1 in 10 young people had seen porn by age 9, and over a quarter by age 11.","Oh, really? What are people saying about it?","Children's Commissioner for England, 2023"],
+  ["My online friend said it's our secret.","Said about someone they met in a game or chat app.","A grooming warning sign","Groomers build secrecy to cut a child off from the adults who could protect them.","Hmm, real friends don't ask you to hide things from me. Can I take a look?","Swansea University & NSPCC Cymru research"],
+  ["They just wanted a photo.","Said when someone online asks for pictures of them.","Pressure, not choice","Sexual images of 7 to 10-year-olds made under pressure online rose by 65% in one year.","Okay, thanks for telling me. You're not in trouble. Can I see the messages?","Internet Watch Foundation, 2023"]
+ ],
+ selfharm:[
+  ["Ugh, kms lol.","\"kms\" means \"kill myself\". Said after losing a game or getting a bad mark.","Usually slang, worth a check","Asking a child directly about suicide does not put the idea in their head.","You've been saying that a lot. Just a joke, or is something up?","Dazzi et al., 2014"],
+  ["It's just a challenge.","Said about a breath-holding or \"blackout\" video going around school.","They may not see the danger","These \"games\" have killed children, and most parents had never heard of them.","Wait, people are doing that? What happens in the video?","US CDC, 2008"],
+  ["These sad videos are so relatable.","Said while scrolling a feed full of sad edits and songs.","Their feed may be pulling them in","In one test, over half of a TikTok feed turned into mental health struggles within 20 minutes.","Relatable how? Has something been getting you down?","Amnesty International, 2023"],
+  ["Everyone would be better off without me.","Said after a hard day, sometimes very quietly.","A serious warning sign","Talking about being a burden to others is a known warning sign of suicide in children.","Hey, come here. That sounds really heavy. Are you thinking of hurting yourself?","AboutKidsHealth (SickKids)"]
+ ]
+};
+
+const STARTERS={
+  young:{
+    violent:[
+      ["On a car ride","Some parents said kids are watching fighting videos. Are they popular at your school?","What do you think of them?"],
+      ["While they're gaming","Ooh, who's winning? Can I have a go?","Does it ever get too scary?"],
+      ["After school","Has anyone at school talked about a scary video?","What did they say about it?"]],
+    explicit:[
+      ["One-on-one at home","Another mum said weird stuff sometimes pops up in kids' games. Has that ever happened?","If it ever does, you can always tell me."],
+      ["After school","Do kids at school ever talk about stuff they saw online?","What kind of things do they say?"],
+      ["Setting up a new game","If something weird pops up, what's the best thing to do?","Close it and come get me. No trouble."]],
+    selfharm:[
+      ["At dinner","What was the best and worst part of today?",""],
+      ["On a car ride","I heard about some risky challenges going around schools. Heard of any?","What do you think of them?"],
+      ["On a walk","What helps you feel better when you're sad?","Who else could you talk to?"]]
+  },
+  old:{
+    violent:[
+      ["On a car ride","I heard fight videos are going around class chats. Is that a thing at your school?","What do you think of them?"],
+      ["Watching videos together","Why do you think fight videos get so many views?","Is that what real fights are like?"],
+      ["After a heated game","That got intense. You good?","What helps you cool down?"]],
+    explicit:[
+      ["One-on-one, somewhere comfy","I read that lots of kids see rude stuff online by accident. Does that happen at your school?","If it ever happens to you, you can tell me. You won't be in trouble."],
+      ["While they're gaming online","Who's on your team today?","Are they friends from school, or people online?"],
+      ["Setting up a new app","If something rude pops up, what's the best thing to do?","Close it and tell me. No trouble."]],
+    selfharm:[
+      ["Scrolling together","What kind of stuff comes up on your feed?","Ever see videos that make being sad look cool?"],
+      ["Talking about friends","How are your friends doing lately?","Anyone having a hard time?"],
+      ["When they seem down","You've seemed a bit down. Want to go for a walk?","If it feels right: \"Have you ever felt so low you thought about hurting yourself?\""]]
+  }
+};
+
+const SCEN=[
+  {id:"saw-violent",topic:"violent",label:"Saw something violent or scary",
+   steps:[["Stay calm and stay close","Sit with them. Something like \"That looked scary, huh?\" is enough."],["Let them talk","Ask what they saw and how it made them feel. Listen more than you speak."],["Block it together","Report or block the video, then turn off autoplay or switch on Restricted Mode."],["Check in over the next few days","Look out for nightmares or new fears, and ask how they're doing."]],
+   say:"That looked scary. You're not in trouble, okay?",calls:"Help123: 1800 6123 123"},
+  {id:"aggressive",topic:"violent",label:"Is acting more aggressive",
+   steps:[["Let everyone cool down first","Pause the game. A short break and some water helps. Don't argue in the moment."],["Name the feeling","\"That game really got you worked up.\""],["Talk about how others feel","Later, ask: \"How do you think your sister felt?\""],["Get support if it keeps happening","Talk to the school counsellor, or call Help123 for advice."]],
+   say:"Hey, not cool. You wouldn't like it if she said that to you.",calls:"Help123: 1800 6123 123 · NAMS (gaming): 6732 6837"},
+  {id:"saw-explicit",topic:"explicit",label:"Saw something sexual",
+   steps:[["Stay calm, don't scold","It was most likely an accident. How you react decides if they'll tell you next time."],["Ask how they're feeling","They might feel confused, embarrassed or curious. All of that is normal."],["Explain simply","Tell them it's made for adults and doesn't show how people should treat each other."],["Tidy up the settings together","Turn on SafeSearch and family filters, and add an ad-blocker."]],
+   say:"Oh, okay. You're not in trouble. Where did it come from?",calls:"Help123: 1800 6123 123"},
+  {id:"contacted",topic:"explicit",urgent:true,label:"Was asked for photos by someone online",
+   steps:[["Reassure them first","\"You did the right thing telling me. That person broke the rules, not you.\""],["Don't reply or delete anything yet","The messages may be needed as evidence."],["Note down the details","Username, platform, dates and what was said."],["Report it","Report to the platform and the Police. You can also report at osc.gov.sg."]],
+   warn:"Do not save, screenshot or share sexual images of a child, even as evidence. Report them directly.",
+   say:"Okay, that's not okay of them, and you're not in trouble. Let's look at it together.",calls:"Police: 999 if urgent · SHECARES@SCWO: 8001 01 4616"},
+  {id:"saw-selfharm",topic:"selfharm",label:"Saw self-harm or very sad content",
+   steps:[["Stay calm and ask about it","\"What did you see? How did it make you feel?\""],["Gently explain","Hurting yourself isn't a way to fix feelings, even if a video makes it look that way."],["Clean up the feed together","Unfollow the account and tap \"Not interested\"."],["Check how they've been feeling","It's okay to ask directly. It won't put the idea in their head."]],
+   say:"Yeah, some videos can do that. Want to tell me about it?",calls:"SOS 24h: 1767 · mindline: 1771"},
+  {id:"hurting",topic:"selfharm",urgent:true,label:"Talks about hurting themselves",
+   steps:[["Stay with them","Stay calm. You don't need perfect words. Being there matters most."],["Listen, then ask directly","\"Are you thinking about hurting yourself?\""],["Get help together","Call SOS on 1767, and let the school counsellor and your GP know."],["If they might be in danger right now","Call 995, stay with them, and move anything harmful out of reach."]],
+   say:"I'm here. We'll get through this together.",calls:"SOS 24h: 1767 · mindline 24h: 1771 · Ambulance: 995"}
+];
+
+const HGROUPS=[["talk","Someone to talk to"],["online","Online problems"],["abuse","Abuse or addiction"],["emergency","Emergency"]];
+const HELP=[
+  ["talk","Samaritans of Singapore (SOS)","Your child or you feel hopeless, or talk about suicide.","1767","24 hours","https://www.sos.org.sg","sos.org.sg"],
+  ["talk","National mindline","Your child or you feel stressed, anxious or low.","1771","24 hours · or WhatsApp 6669 1771","https://www.mindline.sg","mindline.sg"],
+  ["talk","Tinkle Friend","For your child, when something is worrying them.","1800 2744 788","Mon–Fri, 2.30pm–5pm","https://www.tinklefriend.sg","tinklefriend.sg"],
+  ["online","Help123 (TOUCH)","Advice on upsetting content, cyberbullying or gaming.","1800 6123 123","Mon–Fri, 9am–6pm","https://www.help123.sg","help123.sg"],
+  ["online","SHECARES@SCWO","Your child is harassed or bullied online, or had images shared.","8001 01 4616","Mon–Fri, 9am–9pm","https://www.scwo.org.sg","scwo.org.sg"],
+  ["online","Online Safety Commission","A platform won't remove serious harmful content.",null,"Report online, free","https://www.osc.gov.sg","osc.gov.sg"],
+  ["abuse","Anti-Violence & Sexual Harassment Helpline","To report abuse, violence or sexual harassment.","1800 777 0000","24 hours","https://www.msf.gov.sg/what-we-do/break-the-silence","msf.gov.sg"],
+  ["abuse","NAMS","Gaming is taking over school, sleep or family life.","6732 6837","24 hours","https://www.nams.sg","nams.sg"],
+  ["emergency","Police","Your child is in danger, or someone online is threatening them or asking for sexual photos.","999","24 hours · SMS 70999 if you can't talk","https://www.police.gov.sg","police.gov.sg"],
+  ["emergency","SCDF Ambulance","Your child is hurt and needs urgent medical help.","995","24 hours","https://www.scdf.gov.sg","scdf.gov.sg"]
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function copyText(btn,txt){
+  const label=btn.textContent;
+  const done=()=>{btn.textContent="Copied";btn.classList.add("done");setTimeout(()=>{btn.textContent=label;btn.classList.remove("done")},1400)};
+  try{navigator.clipboard.writeText(txt).then(done).catch(()=>{btn.textContent="Select to copy"})}catch(e){btn.textContent="Select to copy"}
+}
+function makeTabs(group,onPick,initial){
+  const host=document.querySelector(`.tabs[data-group="${group}"]`);
+  host.innerHTML=Object.entries(TOPICS).map(([k,v])=>`<button class="tab ${v.cls}" role="tab" aria-selected="${k===initial}" data-k="${k}"><i></i>${esc(v.label)}</button>`).join("");
+  host.addEventListener("click",e=>{const b=e.target.closest(".tab");if(!b)return;host.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t===b));onPick(b.dataset.k)});
+  onPick(initial);
+}
+const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
+
+/* KNOW */
+const cap=x=>x.replace(/^(\W*)([a-z])/,(m,p,c)=>p+c.toUpperCase());
+const chips=w=>w.replace(/\.$/,"").split(/,\s+/).map(x=>`<span class="chip">${esc(cap(x))}</span>`).join("");
+const ICON={screen:'<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M10 8.5v5l4-2.5z"/><path d="M8 21h8"/></svg>',
+  heart:'<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>'};
+const items=(a,ic)=>a.map(x=>`<div class="item"><span class="ii" aria-hidden="true">${ICON[ic]}</span>${esc(x)}</div>`).join("");
+function renderKnow(k){
+  const d=KNOW[k];
+  $("#know-panel").innerHTML=`<div class="${TOPICS[k].cls}">
+    <div class="know-card pop">
+      <div class="kc-lead"><span class="ic" aria-hidden="true">!</span><p>${esc(d.lead)}</p></div>
+      <div class="kc-body">
+        <div><span class="kc-label">Where kids find it</span><div class="chips">${chips(d.where)}</div></div>
+        <div><span class="kc-label">3 signs to watch for</span><div class="signgrid">${d.signs.map((x,i)=>`<div class="sign pop" style="--d:${.15+i*.08}s"><span class="sn">${i+1}</span>${esc(x)}</div>`).join("")}</div></div>
+        ${d.flag?`<div class="flag"><b>Worried right now?</b> <a href="#act" data-scen="hurting">See what to do</a> or call SOS on 1767 (24 hours).</div>`:""}
+      </div>
+    </div>
+    <details class="more"><summary>Show more about ${esc(TOPICS[k].label.toLowerCase())} content</summary>
+      <div class="inner">
+        <div class="mini stack"><div class="box"><h4>What it looks like</h4><p class="bsub">Examples of what your child might come across.</p><div class="igrid">${items(d.looks,"screen")}</div></div>
+        <div class="box"><h4>How it can affect them</h4><p class="bsub">What it can do to how they feel and behave.</p><div class="igrid">${items(d.affects,"heart")}</div></div></div>
+        <div><h4 style="font-size:20px;margin-bottom:4px">Sound familiar?</h4><p style="color:var(--ink-soft);font-size:15px;margin-bottom:12px">Things kids say that may come from what they see online. Tap a card to see what it may mean and what you could say.</p><div class="fgrid">${FAMILIAR[k].map(([q,s,c,e,t,src],i)=>`<button class="fcard pop" style="--d:${i*.06}s" aria-label="${esc(q)}"><div class="in"><div class="f"><span class="lbl">Your child says</span><q>${esc(q)}</q><span>${esc(s)}</span><em>Tap to flip ↻</em></div><div class="b"><span class="lbl">What it may mean</span><b>${esc(c)}</b><p>${esc(e)}</p><p class="try">You could say: \"${esc(t)}\"</p><span class="src">Source: ${esc(src)}</span></div></div></button>`).join("")}</div></div>
+      </div></details></div>`;
+  document.querySelectorAll(".fcard").forEach(c=>c.onclick=()=>c.classList.toggle("flip"));
+}
+
+/* TALK: one topic picker drives both blocks */
+let tTopic="violent",age="young";
+const FACE={
+  happy:'<path d="M14 25q6 5 12 0"/>',
+  sad:'<path d="M14 28q6-5 12 0"/>',
+  meh:'<path d="M15 26h10"/>',
+  wow:'<circle cx="20" cy="26.5" r="3" fill="#17362B" stroke="none"/>',
+  worry:'<path d="M14 27q3-3 6 0t6 0"/>'
+};
+const face=t=>`<svg class="face" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#fff"/><circle class="eye" cx="14" cy="18" r="2.4" fill="#17362B"/><circle class="eye" cx="26" cy="18" r="2.4" fill="#17362B"/><g fill="none" stroke="#17362B" stroke-width="2.4" stroke-linecap="round">${FACE[t]}</g></svg>`;
+function renderTalk(){
+  $("#talktool").className="talktool "+TOPICS[tTopic].cls;
+  $("#qgrid").innerHTML=STARTERS[age][tTopic].map(([m,q,f],i)=>`<div class="qcol pop" style="--d:${i*.09}s"><span class="moment">${esc(m)}</span>
+    <div class="qb"><svg class="tail" viewBox="0 0 34 22" aria-hidden="true"><path d="M1 0 L33 0 L5 21 Z" fill="currentColor"/><path d="M2 1.5 L5 21 L31 1.5" fill="none" stroke="#1d1d1b" stroke-width="2.5" stroke-linejoin="round"/></svg>${face(["happy","wow","happy"][i])}<p>"${esc(q)}"</p></div>
+    <p class="then"><b>Then:</b> ${f?esc(f.startsWith("If it feels right")?f:'"'+f+'"'):"just listen."}</p></div>`).join("");
+}
+function seg(id,cb){const host=$(id);host.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;host.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));cb(b.dataset.v)})}
+seg("#age-seg",v=>{age=v;renderTalk()});
+
+/* ACT */
+$("#picker").innerHTML=SCEN.map(s=>`<button class="pick ${TOPICS[s.topic].cls}" aria-pressed="false" data-id="${s.id}"><i></i><span>${esc(s.label)}</span>${s.urgent?'<span class="u">Extra help</span>':""}</button>`).join("");
+$("#picker").addEventListener("click",e=>{const b=e.target.closest(".pick");if(b)pickScen(b.dataset.id,true)});
+function pickScen(id,scroll){
+  const s=SCEN.find(x=>x.id===id);
+  document.querySelectorAll(".pick").forEach(p=>p.setAttribute("aria-pressed",p.dataset.id===id));
+  const out=$("#plan-out");
+  out.className="plan-out "+TOPICS[s.topic].cls;
+  void out.offsetWidth;out.classList.add("pop");
+  out.innerHTML=`<div class="top"><span class="tagpill">${esc(TOPICS[s.topic].label)}</span>${s.urgent?'<span class="tagpill" style="background:var(--sun-2);color:var(--ink)">Get extra help too</span>':""}</div>
+    <h3>${esc(s.label)}</h3>
+    <div class="plan-grid">
+      <ol class="steps">${s.steps.map(([b,t],i)=>`<li class="pop" style="--d:${.1+i*.09}s"><div><b>${esc(b)}</b><span>${esc(t)}</span></div></li>`).join("")}</ol>
+      <div class="side">
+        ${s.warn?`<div class="warnnote"><b>Important:</b> ${esc(s.warn)}</div>`:""}
+        <div class="saythis"><small>What you can say</small><p>"${esc(s.say)}"</p></div>
+        <div class="callbox"><small>If you need more support</small><div>${esc(s.calls)}</div></div>
+      </div>
+    </div>`;
+  if(scroll)out.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+/* HELP table */
+function renderHelp(g){
+  $("#hchips").innerHTML=HGROUPS.map(([k,l])=>`<button aria-pressed="${k===g}" data-g="${k}">${esc(l)}</button>`).join("");
+  $("#htable").innerHTML=HELP.filter(h=>h[0]===g).map(([,n,d,num,hrs,link,lt],i)=>`<div class="hcard pop" style="--d:${i*.08}s">
+    <a class="hname" href="${link}" target="_blank" rel="noopener" title="${esc(lt)}">${esc(n)} <span aria-hidden="true">↗</span></a>
+    <p>${esc(d)}</p>
+    <div class="hfoot">${num?`<strong>${esc(num)}</strong><button data-num="${esc(num.replace(/\s/g,""))}">Copy</button>`:`<a class="hreport" href="${link}" target="_blank" rel="noopener">Report online</a>`}<span class="hrs">${esc(hrs)}</span></div></div>`).join("");
+}
+$("#hchips").addEventListener("click",e=>{const b=e.target.closest("button[data-g]");if(b)renderHelp(b.dataset.g)});
+renderHelp("talk");
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button[data-num]");if(b)copyText(b,b.dataset.num);
+  const sc=e.target.closest("[data-scen]");if(sc)pickScen(sc.dataset.scen);
+});
+
+makeTabs("know",renderKnow,"violent");
+makeTabs("talk",k=>{tTopic=k;renderTalk()},"violent");
+const nav=$("#nav");
+addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>10),{passive:true});
+
+/* ===== Motion: scroll reveal + section highlight in the nav ===== */
+(function(){
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const groups=[".sec-head",".three h2",".three .sub",".tgrid > *",".tips-h",".promise",".twotips > *",".talktool",".picker",".plan-out",".save3 > *",".game",".srcs"];
+  const els=[];
+  groups.forEach(sel=>document.querySelectorAll(sel).forEach((el,i)=>{el.classList.add("reveal");el.style.setProperty("--d",(i%4)*0.08+"s");els.push(el)}));
+  const show=el=>{if(el.classList.contains("in"))return;el.classList.add("in");setTimeout(()=>{el.classList.remove("reveal","in");el.style.removeProperty("--d")},1100)};
+  if(reduce||!("IntersectionObserver" in window)){els.forEach(el=>el.classList.remove("reveal"));return}
+  document.documentElement.classList.add("js");
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){show(e.target);io.unobserve(e.target)}}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+  els.forEach(el=>io.observe(el));
+  // safety net: never leave anything hidden
+  setTimeout(()=>els.forEach(show),4000);
+})();
+(function(){
+  const links=[...document.querySelectorAll(".navlinks a")];
+  const map=new Map(links.map(a=>[a.getAttribute("href").slice(1),a]));
+  if(!("IntersectionObserver" in window))return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.remove("active"));const a=map.get(e.target.id);if(a)a.classList.add("active")}}),{rootMargin:"-45% 0px -50% 0px"});
+  document.querySelectorAll("header[id],section[id]").forEach(sec=>io.observe(sec));
+})();
+
+</script>
+
+</body></html>

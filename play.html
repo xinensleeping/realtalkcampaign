@@ -1,0 +1,1465 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Master Chefs</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: essentials first. Every section shows one short, doable thing; details sit behind
+   "Show more". Sunny campaign world: sky hero, then Know / Talk / Act bands, then help + game. */
+:root{
+  --sky:#BFE4F6; --sky-2:#E3F3FB;
+  --sun:#FFE37F; --sun-2:#FFF5CC;
+  --ink:#17362B; --ink-soft:#4C6158;
+  --leaf:#2F5A3B; --leaf-2:#E3EDE4;
+  --coral:#DC6545; --coral-2:#FBE3DA;
+  --plum:#7C5CD6; --plum-2:#ECE6FB;
+  --teal:#1F8FA6; --teal-2:#DAF0F4; --blue:#8CCBEE;
+  --paper:#FFFBF2; --card:#FFFFFF; --line:#E6E0D2;
+  --on-dark:#FFFBF2; --dark:#17362B; --dark-2:#22493B;
+  --shadow:0 2px 0 rgba(23,54,43,.08),0 10px 30px rgba(23,54,43,.08);
+  --f-display:'Bricolage Grotesque',ui-rounded,'Trebuchet MS',system-ui,sans-serif;
+  --f-body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r-lg:28px; --r-md:18px;
+  color-scheme:light; /* deliberately single-theme: a bright, sunny world for every viewer */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--leaf);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.c-coral{color:var(--coral)} .c-leaf{color:var(--leaf)}
+.t-violent{--tc:var(--coral);--tc2:var(--coral-2)}
+.t-explicit{--tc:var(--plum);--tc2:var(--plum-2)}
+.t-selfharm{--tc:var(--teal);--tc2:var(--teal-2)}
+
+/* nav */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sky)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--sky)}
+.nav.scrolled{box-shadow:0 6px 20px rgba(23,54,43,.10)}
+.nav .wrap{display:flex;align-items:center;gap:20px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--f-display);font-weight:800;font-size:22px;background:var(--card);padding:6px 16px 6px 8px;border-radius:999px;box-shadow:var(--shadow)}
+.logo img{width:46px;height:46px;display:block;margin:-4px 0}
+.navlinks{display:flex;gap:4px;margin-left:auto}
+.navlinks a{text-decoration:none;font-weight:600;font-size:15px;padding:8px 14px;border-radius:999px}
+.navlinks a:hover{background:var(--sky-2)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:13px 24px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.green{background:var(--leaf);color:#fff}
+.btn.white{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.urgent{background:var(--coral);color:#fff;padding:10px 18px;font-size:15px}
+.btn.small{padding:9px 16px;font-size:14px}
+
+/* hero */
+.hero{background:var(--sky);padding-block:20px 56px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center}
+.hero h1{font-size:clamp(38px,5vw,62px);font-weight:800;line-height:1.02;margin:14px 0 20px;font-variation-settings:"opsz" 48}
+.hero .lead{font-size:clamp(17px,1.7vw,20px);max-width:42ch;color:var(--ink-soft)}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.gnote{margin-top:14px;font-size:14px;line-height:1.5;color:var(--ink-soft);max-width:46ch}
+.hero-art{width:100%;max-width:560px;justify-self:end}
+.hero-art svg{width:100%;height:auto;display:block}
+.s-ground{fill:var(--sun)} .s-ground2{fill:var(--leaf-2)} .s-path{fill:none;stroke:var(--card);stroke-width:30;stroke-linecap:round}
+.s-dash{fill:none;stroke:var(--sun);stroke-width:3;stroke-dasharray:2 12;stroke-linecap:round}
+.s-cloud{fill:var(--card)} .s-sun{fill:var(--sun)} .s-tree{fill:var(--leaf)} .s-trunk{fill:var(--ink)}
+.s-coral{fill:var(--coral)} .s-teal{fill:var(--teal)} .s-card{fill:var(--card)} .s-panel{fill:var(--sky-2)}
+.s-skin1{fill:#C98A5E} .s-skin2{fill:#F1C7A3} .s-hair1{fill:#2B1E17} .s-hair2{fill:#6B3F22}
+.s-face{fill:#17362B} .s-faces{stroke:#17362B;fill:none;stroke-linecap:round} .s-cheek{fill:var(--coral);opacity:.45}
+.s-num{font-family:var(--f-display);font-weight:800;font-size:22px;fill:#fff}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.bob{animation:bob 4s ease-in-out infinite;transform-box:fill-box}
+
+/* "3 things" */
+.three{padding-block:64px 20px}
+.three h2{font-size:clamp(30px,4vw,46px);font-weight:800}
+.three .sub{color:var(--ink-soft);margin:8px 0 26px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.thing{border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:transform .2s}
+.thing:hover{transform:translateY(-4px)}
+.thing .n{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;color:#fff;transform:rotate(-6deg)}
+.thing h3{font-size:24px;font-weight:800}
+.thing p{color:var(--ink-soft);font-size:15.5px;flex:1}
+.thing .go{font-weight:700;font-size:15px}
+.k1{background:var(--coral-2)} .k1 .n{background:var(--coral)}
+.k2{background:var(--leaf-2)} .k2 .n{background:var(--leaf)}
+.k3{background:var(--teal-2)} .k3 .n{background:var(--teal)}
+
+/* sections */
+section.band{padding-block:72px}
+.band.white{background:var(--card)}
+.band.sky{background:var(--sky-2)}
+.sec-head{margin-bottom:28px;max-width:62ch}
+.sec-head .meta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.time{font-size:13px;font-weight:700;background:var(--sun-2);padding:3px 10px;border-radius:999px}
+.sec-head h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;margin-top:10px}
+.sec-head p{color:var(--ink-soft);margin-top:10px}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tab{border:2px solid var(--line);background:var(--card);padding:9px 16px;border-radius:999px;font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.tab i{width:11px;height:11px;border-radius:50%;background:var(--tc)}
+.tab[aria-selected="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+
+/* know */
+.know-card{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);overflow:hidden}
+.kc-lead{background:var(--tc2);padding:24px 30px;display:flex;gap:18px;align-items:center}
+.kc-lead .ic{flex:0 0 46px;height:46px;border-radius:14px;background:var(--tc);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:26px;transform:rotate(-6deg)}
+.kc-lead p{font-family:var(--f-display);font-weight:700;font-size:clamp(19px,2vw,23px);line-height:1.3}
+.kc-body{padding:24px 30px 28px;display:grid;gap:24px}
+.kc-label{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--paper);border:2px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14.5px;font-weight:600;line-height:1.3}
+.signgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sign{border:2px solid var(--tc2);border-radius:var(--r-md);padding:16px;display:flex;flex-direction:column;gap:10px;font-weight:600;font-size:15.5px;line-height:1.4}
+.sign .sn{width:30px;height:30px;border-radius:10px;background:var(--tc);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:15px}
+.mini.stack{grid-template-columns:1fr}
+.box .bsub{font-size:14.5px;color:var(--ink-soft);margin:-4px 0 14px}
+.igrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.item{display:flex;flex-direction:column;gap:12px;padding:16px;border:2px solid var(--line);border-radius:var(--r-md);font-size:15px;font-weight:500;line-height:1.4;min-width:0}
+.item .ii{width:38px;height:38px;border-radius:12px;background:var(--tc2);display:grid;place-items:center}
+.item .ii svg{width:22px;height:22px;fill:none;stroke:var(--tc);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+ul.clean{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.clean li{position:relative;padding-left:24px}
+ul.clean li::before{content:"";position:absolute;left:4px;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--tc,var(--leaf))}
+.flag{margin-top:16px;background:var(--coral-2);border-radius:var(--r-md);padding:12px 14px;font-size:15px}
+.flag a{font-weight:700}
+details.more{margin-top:14px}
+details.more > summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:9px 16px;border-radius:999px;background:var(--card);box-shadow:inset 0 0 0 2px var(--line)}
+details.more > summary::-webkit-details-marker{display:none}
+details.more > summary::after{content:"+";font-size:18px;line-height:1}
+details.more[open] > summary::after{content:"–"}
+details.more .inner{margin-top:16px;display:grid;gap:16px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{background:var(--card);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow);min-width:0}
+.box h4{font-size:18px;font-weight:700;margin-bottom:10px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.fcard{border:0;padding:0;background:none;text-align:left;perspective:900px}
+.fcard .in{position:relative;min-height:330px;transition:transform .5s;transform-style:preserve-3d}
+.fcard.flip .in{transform:rotateY(180deg)}
+.fcard .f,.fcard .b{position:absolute;inset:0;border-radius:var(--r-md);padding:16px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;gap:8px}
+.fcard .f{background:var(--card);box-shadow:var(--shadow)}
+.fcard .f q{font-family:var(--f-display);font-weight:800;font-size:18px;line-height:1.15}
+.fcard .f span{font-size:13.5px;color:var(--ink-soft);flex:1}
+.fcard .f em{font-style:normal;font-size:12.5px;font-weight:700;color:var(--coral)}
+.fcard .b{background:var(--dark);color:var(--on-dark);transform:rotateY(180deg);font-size:13.5px;line-height:1.45}
+.fcard .b b{font-family:var(--f-display);font-size:17px;line-height:1.2;color:var(--sun)}
+.fcard .lbl{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.fcard .f .lbl{flex:0 0 auto}
+.fcard .b .lbl{color:var(--on-dark);opacity:.7}
+.fcard .b .src{font-size:11.5px;opacity:.6}
+.fcard .b .try{margin-top:auto;background:rgba(255,255,255,.1);border-radius:10px;padding:8px 10px;font-weight:600}
+
+/* talk */
+.promise{background:var(--sun);border-radius:36px;padding:36px;display:grid;grid-template-columns:1fr 1.3fr;gap:28px;align-items:center;margin-bottom:22px}
+.promise h3{font-size:clamp(24px,2.8vw,32px);font-weight:800}
+.promise p.why{margin-top:10px;font-size:15.5px}
+.promise blockquote{margin:0;background:var(--card);border-radius:var(--r-lg);padding:24px 26px;font-family:var(--f-display);font-weight:700;font-size:clamp(21px,2.3vw,27px);line-height:1.3;position:relative}
+.promise blockquote small{display:block;font-family:var(--f-body);font-weight:600;font-size:13px;color:var(--ink-soft);margin-top:10px}
+.tips-h{font-size:clamp(22px,2.4vw,28px);font-weight:800;margin-bottom:14px}
+.tipn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--paper);font-family:var(--f-display);font-weight:800;font-size:17px;transform:rotate(-6deg);margin-bottom:10px}
+.twotips{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:48px}
+.tip{background:var(--card);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow)}
+.tip h4{font-size:20px;font-weight:700;margin-bottom:6px}
+.tip p{font-size:15.5px;color:var(--ink-soft)}
+
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.panel{border-radius:var(--r-lg);padding:26px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel.light{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line)}
+.panel.dark{background:var(--dark);color:var(--on-dark)}
+.panel h3{font-size:24px;font-weight:800}
+.panel .hint{font-size:14.5px;opacity:.75}
+.sit{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tc)}
+.say{border-radius:var(--r-md);padding:14px 16px;font-size:16px;line-height:1.5}
+.say.avoid{background:var(--coral-2)} .say.try{background:var(--leaf-2)}
+.say small{display:block;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.say.avoid small{color:var(--coral)} .say.try small{color:var(--leaf)}
+.say.avoid p{text-decoration:line-through;text-decoration-color:rgba(240,103,74,.6);text-decoration-thickness:2px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row .count{font-size:13px;font-weight:700;opacity:.7;margin-left:auto}
+.nextbtn{border:0;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px}
+.panel.dark .nextbtn{background:var(--sun);color:#17362B}
+.seg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:999px;padding:4px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:none;color:var(--on-dark);font-weight:700;font-size:13.5px;padding:7px 12px;border-radius:999px}
+.seg button[aria-pressed="true"]{background:var(--sun);color:#17362B}
+.qcard{background:rgba(255,255,255,.08);border-radius:var(--r-md);padding:20px;border-top:4px solid var(--tc);flex:1;display:flex;flex-direction:column;gap:10px}
+.qcard p{font-family:var(--f-display);font-weight:700;font-size:clamp(20px,2.2vw,24px);line-height:1.25}
+.qcard small{font-size:14px;opacity:.75}
+.copy{border:0;background:rgba(255,255,255,.14);color:var(--on-dark);border-radius:999px;padding:9px 14px;font-size:14px;font-weight:700}
+.copy.done{background:var(--leaf);color:#fff}
+.talktool{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);border-radius:var(--r-lg);padding:28px;display:grid;gap:30px}
+.tt-top{display:grid;gap:14px}
+.tt-controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;justify-content:space-between}
+.tt-top h3{font-size:26px;font-weight:800}
+.talktool .hint{font-size:15px;color:var(--ink-soft);margin-top:4px}
+.tt-head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;margin-bottom:14px}
+.tt-sec h4{font-size:20px;font-weight:800}
+.agepick{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--ink-soft)}
+.seg2{display:inline-flex;background:var(--card);box-shadow:inset 0 0 0 2px var(--line);border-radius:999px;padding:3px}
+.seg2 button{border:0;background:none;padding:6px 14px;border-radius:999px;font-weight:700;font-size:14px;color:var(--ink)}
+.seg2 button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.qgrid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto 1fr auto;column-gap:20px;row-gap:0}
+.talktool .hint a{color:var(--leaf);font-weight:700}
+.qcol{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:12px;min-width:0}
+.moment{justify-self:start;align-self:start;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--card);box-shadow:inset 0 0 0 2px var(--line);padding:5px 12px;border-radius:999px;color:var(--ink-soft)}
+.qb{position:relative;border-radius:28px;padding:22px 66px 24px 22px;margin-bottom:14px;display:flex;align-items:center}
+.qb p{font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.3}
+.qb::after{content:"";position:absolute;left:34px;bottom:-15px;width:30px;height:18px;background:inherit;clip-path:polygon(0 0,100% 0,10% 100%)}
+.qb .face{position:absolute;right:14px;top:14px;width:40px;height:40px}
+.qb .face circle:first-child{stroke:#1d1d1b;stroke-width:2}
+.qcol:nth-child(3n+1) .qb{background:var(--coral);color:#fff}
+.qcol:nth-child(3n+1) .tail{color:var(--coral)}
+.qcol:nth-child(3n+2) .tail{color:var(--blue)}
+.qcol:nth-child(3n) .tail{color:var(--sun)}
+.qcol:nth-child(3n+2) .qb{background:var(--blue)}
+.qcol:nth-child(3n) .qb{background:var(--sun)}
+.then{font-size:15px;line-height:1.45;color:var(--ink-soft);background:var(--card);border-radius:14px;padding:10px 14px;box-shadow:inset 0 0 0 2px var(--line);align-self:start}
+.then b{color:var(--ink)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:16px}
+.thread{background:var(--card);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:12px;min-width:0}
+.thread h5{font-family:var(--f-display);font-size:18px;font-weight:700;margin:-6px 0 4px}
+.cb{position:relative;max-width:90%;border-radius:22px;padding:12px 16px;font-size:15.5px;line-height:1.4}
+.cb small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.cb .face{position:absolute;top:10px;width:32px;height:32px}
+.cb.kid{align-self:flex-start;background:var(--blue);font-weight:600;border-bottom-left-radius:6px;padding-left:52px}
+.cb.kid .face{left:10px}
+.cb.no{align-self:flex-end;background:#EEEBE3;color:var(--ink-soft);font-size:14.5px}
+.cb.no p{text-decoration:line-through;text-decoration-color:rgba(76,97,88,.5)}
+.cb.yes{align-self:flex-end;background:var(--coral);color:#fff;font-weight:600;border-bottom-right-radius:6px;padding-right:52px}
+.cb.yes .face{right:10px}
+.planlist{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.habit{border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--card);box-shadow:var(--shadow)}
+.habit .htop{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+.habit .hnum{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--ink);color:var(--paper);font-family:var(--f-display);font-weight:800;font-size:17px;transform:rotate(-6deg)}
+.habit .hic{width:44px;height:44px;border-radius:50%;background:var(--leaf-2);display:grid;place-items:center;color:var(--leaf)}
+.habit .hic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.habit h4{font-family:var(--f-display);font-size:20px;font-weight:800}
+.habit p{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.habit a{font-weight:700;color:var(--leaf)}
+
+/* act */
+.sos-note{margin-top:16px;font-size:14px;color:var(--ink-soft);text-align:center}
+.sos-note b{color:var(--ink)}
+.emergency{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;background:var(--coral);color:#fff;border-radius:var(--r-lg);padding:18px 24px;margin-bottom:28px}
+.emergency b{font-family:var(--f-display);font-size:21px}
+.emergency .nums{display:flex;flex-wrap:wrap;gap:8px;margin-left:auto}
+.emergency .nums span{background:rgba(255,255,255,.22);border-radius:999px;padding:6px 14px;font-weight:700;white-space:nowrap}
+.picker{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.pick{border:2px solid var(--line);background:var(--card);border-radius:var(--r-md);padding:14px 16px;text-align:left;font-weight:600;font-size:15.5px;display:flex;gap:12px;align-items:center;line-height:1.3}
+.pick i{flex:0 0 12px;height:12px;border-radius:4px;background:var(--tc);transform:rotate(45deg)}
+.pick .u{margin-left:auto;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--sun-2);padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pick[aria-pressed="true"]{border-color:var(--ink);box-shadow:var(--shadow)}
+.plan-out{background:var(--card);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:28px;min-width:0}
+.plan-out .empty{color:var(--ink-soft);text-align:center;padding:18px 0;font-weight:600}
+.plan-out .top{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.tagpill{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--tc2);color:var(--tc)}
+.plan-out h3{font-size:clamp(24px,2.6vw,30px);font-weight:800}
+.plan-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;margin-top:20px}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:38px;height:38px;border-radius:12px;background:var(--tc2);color:var(--tc);font-family:var(--f-display);font-weight:800;font-size:18px;display:grid;place-items:center}
+ol.steps b{display:block;font-family:var(--f-display);font-size:18px;line-height:1.25;margin-top:6px}
+ol.steps span{display:block;font-size:15px;color:var(--ink-soft);margin-top:2px}
+.side{display:grid;gap:12px;align-content:start}
+.saythis{background:var(--leaf-2);border-radius:var(--r-md);padding:16px 18px}
+.saythis small,.callbox small{font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf)}
+.saythis p{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.3;margin-top:4px}
+.callbox{background:var(--sun-2);border-radius:var(--r-md);padding:16px 18px}
+.callbox small{color:var(--ink)}
+.callbox div{font-weight:700;margin-top:6px}
+.warnnote{background:var(--coral-2);border-radius:var(--r-md);padding:14px 16px;font-size:15px}
+
+/* helplines */
+.save3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.help{background:var(--card);border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow);min-width:0}
+.help .for{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.help h4{font-size:20px;font-weight:700}
+.help p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);flex:1}
+.help p b{color:var(--ink)}
+.num{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.num strong{font-family:var(--f-display);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;user-select:all}
+.num a{font-family:var(--f-display);font-weight:800;font-size:20px;color:var(--leaf)}
+.num button{border:0;background:var(--sun-2);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700}
+.num button.done{background:var(--leaf);color:#fff}
+.hrs{font-size:13px;color:var(--ink-soft)}
+.allhelp{margin-top:22px}
+.hpick{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
+.hq{font-weight:700;font-size:15px}
+.hchips{flex-wrap:wrap}
+.htable{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:14px}
+.hcard{background:var(--card);border-radius:var(--r-md);padding:16px 18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;min-width:0}
+.hname{font-family:var(--f-display);font-weight:800;font-size:16px;line-height:1.25;text-decoration:none;color:var(--ink)}
+.hname span{font-size:12px;color:var(--ink-soft)}
+.hname:hover{color:var(--leaf)}
+.hfoot{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:4px}
+.hfoot strong{font-family:var(--f-display);font-weight:800;font-size:20px;font-variant-numeric:tabular-nums}
+.hfoot button{border:0;background:var(--sun-2);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700}
+.hfoot button.done{background:var(--leaf);color:#fff}
+.hfoot .hrs{flex-basis:100%;font-size:12.5px}
+.hreport{font-weight:700;font-size:15px;color:var(--leaf)}
+.hcard b{font-family:var(--f-display);font-size:17px;line-height:1.25}
+.hcard p{font-size:14px;line-height:1.45;color:var(--ink-soft);flex:1}
+.hcard .callif{font-weight:700;color:var(--ink)}
+.hcard .num strong{font-size:22px}
+.hcard .num a{font-size:17px}
+.hrow{background:var(--card);border-radius:var(--r-md);padding:14px 18px;display:grid;grid-template-columns:1.2fr 2fr auto;gap:16px;align-items:center}
+.hrow b{font-family:var(--f-display);font-size:17px}
+.hrow p{font-size:14px;color:var(--ink-soft)}
+.hrow .num{margin:0;justify-content:flex-end}
+.hrow .num strong{font-size:19px}
+.hrow .num a{font-size:17px}
+.help .site,.hrow .site{font-size:13.5px;font-weight:700;color:var(--leaf);text-decoration:none}
+.help .site{margin-top:4px}
+.verify{margin-top:14px;font-size:14px;color:var(--ink-soft)}
+
+/* game */
+.game{background:var(--dark);color:var(--on-dark);border-radius:44px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center}
+.game h2{font-size:clamp(32px,4.2vw,50px);font-weight:800;margin-top:14px}
+.game p{opacity:.85;margin-top:14px;max-width:46ch}
+.soon{display:inline-block;background:var(--sun);color:#17362B;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+.how{display:grid;gap:10px}
+.how div{background:var(--dark-2);border-radius:var(--r-md);padding:14px 16px;display:flex;gap:12px;align-items:center;font-weight:600}
+.how b{font-family:var(--f-display);font-size:22px;color:var(--sun);flex:0 0 28px}
+
+footer{padding-block:56px 64px;font-size:14px;color:var(--ink-soft)}
+footer details summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details.srcs{margin-top:0}
+.srcgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:14px;margin-top:16px}
+.srcg{background:var(--card);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow);min-width:0}
+.srcg h5{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-size:16px;font-weight:800;color:var(--ink);margin:0 0 12px}
+.srcg h5 i{width:10px;height:10px;border-radius:50%;background:var(--tc)}
+.srcg ul{list-style:none;margin:0;padding:0;display:grid}
+.srcg li{display:grid;gap:4px;font-size:13.5px;line-height:1.45;padding:11px 0;border-top:1px solid var(--line)}
+.srcg li:first-child{border-top:0;padding-top:0}
+.srcg .cite{color:var(--ink-soft)}
+.srcg .cite a{color:var(--ink);font-weight:600;text-decoration-color:var(--line);text-underline-offset:2px}
+.srcg .used{font-size:12.5px;color:var(--ink-soft);opacity:.85;padding-left:16px;position:relative}
+.srcg .used::before{content:"↳";position:absolute;left:0;top:0}
+.t-talk{--tc:var(--leaf)} .t-help{--tc:var(--sun)} .t-bg{--tc:var(--line)}
+
+footer a{color:var(--ink)}
+footer .about{margin-top:18px;max-width:70ch}
+
+@media (max-width:900px){
+  .fgrid{grid-template-columns:repeat(3,1fr)}
+  .picker{grid-template-columns:1fr 1fr}
+  .plan-grid,.promise{grid-template-columns:1fr}
+  .hrow{grid-template-columns:1fr;gap:6px}
+  .hrow .num{justify-content:flex-start}
+  .igrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .navlinks{display:none}
+  .nav .btn.urgent{margin-left:auto}
+  .qgrid{grid-template-columns:1fr;grid-template-rows:none;row-gap:24px}
+  .qcol{grid-row:auto;grid-template-rows:none}
+  .talktool{padding:20px}
+  .hero .wrap,.tgrid,.know-card,.mini,.twotips,.duo,.planlist,.save3,.game{grid-template-columns:1fr}
+  .hero-art{justify-self:center}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .picker{grid-template-columns:1fr}
+  section.band{padding-block:56px}
+  .promise,.game{padding:22px;border-radius:28px}
+  .signgrid{grid-template-columns:1fr}
+  .kc-lead,.kc-body{padding-left:20px;padding-right:20px}
+  .emergency .nums{margin-left:0}
+}
+@media (max-width:440px){.fgrid,.igrid{grid-template-columns:1fr}}
+
+/* ===== Motion: playful but calm. All of it switches off for reduced-motion users. ===== */
+@keyframes pop{0%{opacity:0;transform:translateY(14px) scale(.96)}60%{opacity:1;transform:translateY(-2px) scale(1.01)}100%{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes blink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+@keyframes dash{to{stroke-dashoffset:-140}}
+@keyframes sway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg)}30%{transform:rotate(6deg) scale(1.08)}60%{transform:rotate(-10deg)}}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
+.pop{animation:pop .55s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
+/* hero plays in on load, no JS needed */
+.hero .eyebrow,.hero h1,.hero .lead,.hero .ctas{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{animation-delay:.08s}.hero .lead{animation-delay:.2s}.hero .ctas{animation-delay:.32s}
+.hero-art{animation:pop .9s cubic-bezier(.2,.8,.2,1) .15s both}
+.s-dash{animation:dash 7s linear infinite}
+.sway{animation:sway 3.5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.sway.d2{animation-delay:-1.2s}.sway.d3{animation-delay:-2.4s}
+/* faces blink */
+.face .eye{animation:blink 4.5s infinite;transform-box:fill-box;transform-origin:center}
+.qcol:nth-child(2) .face .eye,.cb .face .eye{animation-delay:1.5s}
+.qcol:nth-child(3) .face .eye{animation-delay:3s}
+/* scroll reveal: only hides things once JS has confirmed it can reveal them */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+/* hover and press feedback */
+.btn:active,.tab:active,.pick:active,.seg2 button:active,.nextbtn:active{transform:scale(.96)}
+.tab,.pick,.seg2 button,.hcard,.qb,.tip,.habit,.help,.srcg{transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.tab:hover{transform:translateY(-2px)}
+.tab:hover:not([aria-selected="true"]){border-color:var(--tc);background:var(--tc2)}
+.tab[aria-selected="true"]:hover{background:var(--tc);border-color:var(--tc)}
+.seg2 button:hover:not([aria-pressed="true"]){background:var(--leaf-2)}
+.pick:hover:not([aria-pressed="true"]){border-color:var(--tc);background:var(--tc2)}
+.navlinks a:hover{background:var(--card)}
+.btn.green:hover{background:#264A31}
+.btn.white:hover{background:var(--sun-2)}
+.btn.urgent:hover{background:#C9563A}
+details.more > summary:hover{background:var(--sun-2)}
+.pick:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.qb:hover{transform:translateY(-3px) rotate(-.6deg)}
+.qcol:nth-child(2) .qb:hover{transform:translateY(-3px) rotate(.6deg)}
+.tip:hover,.habit:hover,.help:hover,.hcard:hover{transform:translateY(-3px)}
+.thing:hover .n,.tip:hover .tipn,.habit:hover .hnum{animation:wiggle .5s ease}
+.fcard:hover .in{transform:translateY(-4px)}
+.fcard.flip:hover .in{transform:rotateY(180deg) translateY(-4px)}
+.logo:hover img{animation:wiggle .5s ease}
+.num button.done,.copy.done{animation:bump .3s ease}
+.navlinks a.active{background:var(--card);box-shadow:var(--shadow)}
+
+/* hand-drawn ink, to match the logo illustration */
+.fig > rect,.fig > circle.s-skin1,.fig > circle.s-skin2,.fig > path.s-hair1,.fig > path.s-hair2{stroke:#1d1d1b;stroke-width:2.2;stroke-linejoin:round}
+.s-bubble{fill:var(--sun);stroke:#1d1d1b;stroke-width:2.4;stroke-linejoin:round}
+.s-hair1{fill:#2B2725}
+.sway > rect:not(.s-trunk){stroke:#1d1d1b;stroke-width:2}
+.thing .n,.tipn,.hnum,.sign .sn{box-shadow:0 0 0 2px #1d1d1b inset}
+.qb{box-shadow:inset 0 0 0 2.5px #1d1d1b}
+.qb::after{display:none}
+.qb .tail{position:absolute;left:30px;bottom:-16px;width:34px;height:22px;overflow:visible}
+
+/* animated hero illustration: layers cut from the drawing, moving gently */
+.hero-art{max-width:600px}
+.scene{position:relative;aspect-ratio:2000/1493;border-radius:32px;overflow:hidden;box-shadow:0 0 0 2.5px #1d1d1b,0 14px 34px rgba(23,54,43,.16);background:#F9F5E9}
+.scene .base{position:absolute;inset:0;width:100%;height:100%;display:block}
+.scene .lyr{position:absolute;height:auto;display:block;will-change:transform}
+.scene .bubble img{width:100%;display:block}
+@keyframes sunbob{0%,100%{transform:translate(var(--px,0),var(--py,0)) rotate(-4deg)}50%{transform:translate(var(--px,0),calc(var(--py,0px) - 8px)) rotate(4deg)}}
+@keyframes drift{0%,100%{transform:translate(calc(var(--px,0px) - 14px),var(--py,0))}50%{transform:translate(calc(var(--px,0px) + 14px),var(--py,0))}}
+@keyframes talk{0%,8%{transform:translate(var(--px,0),var(--py,0)) scale(.2);opacity:0}16%{transform:translate(var(--px,0),var(--py,0)) scale(1.08);opacity:1}22%,86%{transform:translate(var(--px,0),var(--py,0)) scale(1);opacity:1}54%{transform:translate(var(--px,0),calc(var(--py,0px) - 5px)) scale(1)}94%,100%{transform:translate(var(--px,0),var(--py,0)) scale(.2);opacity:0}}
+@keyframes typing{0%,60%,100%{transform:translate(-50%,-50%)}30%{transform:translate(-50%,-110%)}}
+.scene .sun{animation:sunbob 7s ease-in-out infinite;transform-origin:50% 50%}
+.scene .c1{animation:drift 14s ease-in-out infinite}
+.scene .c2{animation:drift 11s ease-in-out -4s infinite}
+.scene .c3{animation:drift 16s ease-in-out -8s infinite}
+.scene .bubble{animation:talk 6s cubic-bezier(.2,.8,.2,1) .8s infinite both;transform-origin:8% 96%}
+.tdot{position:absolute;width:8%;aspect-ratio:1;border-radius:50%;background:#1d1d1b;transform:translate(-50%,-50%);animation:typing 1.1s ease-in-out infinite}
+.tdot:nth-of-type(2){animation-delay:.15s}.tdot:nth-of-type(3){animation-delay:.3s}
+@media (prefers-reduced-motion:reduce){.scene .bubble{opacity:1}}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}.pop{animation:none}}
+</style>
+<style>
+.play-band{padding-block:40px 64px}
+.play-h1{font-size:clamp(32px,4.4vw,52px);font-weight:800;margin-top:10px}
+.play-foot{padding-block:8px 56px;font-size:14px;color:var(--ink-soft)}
+.play-foot .wrap{display:grid;gap:22px}
+.pf-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;border-top:2px solid var(--line);padding-top:18px}
+.pf-back{font-weight:700;color:var(--ink);text-decoration:none;background:var(--card);box-shadow:inset 0 0 0 2px var(--ink);border-radius:999px;padding:9px 18px}
+.pf-back:hover{background:var(--sun-2)}
+.pf-credit{font-size:13.5px;max-width:52ch}
+.pf-credit a{font-weight:700;color:var(--leaf)}
+/* Game: a sticker-book kitchen drawn in the same ink-and-watercolour world as the site.
+   Ingredients are round stickers cut from the illustration sheet; finished dishes are die-cut stickers. */
+@property --deg{syntax:"<angle>";inherits:false;initial-value:0deg}
+@property --pct{syntax:"<percentage>";inherits:false;initial-value:0%}
+.mc{position:relative;background:var(--card);border-radius:var(--r-lg);box-shadow:0 0 0 2.5px #1d1d1b,var(--shadow);overflow:hidden;min-height:560px;
+    --kid:#2D7FB8;--kid-2:var(--sky-2);--par:#B86E1F;--par-2:var(--sun-2);--good:#2F8F4E;--mould:#7E8F3A;--ink2:#1d1d1b}
+.mc-screen{display:none}
+.mc-screen.on{display:block}
+#mc-menu{padding:22px 24px 24px}
+.mc-h{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+.mc-h h3{font-size:clamp(26px,3vw,34px);font-weight:800}
+.mc-h p{color:var(--ink-soft);font-size:15.5px;margin-top:6px;max-width:50ch}
+
+/* sticker book cover button (top right of the menu) */
+.mc-bookbtn{border:0;background:none;padding:0;display:grid;justify-items:center;gap:2px;width:120px;transition:transform .2s}
+.mc-bookbtn:hover{transform:rotate(-3deg) translateY(-2px)}
+.mc-bookbtn img{width:100%;filter:drop-shadow(0 3px 5px rgba(23,54,43,.16))}
+.mc-bookbtn .cta{font-weight:700;font-size:12.5px;background:var(--ink);color:var(--paper);padding:5px 12px;border-radius:999px;white-space:nowrap}
+
+/* page header: the game's title replaces the generic section heading */
+.mc-pagehead{margin-bottom:22px}
+.mc-pagehead .txt{min-width:0}
+.mc-pagehead p{max-width:62ch}
+.mc-title{font-size:min(52px,6.2vw);font-weight:800;margin-top:10px;position:relative;white-space:nowrap}
+.mc-title .ghost{visibility:hidden}
+.mc-title .ghost::after{content:"";display:inline-block;width:8px}
+.mc-title .live{position:absolute;inset:0}
+.mc-pagehead p{color:var(--ink-soft);margin-top:10px}
+
+/* how to play: a real sequence, kept compact so the dishes stay the focus */
+.mc-howh{font-size:15px;font-weight:800;margin-top:0;color:var(--ink-soft);letter-spacing:.02em}
+.mc-steps{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mc-steps li{background:var(--paper);border-radius:14px;padding:9px 12px;display:flex;gap:10px;align-items:center;min-width:0}
+.mc-steps .pic{flex:0 0 auto;display:flex;align-items:center}
+.mc-steps .pic .mc-av{--s:34px}
+.mc-steps .pic .mc-stk{--s:32px;padding:2px;box-shadow:0 0 0 2px var(--ink2)}
+.mc-steps .pic .mc-stk .mold{display:none}
+.mc-steps .pic.duo>*+*{margin-left:-9px}
+.mc-steps b{font-family:var(--f-display);font-size:14.5px;line-height:1.2;display:flex;align-items:center;gap:6px}
+.mc-steps .n{width:18px;height:18px;border-radius:6px;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-size:11px;flex:0 0 auto}
+.mc-steps p{font-size:13px;line-height:1.35;color:var(--ink-soft);margin-top:2px}
+
+/* avatars: the site's parent and child, as round stickers */
+.mc-av{--s:34px;width:var(--s);height:var(--s);flex:0 0 auto;border-radius:50%;background:#fff;padding:2px;box-shadow:0 0 0 2px var(--ink2);display:inline-block}
+.mc-av img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.mc-av.kid{background:var(--sky)} .mc-av.par{background:var(--sun)}
+
+/* sticker book pop-up */
+.mc-panel.wide{max-width:900px;background:#F7EEDD}
+.mc-openbook{position:relative}
+.mc-openbook .deco{position:absolute;pointer-events:none;mix-blend-mode:multiply}
+.mc-openbook .deco.sun{top:-14px;right:-6px;width:92px;transform:rotate(8deg)}
+.mc-openbook .deco.yay{bottom:46px;left:-8px;width:84px;transform:rotate(-10deg)}
+.mc-panel h3.mc-booktitle{font-size:clamp(28px,4vw,42px);letter-spacing:.02em;margin-top:0}
+.mc-pages{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:16px 0 4px}
+.mc-page{background:#FFFBF2;border-radius:16px;box-shadow:0 0 0 2px var(--ink2),0 4px 0 rgba(23,54,43,.12);padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px;transform:rotate(var(--tilt));min-width:0}
+.mc-page .tp{font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.mc-page .slot{width:100%;height:150px;border:2.5px dashed #C9BBA0;border-radius:14px;display:grid;place-items:center;position:relative}
+.mc-page.got .slot{border-color:transparent}
+.mc-page .slot .dish{max-height:140px;max-width:92%;object-fit:contain;filter:var(--diecut)}
+.mc-page.new .slot .dish{animation:mcslap .6s cubic-bezier(.3,1.6,.6,1) both}
+.mc-page .slot .q{font-family:var(--f-display);font-weight:800;font-size:28px;color:#C9BBA0}
+.mc-page b{font-family:var(--f-display);font-size:19px}
+.mc-page .ings{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%}
+.mc-page .ings .mc-stk{--s:100%;aspect-ratio:1;height:auto;padding:2px;box-shadow:0 0 0 1.5px var(--ink2)}
+.mc-page .ings .ph{aspect-ratio:1;border-radius:50%;border:2px dashed #D8CCB4}
+.mc-page small{font-size:13px;color:var(--ink-soft);font-weight:600}
+
+.mc-dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+.mc-dish{border:0;background:var(--card);border-radius:var(--r-lg);padding:16px;text-align:left;display:flex;flex-direction:column;gap:6px;position:relative;min-width:0;box-shadow:0 0 0 2.5px var(--ink2);transition:transform .2s}
+.mc-dish:not(:disabled):hover{transform:translateY(-4px) rotate(-.5deg)}
+.mc-dish:disabled{cursor:default;box-shadow:0 0 0 2px var(--line)}
+.mc-dish .art{height:170px;display:grid;place-items:center;background:var(--tc2);border-radius:18px;margin-bottom:8px;position:relative}
+.mc-dish .art img{max-height:150px;max-width:88%;object-fit:contain}
+.mc-dish.todo .art img{filter:grayscale(.75);opacity:.5}
+.mc-dish.locked .art img{filter:grayscale(1);opacity:.22}
+.mc-dish.done .art img{filter:var(--diecut)}
+.mc-dish .tp{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.mc-dish h4{font-size:23px;font-weight:800}
+.mc-dish .st{font-size:14.5px;color:var(--ink-soft);font-weight:600}
+.mc-dish .go{margin-top:6px;align-self:flex-start;background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;padding:9px 18px;border-radius:999px}
+.mc-dish.locked .go{background:var(--line);color:var(--ink-soft)}
+.mc-shiny{position:absolute;top:10px;right:10px;display:flex;align-items:center;gap:4px;background:var(--sun);border-radius:999px;padding:3px 10px 3px 6px;font-size:12px;font-weight:800;box-shadow:inset 0 0 0 2px var(--ink2)}
+.mc-shiny svg{width:16px;height:16px}
+.mc-foot{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:13.5px;color:var(--ink-soft)}
+.mc-link{border:0;background:none;padding:0;font-weight:700;font-size:13.5px;color:var(--leaf);text-decoration:underline;text-underline-offset:3px}
+.mc{--diecut:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(0 6px 8px rgba(23,54,43,.22))}
+
+/* stickers */
+.mc-stk{--s:64px;width:var(--s);height:var(--s);flex:0 0 auto;border-radius:50%;background:#fff;padding:4px;box-shadow:0 0 0 2.5px var(--ink2),0 3px 0 rgba(23,54,43,.18);position:relative;display:inline-block;transform:rotate(var(--r,0deg))}
+.mc-stk img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.mc-stk.rot img{filter:sepia(.6) hue-rotate(28deg) saturate(.8) brightness(.8) contrast(1.05)}
+.mc-stk .mold{position:absolute;inset:-22%;width:144%;height:144%;overflow:visible;pointer-events:none}
+.mc-stk .fly{transform-box:fill-box;transform-origin:center;animation:mcbuzz 1.6s ease-in-out infinite}
+.mc-stk .stink{animation:mcstink 2.4s ease-in-out infinite}
+
+/* play screen */
+#mc-play{height:clamp(620px,calc(100vh - 110px),800px);padding:14px;flex-direction:column}
+#mc-play.on{display:flex}
+.mc-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.mc-back{border:0;background:var(--card);box-shadow:inset 0 0 0 2px var(--ink2);border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px}
+.mc-back:hover{background:var(--sun-2)}
+.mc-prog{font-family:var(--f-display);font-weight:800;font-size:18px}
+.mc-score{display:flex;gap:8px;font-weight:700;font-size:14.5px;font-variant-numeric:tabular-nums}
+.mc-score span{background:var(--card);box-shadow:inset 0 0 0 2px var(--line);border-radius:999px;padding:4px 12px}
+.mc-board{flex:1;display:grid;grid-template-columns:1.05fr 1.2fr;gap:14px;min-height:0;margin-top:12px}
+.mc-right{display:flex;flex-direction:column;gap:12px;min-height:0;overflow:auto;padding:12px 3px 3px}
+.mc-kitchen{background:var(--card);border-radius:var(--r-lg);box-shadow:0 0 0 2.5px var(--ink2);position:relative;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.mc-next{display:flex;align-items:center;gap:10px;padding:12px 14px 0;font-size:14px;color:var(--ink-soft);font-weight:600}
+.mc-next b{display:block;color:var(--ink);font-family:var(--f-display);font-size:17px}
+.mc-next .mc-stk{--s:44px;opacity:.55;filter:grayscale(.5)}
+.mc-dishstage{flex:1;position:relative;min-height:190px;margin:6px 14px 0}
+.mc-dishstage img.ghost,.mc-dishstage img.fill{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.mc-dishstage img.ghost{filter:grayscale(1);opacity:.16}
+.mc-dishstage img.fill{transition:--deg .8s ease,--pct .8s ease}
+.mc-dishstage.bowl img.fill{-webkit-mask:conic-gradient(from -30deg,#000 var(--deg),#0000 0);mask:conic-gradient(from -30deg,#000 var(--deg),#0000 0)}
+.mc-dishstage.glass img.fill{-webkit-mask:linear-gradient(to top,#000 var(--pct),#0000 0);mask:linear-gradient(to top,#000 var(--pct),#0000 0)}
+.mc-dishstage.full img.fill{-webkit-mask:none;mask:none;filter:var(--diecut)}
+.mc-dishstage .mc-stk.rot{position:absolute;--s:52px;animation:mcslap .45s cubic-bezier(.3,1.6,.6,1) both;z-index:2}
+.mc-empty{position:absolute;inset:auto 0 40%;text-align:center;color:var(--ink-soft);font-size:15px;font-weight:600}
+.mc-tray{display:grid;grid-template-columns:repeat(var(--cols,10),1fr);gap:4px;padding:10px 12px 14px;border-top:2px dashed var(--line);margin-top:6px}
+.mc-tray .sl{aspect-ratio:1;border-radius:50%;border:2px dashed var(--line);display:grid;place-items:center;min-width:0}
+.mc-tray .sl .mc-stk{--s:100%;padding:2px;box-shadow:0 0 0 2px var(--ink2);animation:mcslap .45s cubic-bezier(.3,1.6,.6,1) both}
+.mc-tray .sl.on{border-color:transparent}
+.mc-float{position:absolute;top:28%;left:0;right:0;text-align:center;font-family:var(--f-display);font-size:34px;font-weight:800;pointer-events:none;z-index:4;-webkit-text-stroke:1px #fff}
+
+.mc-order{background:var(--card);border-radius:var(--r-lg);padding:22px 20px 16px;box-shadow:0 0 0 2.5px var(--ink2);position:relative}
+.mc-order .tag{position:absolute;top:-13px;left:18px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:800;letter-spacing:.06em;padding:4px 12px;border-radius:999px;transform:rotate(-2deg)}
+.mc-order .retry{position:absolute;top:-13px;right:18px;background:var(--mould);color:#fff;font-size:12px;font-weight:800;letter-spacing:.06em;padding:4px 12px;border-radius:999px;transform:rotate(2deg)}
+.mc-order p{font-family:var(--f-display);font-size:clamp(18px,1.9vw,21px);font-weight:700;line-height:1.32}
+.mc-order .ql{font-family:var(--f-body);font-size:15px;color:var(--ink-soft);margin-top:8px;font-weight:700}
+.mc-turn{flex:1;border-radius:var(--r-lg);padding:16px;display:flex;flex-direction:column;gap:10px;transition:background .3s}
+.mc-turn.kid{background:var(--kid-2)} .mc-turn.parent{background:var(--par-2)} .mc-turn.together{background:var(--leaf-2)}
+.mc-turn-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.mc-turn-head h4{font-size:19px;font-weight:800;display:flex;align-items:center;gap:8px}
+.mc-turn-head .mc-av{--s:36px}
+.mc-turn-head .mc-av+.mc-av{margin-left:-12px}
+.mc-peek{font-size:13px;font-weight:700;background:var(--card);border-radius:999px;padding:4px 12px}
+.mc-opts{display:flex;flex-direction:column;gap:9px}
+.mc-opt{background:var(--card);border-radius:var(--r-md);padding:12px 14px;font-size:clamp(15px,1.5vw,16.5px);font-weight:500;line-height:1.38;text-align:left;border:0;box-shadow:inset 0 0 0 2px var(--line);display:flex;gap:12px;align-items:center;width:100%;transition:transform .12s,box-shadow .2s}
+.mc-opt:hover{box-shadow:inset 0 0 0 2.5px var(--ink2)}
+.mc-opt:active{transform:scale(.98)}
+.mc-opt .l{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;color:#fff;background:var(--ink);transform:rotate(-6deg);box-shadow:inset 0 0 0 2px var(--ink2)}
+.mc-turn.kid .mc-opt .l{background:var(--kid)} .mc-turn.parent .mc-opt .l{background:var(--par)}
+.mc-opt.tried{opacity:.4;pointer-events:none;text-decoration:line-through}
+.mc-opt.tried .l{background:var(--mould)!important}
+
+/* overlay panels */
+.mc-ov{position:fixed;inset:0;background:rgba(23,54,43,.5);display:none;align-items:center;justify-content:center;z-index:60;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.mc-ov.on{display:flex}
+.mc-panel{background:var(--card);border-radius:var(--r-lg);padding:26px;max-width:600px;width:100%;max-height:100%;overflow:auto;text-align:center;box-shadow:0 0 0 2.5px var(--ink2);animation:mcpop .35s cubic-bezier(.2,.8,.2,1)}
+.mc-panel h3{font-size:clamp(23px,3vw,31px);font-weight:800;margin:6px 0 8px}
+.mc-panel p{font-size:16.5px;margin:6px 0}
+.mc-panel .muted{color:var(--ink-soft);font-size:15px}
+.mc-panel .mc-hero{display:flex;justify-content:center;align-items:center;gap:8px;margin:4px 0 6px}
+.mc-panel .mc-hero .mc-stk{--s:96px}
+.mc-panel .mc-hero .mc-av{--s:84px}
+.mc-panel .mc-hero img.dish{max-height:170px;max-width:80%;filter:var(--diecut)}
+.mc-btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:16px}
+.mc-btn{border:0;border-radius:999px;padding:13px 26px;font-weight:700;font-size:16px;background:var(--leaf);color:#fff;transition:transform .15s}
+.mc-btn:hover{transform:translateY(-2px)}
+.mc-btn.alt{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.mc-btn.par{background:var(--par)}
+.mc-tip{font-size:14.5px;color:var(--ink-soft);text-align:left;margin:12px 0 0;background:var(--sun-2);border-radius:var(--r-md);padding:12px 14px;display:grid;gap:6px}
+.mc-tip b{color:var(--ink)}
+.mc-src{font-size:13px;border-top:1px dashed #E6D9A8;padding-top:6px}
+.mc-src a{color:var(--leaf);font-weight:700}
+.mc-chat{display:grid;gap:8px;margin:12px 0;text-align:left}
+.mc-chat div{border-radius:var(--r-md);padding:11px 14px;font-size:15.5px}
+.mc-chat .k{background:var(--kid-2)} .mc-chat .k b{color:var(--kid)}
+.mc-chat .p{background:var(--par-2)} .mc-chat .p b{color:var(--par)}
+.mc-chat .t{background:var(--leaf-2)}
+.mc-chat small{display:block;font-weight:800;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px}
+.mc-picks{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.mc-pc{border-radius:var(--r-md);padding:10px 12px;text-align:left;font-size:15px}
+.mc-pc.k{background:var(--kid-2)} .mc-pc.p{background:var(--par-2)}
+.mc-pc small{display:block;font-weight:800;font-size:12px;margin-bottom:2px}
+.mc-pc.k small{color:var(--kid)} .mc-pc.p small{color:var(--par)}
+.mc-chat-opts{display:flex;flex-direction:column;gap:9px;margin:12px 0}
+.mc-pts{font-family:var(--f-display);font-size:22px;font-weight:800}
+.mc-pts.plus{color:var(--good)} .mc-pts.minus{color:var(--mould)}
+.mc-snap{position:relative;width:min(300px,90%);aspect-ratio:1;margin:6px auto}
+.mc-snap .mc-dishstage{position:absolute;inset:0;margin:0}
+.mc-snap *{animation:none!important}
+.mc-chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:8px 0}
+.mc-chips span{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);border-radius:999px;padding:3px 12px;font-weight:700;font-size:14px}
+.mc-take{text-align:left;margin:12px 0;padding-left:20px;font-size:15.5px;line-height:1.5;display:grid;gap:4px}
+.mc-help{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;text-align:left}
+.mc-help div{background:var(--teal-2);border-radius:var(--r-md);padding:10px 12px;font-size:14px}
+.mc-help strong{display:block;font-family:var(--f-display);font-size:19px;font-variant-numeric:tabular-nums;user-select:all}
+.mc-qr{display:flex;gap:14px;align-items:center;justify-content:center;margin:12px 0;text-align:left;font-size:14.5px}
+.mc-qr .qr{background:#fff;padding:6px;border-radius:10px;box-shadow:0 0 0 2px var(--line)}
+.mc-qr .qr img,.mc-qr .qr canvas{display:block;width:96px;height:96px}
+.mc-bookrow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px 0}
+.mc-bookrow .one{width:150px;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13.5px;font-weight:700}
+.mc-bookrow img{height:120px;max-width:140px;object-fit:contain;filter:var(--diecut)}
+.mc-conf{position:absolute;top:-20px;width:11px;height:16px;z-index:9;pointer-events:none;border-radius:2px}
+
+@keyframes mcpop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes mcslap{0%{transform:scale(1.8) rotate(var(--r,0deg));opacity:0}100%{transform:scale(1) rotate(var(--r,0deg));opacity:1}}
+@keyframes mcshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+@keyframes mcbuzz{0%,100%{transform:translate(0,0) rotate(-8deg)}25%{transform:translate(3px,-4px) rotate(10deg)}50%{transform:translate(-2px,-6px) rotate(-4deg)}75%{transform:translate(-4px,-1px) rotate(8deg)}}
+@keyframes mcstink{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(-3px);opacity:.5}}
+.mc-shake{animation:mcshake .35s 2}
+
+@media (max-width:860px){
+  .mc-steps{grid-template-columns:1fr 1fr}
+  .mc-bookbtn{width:130px}
+  .mc-dishes{grid-template-columns:1fr}
+  .mc-dish{display:grid;grid-template-columns:140px 1fr;column-gap:16px;align-items:center}
+  .mc-dish .art{grid-row:span 5;height:130px;margin:0}
+  .mc-dish .art img{max-height:112px}
+  #mc-play{height:auto}
+  .mc-board{grid-template-columns:1fr}
+  .mc-right{overflow:visible}
+  .mc-dishstage{min-height:220px}
+}
+@media (max-width:480px){
+  .mc-steps{grid-template-columns:1fr}
+  .mc-intro{grid-template-columns:1fr}
+  #mc-book{justify-self:center;grid-row:1}
+  #mc-menu{padding:20px 16px}
+  .mc-picks,.mc-help{grid-template-columns:1fr}
+  .mc-panel{padding:20px 16px}
+  .mc-dish{grid-template-columns:100px 1fr}
+  .mc-dish .art{height:100px}
+  .mc-dish .art img{max-height:84px}
+  .mc-tray{grid-template-columns:repeat(5,1fr);gap:6px}
+}
+
+.mc-type{white-space:pre}
+.mc-caret{display:inline-block;width:3px;height:.9em;background:var(--coral);margin-left:3px;vertical-align:-.08em;border-radius:2px;animation:mcblink 1s steps(1) infinite}
+@keyframes mcblink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.mc-caret{display:none}}
+.mc-h h3{min-height:1.2em}
+.mc-panel.narrow{max-width:460px}
+.mc-about{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:12px;text-align:left}
+.mc-about li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.mc-about b{color:var(--ink)}
+.mc-about a{color:var(--leaf);font-weight:700}
+.mc-about .ic{flex:0 0 36px;height:36px;border-radius:11px;background:var(--sun);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2);transform:rotate(-5deg)}
+.mc-about li:nth-child(2) .ic{background:var(--sky)}
+.mc-about li:nth-child(3) .ic{background:var(--coral-2)}
+.mc-about li:nth-child(4) .ic{background:var(--leaf-2)}
+.mc-about svg{width:20px;height:20px;fill:none;stroke:var(--ink2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mc-credit{font-size:13px!important;color:var(--ink-soft);margin-top:12px!important}
+.mc-credit a{color:var(--leaf);font-weight:700}
+
+.mc-intro{display:grid;grid-template-columns:1fr auto;gap:12px 22px;align-items:center}
+.mc-intro .mc-rules{min-width:0}
+.mc-intro .mc-steps{grid-template-columns:1fr 1fr}
+@media (max-width:560px){.mc-intro{grid-template-columns:1fr}#mc-book{justify-self:center;grid-row:1}.mc-intro .mc-steps{grid-template-columns:1fr}}
+
+/* scenario shared by every order in a dish */
+.mc-order .ctx{font-size:14px;line-height:1.45;color:var(--ink-soft);background:var(--sun-2);border-radius:12px;padding:8px 12px;margin-bottom:10px}
+.mc-order .ctx small{display:block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+/* scenario-led dishes: the scenario sits on top of the order, tinted by topic */
+.mc-order .ctx.scn{display:flex;gap:10px;align-items:flex-start;background:var(--tc2,var(--sun-2));color:var(--ink);font-size:14.5px;padding:10px 12px}
+.mc-order .ctx.scn small{color:var(--tc,var(--ink))}
+.mc-order .ctx.scn .ic{flex:0 0 32px;height:32px;border-radius:10px;background:var(--card);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2);transform:rotate(-5deg)}
+.mc-scn-ic svg,.mc-order .ctx.scn svg{width:18px;height:18px;fill:none;stroke:var(--ink2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* the scenario card that opens each new scenario */
+.mc-scn{text-align:left;display:grid;gap:14px}
+.mc-scn-top{display:flex;align-items:center;gap:14px}
+.mc-scn-ic{flex:0 0 56px;height:56px;border-radius:16px;background:var(--tc2);display:grid;place-items:center;box-shadow:inset 0 0 0 2.5px var(--ink2);transform:rotate(-5deg)}
+.mc-scn-ic svg{width:28px;height:28px}
+.mc-scn-top small{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.mc-panel .mc-scn-top h3{margin:2px 0 0;font-size:clamp(22px,2.8vw,28px)}
+.mc-scn-card{position:relative;background:var(--paper);border-radius:var(--r-md);box-shadow:inset 0 0 0 2.5px var(--ink2);padding:18px 20px 18px 24px;overflow:hidden}
+.mc-scn-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:8px;background:var(--tc)}
+.mc-panel .mc-scn-card p{margin:0;font-family:var(--f-display);font-weight:700;font-size:clamp(18px,2.2vw,22px);line-height:1.35}
+.mc-scn-dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.mc-scn-dots i{width:28px;height:8px;border-radius:999px;background:var(--line)}
+.mc-scn-dots i.done{background:var(--tc);opacity:.45}
+.mc-scn-dots i.now{background:var(--tc)}
+.mc-scn-dots span{font-size:13px;font-weight:700;color:var(--ink-soft);margin-left:6px}
+/* dish intro for scenario-led dishes: a menu of the scenarios ahead */
+.mc-intro2{text-align:left;display:grid;gap:16px}
+.mc-i2-head{display:flex;align-items:center;gap:16px;padding-bottom:16px;border-bottom:2px solid var(--line)}
+.mc-i2-head img.dish{width:120px;flex:0 0 auto;filter:var(--diecut)}
+.mc-i2-tp{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--tc)}
+.mc-panel .mc-i2-head h3{margin:2px 0 8px;font-size:clamp(26px,3.4vw,34px)}
+.mc-i2-stats{display:flex;flex-wrap:wrap;gap:6px}
+.mc-i2-stats span{background:var(--tc2);border-radius:999px;padding:3px 11px;font-size:13.5px;font-weight:600}
+.mc-i2-stats b{font-family:var(--f-display);color:var(--tc)}
+.mc-panel p.mc-i2-lead{margin:0;font-size:17px;line-height:1.5;color:var(--ink)}
+.mc-i2-lbl{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px}
+.mc-route{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mc-route li{display:flex;align-items:center;gap:10px;background:var(--paper);border-radius:14px;padding:9px 10px;box-shadow:inset 0 0 0 2px var(--line);font-weight:700;font-size:14.5px;line-height:1.25;min-width:0}
+.mc-route li small{display:block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--tc)}
+.mc-route .ic{flex:0 0 32px;height:32px;border-radius:10px;background:var(--tc2);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2)}
+.mc-route svg{width:17px;height:17px;fill:none;stroke:var(--ink2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mc-route li.fin{background:var(--sun-2);box-shadow:inset 0 0 0 2px #EADFB0}
+.mc-route li.fin .ic{background:var(--sun)}
+.mc-i2-note{display:flex;gap:12px;align-items:center;background:var(--sun-2);border-radius:var(--r-md);padding:12px 14px;font-size:15px;line-height:1.45;color:var(--ink-soft)}
+.mc-i2-note b{color:var(--ink)}
+.mc-i2-note .ic{flex:0 0 32px;height:32px;border-radius:10px;background:var(--sky);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2);transform:rotate(-5deg)}
+.mc-i2-note svg{width:18px;height:18px;fill:none;stroke:var(--ink2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:560px){.mc-route{grid-template-columns:1fr 1fr}.mc-i2-head img.dish{width:84px}}
+/* "why it matters": the evidence behind each order, as its own card */
+.mc-whycard{display:flex;gap:12px;align-items:flex-start;background:var(--sky-2);border-radius:var(--r-md);padding:14px 16px;box-shadow:inset 0 0 0 2px #C6E3F2}
+.mc-whycard .ic{flex:0 0 36px;height:36px;border-radius:11px;background:var(--sky);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2);transform:rotate(-5deg)}
+.mc-whycard svg{width:19px;height:19px;fill:none;stroke:var(--ink2);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.mc-whycard small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1F6E99;margin-bottom:3px}
+.mc-panel .mc-whycard p{margin:0;font-family:var(--f-display);font-weight:700;font-size:17.5px;line-height:1.35;color:var(--ink)}
+.mc-whycard a{display:inline-block;margin-top:8px;font-size:13px;font-weight:700;color:var(--ink);background:var(--card);border-radius:999px;padding:4px 11px;text-decoration:none;box-shadow:inset 0 0 0 1.5px #C6E3F2}
+.mc-whycard a:hover{background:var(--sun-2)}
+/* picks comparison */
+.mc-cmp{display:grid;gap:8px;text-align:left}
+.mc-cmp .mc-picks{margin:0;align-items:stretch}
+.mc-cmp .mc-pc{padding:12px;border-radius:var(--r-md);display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 0 0 2px #CFE4F1}
+.mc-cmp .mc-pc.p{box-shadow:inset 0 0 0 2px #EADFB0}
+.mc-pc .hd{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:16px;line-height:1.1;color:var(--ink)}
+.mc-pc .hd .mc-av{--s:32px}
+.mc-pc .hd small{display:block;margin:0;font-family:var(--f-body);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+.mc-tiles{display:grid;gap:6px}
+.mc-tile{display:flex;align-items:center;gap:9px;background:var(--card);border-radius:12px;padding:8px 10px;font-size:15px;font-weight:600;line-height:1.3;box-shadow:0 1px 0 rgba(23,54,43,.1)}
+.mc-tile .lt{flex:0 0 24px;height:24px;border-radius:8px;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:13px;color:#fff;background:var(--ink)}
+.mc-pc.k .lt{background:var(--kid)} .mc-pc.p .lt{background:var(--par)}
+.mc-tile .tx{flex:1;min-width:0}
+.mc-tile.both{box-shadow:inset 0 0 0 2px var(--good)}
+.mc-tile .bt{display:inline-flex;align-items:center;gap:3px;flex:0 0 auto;background:var(--good);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;padding:2px 8px 2px 5px}
+.mc-tile .bt svg,.mc-meter svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.mc-meter{justify-self:center;display:inline-flex;align-items:center;gap:6px;font-weight:800;font-size:13.5px;color:var(--good);background:#E3F1E7;border-radius:999px;padding:5px 14px}
+.mc-meter svg{width:15px;height:15px}
+.mc-cmp.none .mc-meter{color:var(--par);background:var(--par-2)}
+.mc-meter{justify-self:stretch;display:flex;align-items:center;gap:10px;font-weight:500;font-size:15.5px;line-height:1.4;color:var(--ink);background:#E3F1E7;border-radius:14px;padding:10px 14px}
+.mc-meter b{font-weight:800}
+.mc-meter .mi{flex:0 0 28px;height:28px;border-radius:9px;display:grid;place-items:center;background:var(--good);color:#fff}
+.mc-meter .mi svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.mc-cmp.none .mc-meter{background:var(--par-2);color:var(--ink)}
+.mc-cmp.none .mc-meter .mi{background:var(--par)}
+.mc-step{margin-left:auto;align-self:flex-start;flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);border-radius:999px;padding:3px 10px}
+.mc-res-head.slim{align-items:flex-start}
+.mc-res-head.slim .mc-step{order:2}
+/* multi-select answers */
+.mc-opt.multi[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--ink2);background:var(--sun-2)}
+.mc-opt.multi .l{transition:transform .15s}
+.mc-opt.multi[aria-pressed="true"] .l{background:var(--good)!important;transform:rotate(0)}
+.mc-lock{align-self:flex-start;margin-top:4px}
+.mc-lock:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.mc-pc ul{margin:4px 0 0;padding-left:18px;display:grid;gap:3px}
+.mc-pc li.both{font-weight:700}
+.mc-reflect{text-align:left;background:var(--leaf-2);border-radius:var(--r-md);padding:12px 14px;font-size:15.5px;line-height:1.5;margin:10px 0}
+.mc-reflect small{display:block;font-weight:800;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--leaf);margin-bottom:3px}
+
+/* result pop-ups: left-aligned, one clear job per block */
+.mc-res{text-align:left;display:grid;gap:14px}
+.mc-res-head{display:flex;align-items:center;gap:16px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+.mc-res-head .mc-stk{--s:76px}
+.mc-panel .mc-res-head h3{margin:0 0 2px;font-size:clamp(22px,2.6vw,28px)}
+.mc-panel .mc-res-head p{margin:0;color:var(--ink-soft);font-size:15.5px}
+.mc-ans{background:var(--paper);box-shadow:inset 0 0 0 2px var(--line);border-radius:14px;padding:10px 14px;font-weight:700;font-size:15.5px;line-height:1.4}
+.mc-ans small,.mc-sec small,.mc-talk small{display:block;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px}
+.mc-res .mc-picks{margin:0}
+.mc-sec{display:flex;gap:12px;align-items:flex-start}
+.mc-sec .ic{flex:0 0 36px;height:36px;border-radius:11px;background:var(--leaf-2);display:grid;place-items:center;box-shadow:inset 0 0 0 2px var(--ink2);transform:rotate(-5deg)}
+.mc-sec.tip .ic{background:var(--sky)}
+.mc-sec.warn .ic{background:var(--coral-2)}
+.mc-sec svg{width:19px;height:19px;fill:none;stroke:var(--ink2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mc-panel .mc-sec p{margin:0;font-size:17px;line-height:1.5;color:var(--ink)}
+.mc-sec.tip p{font-size:15.5px!important;color:var(--ink-soft)!important}
+.mc-sec small{color:var(--leaf)}
+.mc-sec.tip small{color:var(--kid)} .mc-sec.warn small{color:var(--coral)}
+.mc-talk{display:flex;align-items:flex-end;gap:6px}
+.mc-talk .mc-av{--s:34px}
+.mc-talk .mc-av+.mc-av{margin-left:-14px}
+.mc-talk .bub{flex:1;background:var(--sun-2);border-radius:18px 18px 18px 6px;padding:10px 14px;font-size:15.5px;line-height:1.45;margin-left:6px;box-shadow:inset 0 0 0 2px #EADFB0}
+.mc-talk .bub.k{background:var(--kid-2);box-shadow:inset 0 0 0 2px #CFE4F1}
+.mc-talk .bub.p{background:var(--par-2)}
+.mc-panel p.mc-why{margin:0;padding-top:12px;border-top:1px dashed var(--line);font-size:13px;line-height:1.5;color:var(--ink-soft)}
+.mc-why a{color:var(--leaf);font-weight:700}
+.mc-res .mc-btns{margin-top:2px}
+@media (max-width:480px){.mc-res-head .mc-stk{--s:60px}.mc-panel .mc-sec p{font-size:16px}}
+</style>
+</head><body>
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="" width="46" height="46">Real Talk</a>
+    <div class="navlinks">
+      <a href="index.html#top">Home</a>
+      <a href="index.html#know">Know</a>
+      <a href="index.html#talk">Talk</a>
+      <a href="index.html#act">Act</a>
+      <a href="play.html" class="active" aria-current="page">Play together</a>
+    </div>
+    <a class="btn urgent" href="index.html#act">Something happened online?</a>
+  </div>
+</nav>
+<!-- ============ GAME ============ -->
+<main><section class="band play-band" id="game">
+  <div class="wrap">
+    <div class="mc-pagehead">
+      <div class="txt">
+        <span class="eyebrow">Play together</span>
+        <h1 class="mc-title" aria-label="Master Chefs of the Internet"><span class="ghost" aria-hidden="true">Master Chefs of the Internet</span><span class="live" aria-hidden="true"><span class="mc-type" id="mc-type" data-text="Master Chefs of the Internet">Master Chefs of the Internet</span><span class="mc-caret"></span></span></h1>
+        <p>Cook a dish together by answering everyday online moments. Your child picks first, then you. Every safe answer adds a fresh ingredient sticker, and each finished dish goes in your sticker book.</p>
+      </div>
+    </div>
+    <div class="mc" id="mc">
+      <div class="mc-screen on" id="mc-menu">
+        <div class="mc-intro"><div class="mc-rules" id="mc-rules"></div><div id="mc-book"></div></div>
+        <div class="mc-dishes" id="mc-dishes"></div>
+        <div class="mc-foot"><button class="mc-link" data-act="about">About this game</button><button class="mc-link" data-act="clear">New family? Clear the sticker book</button></div>
+      </div>
+      <div class="mc-screen" id="mc-play">
+        <div class="mc-top">
+          <button class="mc-back" data-act="quit">← All dishes</button>
+          <div class="mc-prog" id="mc-label"></div>
+          <div class="mc-score"><span id="mc-count"></span></div>
+        </div>
+        <div class="mc-board">
+          <div class="mc-kitchen" id="mc-kitchen">
+            <div class="mc-next" id="mc-next"></div>
+            <div class="mc-dishstage" id="mc-stage"></div>
+            <div class="mc-tray" id="mc-tray" aria-label="Ingredient stickers"></div>
+          </div>
+          <div class="mc-right">
+            <div class="mc-order">
+              <span class="tag" id="mc-tag">ORDER 1</span>
+              <span class="retry" id="mc-retry" hidden>TRY AGAIN</span>
+              <div class="ctx" id="mc-ctx" hidden></div>
+              <p id="mc-scen"></p>
+              <div class="ql" id="mc-q"></div>
+            </div>
+            <div class="mc-turn kid" id="mc-turn">
+              <div class="mc-turn-head"><h4 id="mc-turn-title"></h4><span class="mc-peek" id="mc-peek"></span></div>
+              <div class="mc-opts" id="mc-opts"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mc-ov" id="mc-ov"><div class="mc-panel" id="mc-panel" role="dialog" aria-modal="true"></div></div>
+    </div>
+  </div>
+</section></main>
+<footer class="play-foot"><div class="wrap">
+  <details class="more srcs"><summary>Sources behind the questions</summary><div class="srcgrid" id="mc-sources"></div></details>
+  <div class="pf-bar">
+    <a class="pf-back" href="index.html#know">← Back to the parent guide</a>
+    <p class="pf-credit">Inspired by <a href="https://kidsplaysafer.sg/" target="_blank" rel="noopener">Kids PlaySafer</a>, a volunteer-led nonprofit teaching kids online safety through games.</p>
+  </div>
+</div></footer>
+<script>(function(){const n=document.getElementById("nav");addEventListener("scroll",()=>n.classList.toggle("scrolled",scrollY>10),{passive:true})})();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ============ PLAY TOGETHER: Master Chefs of the Internet ============
+   3 dishes, one per topic, 10 orders (questions) each.
+   A dish is playable once its qs array has questions in it.
+   a = index of the safe answer (options are shuffled each game).
+   src = the research or guidance behind the question. */
+(function(){
+const IMG=n=>`game/${n}.webp`;
+const MODS=[
+ {id:"violent",topic:"Violent content",dish:"Mixed Rice",key:"rice",cls:"t-violent",shape:"bowl",ordered:true,
+  items:[["rice","Steamed rice"],["egg","Fried egg"],["chicken","Chicken"],["mush","Mushrooms"],["peas","Green peas"],["carrot","Carrot cubes"],["corn","Sweetcorn"],["beans","Kidney beans"],["scallion","Spring onion"],["sesame","Sesame seeds"]],
+  intro:"Fight videos, risky stunts and violent games: what to do when they show up on a screen.",
+  note:"Nothing violent is shown. Talk through each answer together, and share what you'd do too.",
+  menu:[
+   {icon:"video",tag:"Orders 1 & 5",title:"Fight videos"},
+   {icon:"chat",tag:"Order 2",title:"Group chats"},
+   {icon:"feed",tag:"Orders 3 & 4",title:"Your feed"},
+   {icon:"star",tag:"Order 6",title:"Risky stunts"},
+   {icon:"game",tag:"Order 7",title:"Game ratings"},
+   {icon:"heart",tag:"Orders 8 to 10",title:"Feelings and who to tell"}],
+  takeaways:["Stay calm and stay close. Something like \"That looked scary, huh?\" is enough.","Let them talk about what they saw and how it made them feel.","Block it together: report the video, then turn off autoplay or switch on Restricted Mode.","Check in over the next few days, and look out for nightmares or new fears."],
+  help:{lines:[["Help123 (TOUCH), advice for parents","1800 6123 123"],["Tinkle Friend (for kids)","1800 2744 788"]],link:"what to do if your child saw something violent or scary"},
+  qs:[
+   {"text": "You're scrolling videos and a clip of a real fight suddenly appears.", "q": "What's the best thing to do?", "opts": ["Keep watching to see what happens", "Share it with friends to warn them", "Scroll away or close it, then tell a trusted adult", "Leave a comment saying it's bad"], "a": 2, "reflect": "Watching on or sharing spreads it further, even when you mean well. Closing it and telling an adult is the safe move.", "talk": "Has this ever happened to you? Who would you tell?", "src": ["eSafety advises reporting violent content to the platform instead of passing it on, even to warn others.", "eSafety Commissioner, Distressing content", "https://www.esafety.gov.au/key-topics/illegal-restricted-online-content/distressing-content"]},
+   {"text": "Someone posts a violent video in your class group chat, and everyone sends laughing emojis.", "q": "What should you do?", "opts": ["Send a laughing emoji too, so you fit in", "Forward it to another chat", "Save it to show someone later", "Don't open or forward it, mute or leave the chat, and tell a trusted adult"], "a": 3, "reflect": "Group chats are one of the main ways kids see violent videos. You don't have to pretend it's funny to fit in.", "talk": "What could you say in the chat if you don't want to see that kind of video?", "src": ["Most children say they see violent content by accident, often in large group chats, and some aged 10 to 14 feel pressure to find it funny.", "Ofcom (2024), Understanding pathways to online violent content among children", "https://www.ofcom.org.uk/online-safety/protecting-children/encountering-violent-online-content-starts-at-primary-school"]},
+   {"text": "You watched one fight video. Now your feed shows more of them.", "q": "Why?", "opts": ["It's just random", "The app notices what you watch and shows you more of the same", "The app thinks you're old enough", "Your friends are choosing what you see"], "a": 1, "reflect": "Apps recommend more of whatever keeps you watching, even shocking things. Watching longer can bring more.", "talk": "What do you usually see on your feed? Is it what you want to see?", "src": ["Australia's eSafety Commissioner warns that algorithms amplify violent clips and push them into children's feeds.", "eSafety Commissioner (2025), Gore online advisory", "https://esafety.gov.au/newsroom/blogs/gore-online-how-violent-content-is-reaching-children-and-what-you-can-do"]},
+   {"text": "How can you help stop violent videos from showing up in your feed?", "q": "", "opts": ["Watch them to the end so the app knows you've seen them", "Like them so they go away faster", "Nothing can be done", "Scroll past quickly and use the app's report or \"Not interested\" option"], "a": 3, "reflect": "Reporting helps the platform remove harmful videos, and telling the app you're not interested can change what it shows you. Parents can also turn on parental controls.", "talk": "Let's find the report button in an app you use together.", "src": ["eSafety advises reporting violent content to the platform, and using parental controls.", "eSafety Commissioner, Distressing content", "https://www.esafety.gov.au/key-topics/illegal-restricted-online-content/distressing-content"]},
+   {"text": "How is a real fight video different from a fight in a cartoon or movie?", "q": "", "opts": ["There's no difference", "Real videos show real people actually getting hurt, so they can be more upsetting and make real violence seem normal", "Movie fights are always scarier", "Real videos are fine as long as nobody you know is in them"], "a": 1, "reflect": "Movies and cartoons use actors and special effects. Real clips show real harm, which is why they can stay in your head longer.", "talk": "How can you tell if a video is real or made up?", "src": ["22% of Australian children aged 10 to 17 have seen extreme real-life violence online.", "eSafety Commissioner (2025), media release", "https://esafety.gov.au/newsroom/media-releases/children-and-young-people-at-risk-from-online-gore"]},
+   {"text": "A video shows someone doing a dangerous stunt and says \"Try this challenge!\"", "q": "What's true?", "opts": ["If lots of people did it, it must be safe", "Stunts can cause serious, lasting injuries. Videos can be edited, and people post them for likes, so don't copy them.", "It's fine if you film it", "Only adults get hurt doing stunts"], "a": 1, "reflect": "Some online challenges have badly hurt children. Talk to an adult before trying anything you saw online.", "talk": "If a friend dared you to copy a stunt, what could you say?", "src": ["In 2025, MOE warned Singapore parents that online challenges like the Blackout Challenge are potentially fatal.", "MOE advisory (2025), via Asia News Network", "https://asianews.network/singapores-education-ministry-warns-of-dangerous-social-media-challenges-parents-advised-to-look-after-kids/"]},
+   {"text": "In Singapore, what does an \"ADV16\" label on a video game mean?", "q": "", "opts": ["Anyone can play it", "The game takes 16 hours to finish", "It's suitable for ages 16 and above, and may have moderate violence", "It's sold in only 16 countries"], "a": 2, "reflect": "IMDA rates games. ADV16 means advised for ages 16 and above. M18 means only for ages 18 and above, and the law enforces this. Checking the label before buying or downloading is an easy step.", "talk": "Let's check the rating of a game you play.", "src": ["ADV16 is an advisory rating for ages 16 and above. M18 is age-restricted, and enforceable by law.", "IMDA, Video game classification", "https://www.imda.gov.sg/regulations-and-licensing-listing/content-standards-and-classification/standards-and-classification/video-games"]},
+   {"text": "You saw a violent video and keep thinking about it at bedtime.", "q": "What's the best thing to do?", "opts": ["Keep it a secret so you don't get in trouble", "Watch more videos like it to get used to them", "Talk to a trusted adult about how you feel", "Pretend it didn't happen"], "a": 2, "reflect": "Feeling scared or upset after seeing violence is normal, and talking about it helps. You're not in trouble for seeing it.", "talk": "What helps you feel calm when something upsets you?", "src": ["eSafety advises parents to check in and talk with children who have seen graphic or violent material.", "eSafety Commissioner (2025), Gore online advisory", "https://esafety.gov.au/newsroom/blogs/gore-online-how-violent-content-is-reaching-children-and-what-you-can-do"]},
+   {"text": "A child tells their parent they saw a violent video online.", "q": "What should the parent do first?", "parHint": "Grown-up: what would you do first?", "opts": ["Take away the phone or tablet straight away", "Say it's not a big deal and move on", "Stay calm, thank them for telling, and ask how they feel", "Scold them for watching it"], "a": 2, "reflect": "Kids often hide what they saw because they fear losing their device. A calm reaction makes them more likely to tell you next time.", "kid": "What would make it easier to tell your parent?", "par": "What would you want your child to do?", "src": ["Many young people say the main reason they don't tell their parents about a problem online is worry that their device will be taken away.", "Better Internet for Kids (EU)", "https://www.betterinternetforkids.eu/web/portal/practice/awareness/article?id=6778780"]},
+   {"text": "You saw something upsetting online and don't feel ready to tell your parents.", "q": "Who else can you talk to?", "opts": ["No one", "A stranger in the comments", "Post about it online", "A teacher, school counsellor, or Tinkle Friend"], "a": 3, "reflect": "There are always safe people to talk to. Tinkle Friend is a free helpline and chat for primary school children in Singapore: 1800 2744 788, or tinklefriend.sg.", "talk": "Let's name three trusted adults you could go to.", "src": ["Tinkle Friend is a free helpline and chat for primary school children, run by Singapore Children's Society.", "Singapore Children's Society, Tinkle Friend", "https://www.tinklefriend.sg"]}
+  ]},
+ {id:"explicit",topic:"Explicit content",dish:"Garden Salad",key:"salad",cls:"t-explicit",shape:"bowl",ordered:true,
+  items:[["lettuce","Lettuce"],["spinach","Spinach"],["tomato","Cherry tomatoes"],["cucumber","Cucumber"],["onion","Red onion"],["carrot","Carrot"],["avocado","Avocado"],["crouton","Croutons"],["feta","Feta"],["olive","Olives"]],
+  /* each order points at a scenario (sc). A new scenario card shows before its first order. */
+  scenarios:[
+   {icon:"video",title:"Watching YouTube",text:"While watching YouTube together, we see a short video of a person who is not dressed properly, and their private parts are showing."},
+   {icon:"game",title:"Playing a phone game",text:"While playing a phone game, an advertisement pops up showing a person wearing only underwear."},
+   {icon:"tv",title:"Watching a show",text:"You are watching a Netflix show at home, and there is an intimate sex scene between a young couple."},
+   {icon:"web",title:"Browsing online",text:"You come across a video on the internet of a couple having sex in a private place."},
+   {icon:"house",title:"At a friend's house",text:"You are at your friend's house watching TV, and you both come across a video of people playing a game where the loser must take off one piece of clothing, until one person is fully naked."},
+   {icon:"star",title:"Putting it together",final:true,text:"Think back on all five scenarios. What would you do if something like this ever happened to you?"}
+  ],
+  intro:"Five everyday moments where kids might see nude or sexual content by accident. Read each scenario together, then answer its orders.",
+  note:"Nothing graphic is shown. Feelings questions have no wrong answers, so just share and listen.",
+  takeaways:["Stay calm and don't scold. Seeing it was most likely an accident.","Ask how they're feeling. Confused, embarrassed or curious are all normal.","Explain simply: these images are made for adults, and private parts are meant to be kept private and respected.","Tidy up the settings together: SafeSearch, family filters and an ad-blocker."],
+  help:{lines:[["Help123 (TOUCH), advice for parents","1800 6123 123"],["Tinkle Friend (for kids)","1800 2744 788"]],link:"what to do if your child saw something sexual"},
+  qs:[
+   /* Scenario 1: YouTube */
+   {sc:0,q:"How would you feel seeing something like that?",parQ:"How do you think your child would feel seeing something like that?",multi:true,
+    opts:["I would feel confused.","I would feel scared.","I would think it looks funny.","It is something new and I would be curious.","I would feel disgusted."],
+    reflect:"It is normal to have mixed feelings when seeing something like that. Carrying these feelings on our own can be very confusing and difficult. We can talk to trusted family members about what we see and how we feel.",
+    src:["Nearly 4 in 10 young people say they have stumbled across porn by accident.","Children's Commissioner for England (2023)","https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf"]},
+   {sc:0,q:"How would you feel if your parents knew you saw those images?",parQ:"How do you think your child would feel if you knew they saw those images?",multi:true,
+    opts:["I would feel afraid that they would scold me.","I would feel shy and ashamed.","I am unsure. I don't know how they will respond.","I would feel normal. It happened before and my parents did not mind if I saw the images or not.","I would feel relieved, because my parents will discuss it and explain why the images cause me such feelings."],
+    reflect:"Our parents genuinely care for us and they are concerned about our safety. We can trust our parents. If they know we are struggling with something, they won't scold or laugh at us. They will do their best to explain to us what is happening.",
+    src:["Parenting guidance advises staying calm and not scolding, so children keep coming to you when something happens online.","Digital for Life, IMDA (2023)","https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content"]},
+   {sc:0,q:"How would you feel if your friends knew you saw those images?",parQ:"How do you think your child would feel if their friends knew they saw those images?",multi:true,
+    opts:["I would feel afraid that they would snitch on me.","I would feel shy and ashamed.","I am unsure. I don't know how they will respond.","My friend doesn't care. He or she has seen similar images before."],
+    reflect:"It can be awkward talking to our friends about these private things. Our friends may not have bad intentions, but they may lack the knowledge, experience and maturity needed to explain to us what is happening.",
+    src:["1 in 10 young people had seen porn by age 9, and over a quarter by age 11.","Children's Commissioner for England (2023)","https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf"]},
+   /* Scenario 2: phone game ad */
+   {sc:1,q:"How should you respond to this?",multi:true,ok:[2,3],
+    opts:["Keep watching and see what happens.","Look away and wait for the advertisement to pass.","Immediately look away and close the app.","Quickly go to mum and dad. Tell them what you saw and how you felt."],
+    reflect:"This advertisement is confusing. Underwear is supposed to be worn under our clothes. It is meant to protect our private parts, and is not for people to see. We should keep our private areas safe and not attract unnecessary attention to them.",
+    src:["Nearly 4 in 10 young people say they have stumbled across porn by accident.","Children's Commissioner for England (2023)","https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf"]},
+   {sc:1,q:"How would your parents feel when seeing such content?",parQ:"How does your child think you feel when you see such content?",share:true,multi:true,
+    opts:["They feel worried that I will get exposed to those images.","They feel shy and ashamed too.","I am unsure. How would I know? I am not them.","They don't care. To them, there is nothing wrong with the images.","They feel disgusted."],
+    reflect:"Our parents are humans too, like us. They would have had, and may still have, similar feelings to us. Our parents also know our personalities well. So they are the best people to explain these images to us."},
+   /* Scenario 3: Netflix show */
+   {sc:2,q:"What would you do in this case?",multi:true,ok:[2,3],
+    opts:["Keep watching. I am curious to see what happens.","Look away and take quick peeks to see if the scene has ended.","Immediately look away and turn off the TV.","Quickly go to mum and dad. Tell them what you saw and how you felt."],
+    reflect:"Sex is a beautiful act of closeness that is meant to be shared between husband and wife. Having sex outside marriage, with someone we are not fully committed to, takes away the beauty and value of the act within marriage. It can also leave lifelong emotional scars.",
+    src:["Parenting guidance encourages children to switch it off and tell a grown-up, with the promise that they won't be in trouble.","Digital for Life, IMDA (2023)","https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content"]},
+   {sc:2,q:"How would your friends feel when seeing such content?",parQ:"How does your child think their friends feel when they see such content?",multi:true,
+    opts:["They feel afraid too.","They feel shy and ashamed too.","I am unsure. How would I know? I am not them.","They don't care. To them, there is nothing wrong with the images.","They feel disgusted too.","They feel curious to find out more too."],
+    reflect:"We may have similarities and differences with our friends in how we feel about those images. But this should not stop us from talking to trusted family members, who can explain what we see and how we feel.",
+    src:["1 in 10 young people had seen porn by age 9, and over a quarter by age 11.","Children's Commissioner for England (2023)","https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf"]},
+   /* Scenario 4: video online */
+   {sc:3,q:"How should you respond to this?",multi:true,ok:[3,4],
+    opts:["This is something new. I am curious to see what it is about.","Look away and take quick peeks to see if the scene has ended.","Pause the video and fast forward.","Immediately look away and close the window.","Quickly go to mum and dad. Tell them what you saw and how you felt."],
+    reflect:"Sex is a beautiful act of closeness that is meant to be shared between husband and wife. It is not a performance for people to watch. We should stop watching, and respect the intimacy between husband and wife."},
+   {sc:3,q:"How do you think your parents would feel if they knew you saw such a video?",parQ:"How does your child think you would feel if you knew they saw such a video?",share:true,multi:true,
+    opts:["They would feel worried or concerned.","They would feel angry or upset.","They don't care whether I see such videos or not."],
+    reflect:"Our parents genuinely care for us and they are concerned about our safety. We can trust our parents. If they know we are struggling with something, they won't scold or laugh at us. They will do their best to explain to us what is happening.",
+    src:["Parenting guidance advises staying calm and not scolding, so children keep coming to you when something happens online.","Digital for Life, IMDA (2023)","https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content"]},
+   /* Scenario 5: friend's house */
+   {sc:4,q:"How would you feel watching this?",parQ:"How do you think your child would feel watching this?",multi:true,
+    opts:["That's funny. I want to keep watching to see who loses.","I am confused why they make taking off clothes a punishment in a game.","I feel embarrassed for the people who end up naked."],
+    reflect:"We might feel embarrassed for the people who end up naked. Our bodies and private parts are meant to be private and protected. Trading the privacy of our bodies for the fun of a game is just not worth it!"},
+   {sc:4,q:"How do you think your friends would feel if they knew you saw such a video?",parQ:"How does your child think their friends would feel if they knew?",multi:true,
+    opts:["They would laugh and make fun of me.","They would snitch on me.","They would not care.","They might understand how I feel."],
+    reflect:"Our friends might laugh at us, but many of them have likely seen such images before too. We should not make fun of each other. More importantly, we must not ignore such images when we see them. Instead, we should talk to trusted family members, who can explain what we see and why we feel the way we feel."},
+   /* Wrap-up */
+   {sc:5,q:"If you see such an image, what should your immediate response be?",multi:true,ok:[0,2,3],
+    opts:["Cover your eyes.","Continue watching until you feel uncomfortable.","Turn off the device.","Look away.","Take short peeks to check if the scene is over."],
+    reflect:"Don't linger. These images are not for children. Seeing them, even for a short moment, can make us confused and scared.",
+    src:["Nearly 4 in 10 young people say they have stumbled across porn by accident.","Children's Commissioner for England (2023)","https://dera.ioe.ac.uk/id/eprint/40347/1/cc-a-lot-of-it-is-actually-just-abuse-young-people-and-pornography-updated.pdf"]},
+   {sc:5,q:"What should you do after seeing such an image?",multi:true,ok:[0,3],
+    opts:["Tell mum and dad.","Don't tell mum and dad, and keep it to yourself.","Try to track the source and block it.","Close the tab."],
+    reflect:"Don't linger. These images are not for children. Seeing them, even for a short moment, can make us uncomfortable, confused and scared. The more we interact with an image and where it came from, the more likely we are to see similar images.",
+    src:["Parenting guidance encourages children to close it and tell a grown-up, with the promise that they won't be in trouble.","Digital for Life, IMDA (2023)","https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content"]},
+   {sc:5,q:"Why are such images not meant for children?",multi:true,hint:"Pick all that you agree with.",
+    opts:["Children are not mature enough to understand what they see.","Such images can confuse children.","These images often objectify and devalue a person and their body.","Seeing such images might teach children the wrong values."],
+    reflect:"These images are not meant for children, and we can feel confused when we see them. A person's private parts are meant to be kept private and respected. If we see these types of images, we should look away and ask mummy or daddy for help, so that we do not become confused and overwhelmed."}
+  ]},
+ {id:"selfharm",topic:"Self-harm content",dish:"Fruit Smoothie",key:"smoothie",cls:"t-selfharm",shape:"glass",
+  items:[["strawberry","Strawberries"],["banana","Banana"],["blueberry","Blueberries"],["spinach","Spinach"],["kiwi","Kiwi"],["oats","Oats"],["chia","Chia seeds"],["yogurt","Yoghurt"],["honey","Honey"],["ice","Ice cubes"]],
+  intro:"Sad feelings, worrying videos, and what to do when a friend is struggling.",
+  note:"Stay close and go at your child's pace. It's okay to pause and just talk.",
+  menu:[
+   {icon:"video",tag:"Order 1",title:"Videos that stick"},
+   {icon:"heart",tag:"Orders 2 & 3",title:"Stress and body image"},
+   {icon:"house",tag:"Orders 4 & 10",title:"Worried about a friend"},
+   {icon:"feed",tag:"Orders 5 & 8",title:"Sad feeds and accounts"},
+   {icon:"web",tag:"Orders 6 & 7",title:"Comments and dares"},
+   {icon:"chat",tag:"Order 9",title:"Mean messages"}],
+  takeaways:["Ask directly if you're worried. Asking about self-harm won't put the idea in their head.","Watch for signs like pulling away from friends, or saying \"I wish I wasn't here\".","Clean up their feed together: unfollow, block, and tap \"Not interested\".","Promise they won't be in trouble for telling you, even if they broke a promise to a friend."],
+  help:{lines:[["SOS, 24 hours (for you or your child)","1767"],["Tinkle Friend (for kids)","1800 2744 788"]],link:"what to do if your child talks about hurting themselves"},
+  qs:[
+   {text:"You watched a video where someone talked about hurting themselves when they felt sad. Now you keep thinking about it, even at bedtime.",
+    opts:["Watch it again to try and understand it better","Try to forget about it and not tell anyone","Tell a parent or trusted adult that you saw the video and that you can't stop thinking about it"],a:2,
+    kid:"Has a video ever stuck in your head? What helped?",par:"Something that helps you when a worry won't go away.",
+    tip:"If something is stuck in their head, <b>stay calm and ask what they saw</b> and how it made them feel.",
+    src:["Young people who saw self-harm posts on Instagram were more likely to report suicidal thoughts and self-harm a month later.","Arendt, Scherr & Romer (2019), New Media & Society","https://www.annenbergpublicpolicycenter.org/self-harm-images-instagram-associated-subsequent-self-harm-viewers/"]},
+   {text:"You have a big test next week and you've been feeling stressed. A video online says \"If you're stressed, just stay up all night and push through it!\"",
+    opts:["Follow the video's advice and stay up late studying","Tell a parent you're feeling stressed, and make a plan together","Keep scrolling videos to distract yourself"],a:1,
+    kid:"What makes you feel stressed? What helps?",par:"How you cope when you're stressed.",
+    tip:"Stress is a normal feeling. <b>Make a plan together</b>: sleep, breaks, and someone to talk to.",
+    src:["Children aged 6 to 12 need 9 to 12 hours of sleep. Too little is linked to problems with attention, learning, mood and depression.","Paruthi et al. (2016), American Academy of Sleep Medicine consensus","https://depts.washington.edu/dbpeds/pediatricsleepdurationconsensus.pdf"]},
+   {text:"You see a popular video where someone says skipping meals is the best way to look good, and lots of people are praising it in the comments.",
+    opts:["Try skipping a meal to see if it works","Like the video because so many people agree with it","Scroll away, and talk to a parent about what you saw and how it made you feel about your body"],a:2,
+    kid:"Do you ever see videos that make you feel bad about how you look?",par:"Why lots of likes doesn't mean something is true or safe.",
+    tip:"Talk about how <b>likes and comments don't make advice safe</b>. Growing bodies need regular meals.",
+    src:["In children aged 9 to 14, each extra hour on social media was linked to more eating-disorder symptoms, such as restricting food, two years later.","Chu, Ganson, Nagata et al. (2024), Eating and Weight Disorders","https://doaj.org/article/416cb6cabb1f46e4ac2157c05bd398b1"]},
+   {text:"Your best friend tells you they've been hurting themselves, and makes you promise not to tell anyone.",
+    opts:["Tell a trusted adult, even though you promised","Keep the promise so your friend still trusts you","Try to fix it yourself by giving them advice"],a:0,
+    kid:"What's the difference between a secret and a surprise?",par:"Why some secrets are too big to keep, even if you promised.",
+    tip:"Tell your child: <b>telling a grown-up to keep a friend safe is never snitching.</b> You won't be angry.",
+    src:["Mental health charity Mind tells young people not to promise to keep a friend's self-harm secret, and to tell a trusted adult because they want their friend to be safe.","Mind, Supporting a friend with self-harm","https://www.mind.org.uk/for-young-people/supporting-others/supporting-a-friend-or-partner-with-self-harm/"]},
+   {text:"After you watched one sad video, your feed is now full of videos about people feeling hopeless or hurting themselves.",
+    opts:["Keep watching, since the app thinks you like them","Tap \"Not interested\" and tell a parent so you can reset your feed together","Delete the app and tell no one"],a:1,
+    kid:"What kinds of videos usually show up on your feed?",par:"Something you do when your own feed shows stuff you don't like.",
+    tip:"Feeds show more of what kids watch. <b>Reset the feed together</b>: unfollow, and tap \"Not interested\".",
+    src:["In one test, over half of a TikTok feed turned into mental health struggles within 20 minutes.","Amnesty International (2023), Driven into Darkness","https://www.amnesty.org.uk/knowledge-hub/all-resources/report-driven-into-darkness/"]},
+   {text:"Under a video, people are leaving comments that make hurting yourself sound normal or even cool.",
+    opts:["Join in so you fit in","Argue with them in the comments","Don't reply, report the video and tell a trusted adult"],a:2,
+    kid:"Why do you think people leave comments like that?",par:"What you do when you see something online that isn't okay.",
+    tip:"Explain gently: <b>hurting yourself isn't a way to fix feelings</b>, even if people online make it look that way.",
+    src:["A review of 46 studies found self-harm content online can make hurting yourself seem normal, and can trigger copycat behaviour.","Marchant et al. (2017), PLoS ONE","https://pmc.ncbi.nlm.nih.gov/articles/PMC5558917/"]},
+   {text:"Someone in a game chat dares you to do a challenge that involves hurting yourself and says \"don't tell your parents.\"",
+    opts:["Say no, block them, and tell a parent straight away","Pretend you did it so they leave you alone","Ignore it but keep chatting with them"],a:0,
+    kid:"Do you know how to block someone in your games?",par:"Show them where the block and report buttons are.",
+    tip:"Being told <b>\"don't tell your parents\" is a warning sign</b>. Show them where the block and report buttons are.",
+    src:["The \"choking game\" was linked to the deaths of 82 children and teens in the US.","US CDC (2008), MMWR","https://pubmed.ncbi.nlm.nih.gov/18272955/"]},
+   {text:"You find an account with sad music and pretty pictures that makes hurting yourself look beautiful or romantic. You start scrolling through it a lot.",
+    opts:["Follow it, because the posts feel relatable","Keep looking but don't follow, so no one knows","Unfollow or block it, report it, and tell a trusted adult how it made you feel"],a:2,
+    kid:"How do you feel after scrolling sad posts for a while?",par:"Something that helps lift your mood when you feel low.",
+    tip:"\"Sad aesthetic\" posts can deepen a low mood. <b>Ask: \"Has something been getting you down?\"</b>",
+    src:["A UK coroner found that self-harm and depression content recommended to 14-year-old Molly Russell contributed to her death.","UK Courts and Tribunals Judiciary (2022), Prevention of Future Deaths report","https://www.judiciary.uk/prevention-of-future-death-reports/molly-russell-prevention-of-future-deaths-report/"]},
+   {text:"During an argument in a game chat, another player types \"go hurt yourself\" and others start joining in.",
+    opts:["Type something just as mean back","Don't reply. Screenshot it, block and report them, and tell a parent","Log off and try to forget it"],a:1,
+    kid:"How would you feel if someone said that to you?",par:"That they can always show you mean messages, and they won't be in trouble.",
+    tip:"Keep a <b>screenshot as evidence</b>, then block and report. Help123 (1800 6123 123) can advise on cyberbullying.",
+    src:["Children and young people who are cyberbullied are about twice as likely to self-harm.","John et al. (2018), Journal of Medical Internet Research","https://www.jmir.org/2018/4/e129"]},
+   {text:"A friend you only know from a game messages you late at night: \"I can't do this anymore. Don't tell anyone.\"",
+    opts:["Show the message to a parent right away, even though they said not to tell","Reply \"same lol\" so they don't feel alone","Wait until they come online tomorrow to check on them"],a:0,
+    kid:"What would you want a friend to do if you felt that way?",par:"That they can always wake you up for something like this.",
+    tip:"Messages like this are a <b>warning sign</b>. Call SOS on 1767 (24 hours), or 995 if someone is in danger now.",
+    src:["Talking about feeling hopeless or not wanting to go on is a known warning sign of suicide in children and teens.","AboutKidsHealth, SickKids","https://www.aboutkidshealth.ca/suicide-risk-in-children-and-teens-signs-and-symptoms"]}
+  ]}
+];
+const LET="ABCDEF",ROT=["Mouldy","Rotten","Slimy","Stinky","Fuzzy"];
+const g=id=>document.getElementById(id);
+const mod=id=>MODS.find(m=>m.id===id);
+let st=null,q=null,tried=[],kidPick=null;
+
+/* storage (per device) */
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const book=()=>load("rt_stickers",{});
+
+/* sound */
+let ac;
+function tone(fr,dur=.12,type="sine",gap=.09){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();fr.forEach((f,i)=>{const o=ac.createOscillator(),gn=ac.createGain(),t=ac.currentTime+i*gap;o.type=type;o.frequency.value=f;gn.gain.setValueAtTime(.16,t);gn.gain.exponentialRampToValueAtTime(.001,t+dur);o.connect(gn).connect(ac.destination);o.start(t);o.stop(t+dur)})}catch(e){}}
+const sfx={tap:()=>tone([660],.06,"triangle"),ding:()=>tone([660,880,1175],.18,"triangle"),splat:()=>tone([220,150,90],.2,"sawtooth",.1),win:()=>tone([523,659,784,1047,784,1047],.2,"triangle",.12),drum:()=>tone([200,200,200,300],.08,"square",.07)};
+
+/* drawings, in the site's ink style */
+/* chefs: the parent and child from the site's illustrations */
+const AV={kid:["avatar-child","Little Chef"],par:["avatar-parent","Head Chef"]};
+function face(who){return `<span class="mc-av ${who}"><img src="${IMG(AV[who][0])}" alt="${AV[who][1]}"></span>`}
+const MOLD=`<svg class="mold" viewBox="0 0 144 144" aria-hidden="true">
+  <g class="stink" fill="none" stroke="#7E8F3A" stroke-width="3" stroke-linecap="round"><path d="M50 22q-6-6 0-12t0-12"/><path d="M72 18q-6-6 0-12"/><path d="M94 22q6-6 0-12t0-12"/></g>
+  <g stroke="#1d1d1b" stroke-width="2" stroke-linejoin="round"><path d="M44 52c8-9 22-4 20 7s-15 11-21 5-4-6 1-12z" fill="#8FA34A"/><path d="M84 80c10-4 18 4 14 12s-16 8-18 1 0-11 4-13z" fill="#6E7F32"/><circle cx="56" cy="94" r="7" fill="#A9B95E"/></g>
+  <g fill="#C9D48A"><circle cx="50" cy="56" r="2.6"/><circle cx="58" cy="60" r="1.8"/><circle cx="88" cy="86" r="2.2"/><circle cx="54" cy="92" r="1.8"/></g>
+  <g class="fly"><ellipse cx="118" cy="30" rx="6" ry="4.4" fill="#1d1d1b"/><ellipse cx="114" cy="22" rx="5" ry="3.4" fill="#fff" stroke="#1d1d1b" stroke-width="1.6" transform="rotate(-25 114 22)"/><ellipse cx="122" cy="22" rx="5" ry="3.4" fill="#fff" stroke="#1d1d1b" stroke-width="1.6" transform="rotate(25 122 22)"/></g>
+</svg>`;
+const rnd=(a,b)=>a+Math.random()*(b-a);
+const sticker=(m,item,opts={})=>`<span class="mc-stk${opts.rot?" rot":""}" style="--r:${opts.r??Math.round(rnd(-8,8))}deg${opts.style?";"+opts.style:""}"><img src="${IMG(m.key+"-"+item[0])}" alt="${opts.rot?"Rotten ":""}${item[1]}">${opts.rot?MOLD:""}</span>`;
+const dishImg=m=>IMG("dish-"+m.key);
+/* a dish can have more orders than ingredients: later orders add an extra helping */
+const itemAt=(m,i)=>i<m.items.length?m.items[i]:[m.items[i%m.items.length][0],"Extra "+m.items[i%m.items.length][1].toLowerCase()];
+/* scenario icons, same ink style */
+const SCN_ICO={
+  video:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/>',
+  game:'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4"/><path d="M9.5 9h5M12 6.5v5"/>',
+  tv:'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8M9 2.5l3 3.5 3-3.5"/>',
+  web:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  house:'<path d="M3 11l9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M10 20v-5h4v5"/>',
+  chat:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+  feed:'<rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M8.5 7h7M8.5 11h7M8.5 15h4"/>',
+  heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+  star:'<path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>'};
+const scnIco=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${SCN_ICO[k]||SCN_ICO.star}</svg>`;
+const scnOf=(m,x)=>m.scenarios&&x&&x.sc!=null?m.scenarios[x.sc]:null;
+function scnLabel(m,s){const n=m.scenarios.filter(z=>!z.final).length,i=m.scenarios.indexOf(s);return s.final?"Last round":`Scenario ${i+1} of ${n}`}
+
+/* menu */
+function renderMenu(){
+  const bk=book(),won=MODS.filter(m=>bk[m.id]).length,sm=MODS[2];
+  g("mc-book").innerHTML=`<button class="mc-bookbtn" data-act="book" aria-label="Open my sticker book">
+      <img src="${IMG("book-cover")}" alt="">
+      <span class="cta">Sticker book · ${won}/${MODS.length}</span></button>`;
+  g("mc-rules").innerHTML=`<h4 class="mc-howh">How to play</h4><ol class="mc-steps">
+    <li><div class="pic">${face("kid")}</div><div><b><span class="n">1</span>Little Chef picks</b><p>Your child answers first. Grown-up, no peeking!</p></div></li>
+    <li><div class="pic">${face("par")}</div><div><b><span class="n">2</span>Head Chef picks</b><p>Then the grown-up picks their answer.</p></div></li>
+    <li><div class="pic duo">${face("kid")}${face("par")}</div><div><b><span class="n">3</span>Reveal together</b><p>Same answer? Great! Different? Have a Chef's Chat.</p></div></li>
+    <li><div class="pic duo">${sticker(sm,sm.items[0],{r:-6})}${sticker(sm,sm.items[1],{rot:true,r:6})}</div><div><b><span class="n">4</span>Cook!</b><p>Safe answer: a fresh sticker. Unsafe: a rotten one, then try again.</p></div></li></ol>`;
+  g("mc-dishes").innerHTML=MODS.map(m=>{
+    const ready=m.qs.length>0,got=bk[m.id],state=got?"done":ready?"todo":"locked";
+    return `<button class="mc-dish ${m.cls} ${state}" data-act="start" data-id="${m.id}" ${ready?"":"disabled"}>
+      <div class="art"><img src="${dishImg(m)}" alt="${m.dish}"></div>
+      <span class="tp">${m.topic}</span><h4>${m.dish}</h4>
+      <span class="st">${got?"In your sticker book":ready?`${m.qs.length} orders to cook`:"Questions coming soon"}</span>
+      <span class="go">${got?"Cook it again":ready?"Start cooking":"Locked"}</span></button>`}).join("");
+}
+/* first thing every visitor sees: what the game is, and what it isn't */
+const ICO={
+  family:'<circle cx="8" cy="7" r="3"/><circle cx="16.5" cy="9.5" r="2.2"/><path d="M3 20v-2.5A4.5 4.5 0 0 1 7.5 13h1A4.5 4.5 0 0 1 13 17.5V20M13.5 20v-1.8a3 3 0 0 1 3-3h0a3 3 0 0 1 3 3V20"/>',
+  chat:'<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+  help:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>',
+  lock:'<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'};
+const ico=k=>`<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">${ICO[k]}</svg></span>`;
+/* first thing every visitor sees: what the game is, and what it isn't */
+function about(){
+  openPanel(`<h3>Before you play</h3>
+    <ul class="mc-about">
+      <li>${ico("family")}<span><b>Play it together.</b> For kids aged 7 to 12 and a grown-up. Covers violent, explicit and self-harm content, with nothing graphic.</span></li>
+      <li>${ico("chat")}<span><b>Answers are suggestions.</b> Every family is different. If you disagree, talk it through.</span></li>
+      <li>${ico("help")}<span><b>Not professional advice.</b> Worried about your child? <a href="index.html#helplines">See who can help</a>.</span></li>
+      <li>${ico("lock")}<span><b>Private.</b> No personal details. Stickers stay on this device.</span></li>
+    </ul>
+    <div class="mc-btns"><button class="mc-btn" data-act="close">Got it, let's play</button></div>
+    <p class="mc-credit">Inspired by <a href="https://kidsplaysafer.sg/" target="_blank" rel="noopener">Kids PlaySafer</a></p>`,"narrow");
+}
+/* title types itself out, pauses, and starts again */
+function typeTitle(){
+  const el=g("mc-type");if(!el)return;const txt=el.dataset.text;
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=txt;return}
+  let i=0,dir=1;
+  (function step(){
+    i+=dir;el.textContent=txt.slice(0,i);
+    let wait=dir>0?75+Math.random()*60:30;
+    if(i>=txt.length){dir=-1;wait=3200}else if(i<=0){dir=1;wait=700}
+    setTimeout(step,wait);
+  })();
+}
+/* sticker book pop-up: one page per dish, so new dishes slot in automatically */
+const TITLE="MY STICKER BOOK!".split("").map((c,i)=>c===" "?" ":`<span style="color:${["#17362B","#DC6545","#E0A23B","#2F8F4E","#1F8FA6","#7C5CD6"][i%6]}">${c}</span>`).join("");
+function openBook(fresh){
+  const bk=book(),won=MODS.filter(m=>bk[m.id]).length;
+  openPanel(`<div class="mc-openbook">
+        <h3 class="mc-booktitle">${TITLE}</h3>
+    <p class="muted">${won?`${won} of ${MODS.length} dish stickers collected.`:"No stickers yet. Finish a dish to stick it in here!"}</p>
+    <div class="mc-pages">${MODS.map((m,i)=>{const got=bk[m.id];return `<div class="mc-page ${m.cls}${got?" got":""}${fresh===m.id?" new":""}" style="--tilt:${[-1.2,.8,-.6,1][i%4]}deg">
+      <span class="tp">${m.topic}</span>
+      <div class="slot">${got?`<img class="dish" src="${dishImg(m)}" alt="${m.dish} sticker">`:`<span class="q">${m.qs.length?"?":"Soon"}</span>`}</div>
+      <b>${m.dish}</b>
+      <div class="ings">${m.items.map(it=>got?sticker(m,it,{r:Math.round(rnd(-10,10))}):`<span class="ph"></span>`).join("")}</div>
+      <small>${got?"Collected!":m.qs.length?"Not collected yet":"Questions coming soon"}</small>
+    </div>`}).join("")}</div>
+        <div class="mc-btns"><button class="mc-btn" data-act="close">Close the book</button></div></div>`,"wide");
+}
+
+/* flow */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
+function prepQ(x){if(x.multi)return {...x};const o=shuffle([...x.opts.keys()]);return {...x,opts:o.map(i=>x.opts[i]),a:o.indexOf(x.a)}}
+function show(id){["mc-menu","mc-play"].forEach(s=>g(s).classList.toggle("on",s===id))}
+function toTop(){const r=g("mc").getBoundingClientRect();if(r.top<70||r.top>innerHeight*.4)g("mc").scrollIntoView({behavior:"smooth",block:"start"})}
+function setFill(){
+  const f=g("mc-stage").querySelector(".fill"),n=st.got/st.qs.length;
+  if(st.m.shape==="bowl")f.style.setProperty("--deg",(n*360)+"deg");else f.style.setProperty("--pct",(n*100)+"%");
+  g("mc-stage").classList.toggle("full",n>=1);
+}
+
+function startModule(id){
+  const m=mod(id);sfx.tap();
+  st={m,qs:(m.ordered?m.qs:shuffle(m.qs)).map(prepQ),qi:0,got:0};
+  g("mc-kitchen").className="mc-kitchen "+m.cls;
+  g("mc-stage").className="mc-dishstage "+m.shape;
+  g("mc-stage").innerHTML=`<img class="ghost" src="${dishImg(m)}" alt=""><img class="fill" src="${dishImg(m)}" alt="${m.dish}"><div class="mc-empty" id="mc-empty">Your ${m.dish.toLowerCase()} fills up as you cook</div>`;
+  g("mc-tray").innerHTML=st.qs.map((_,i)=>`<span class="sl" title="${itemAt(m,i)[1]}"></span>`).join("");
+  g("mc-tray").style.setProperty("--cols",st.qs.length>10?Math.ceil(st.qs.length/2):10);
+  document.querySelector(".mc-order").className="mc-order "+m.cls;
+  st.scn=null;
+  g("mc-label").textContent=m.dish;
+  setFill();show("mc-play");hud();toTop();
+  const sc=m.scenarios,list=sc||m.menu||[];
+  openPanel(`<div class="mc-intro2 ${m.cls}">
+      <div class="mc-i2-head"><img class="dish" src="${dishImg(m)}" alt=""><div>
+        <span class="mc-i2-tp">${m.topic}</span><h3>${m.dish}</h3>
+        <div class="mc-i2-stats">${sc?`<span><b>${sc.filter(s=>!s.final).length}</b> scenarios</span>`:list.length?`<span><b>${list.length}</b> topics</span>`:""}<span><b>${st.qs.length}</b> orders</span><span><b>2</b> chefs</span></div></div></div>
+      <p class="mc-i2-lead">${m.intro}</p>
+      ${list.length?`<div><small class="mc-i2-lbl">${sc?"Your menu tonight":"On the menu"}</small>
+      <ol class="mc-route">${list.map((s,i)=>`<li${s.final?' class="fin"':""}><span class="ic">${scnIco(s.icon)}</span><span><small>${sc?(s.final?"Last round":"Scenario "+(i+1)):s.tag}</small>${s.title}</span></li>`).join("")}</ol></div>`:""}
+      ${m.note?`<div class="mc-i2-note">${secIcon("adult")}<span><b>Grown-ups:</b> ${m.note}</span></div>`:""}
+    </div>
+    <div class="mc-btns"><button class="mc-btn" data-act="newq">Let's cook!</button></div>`);
+}
+let sel=new Set();
+const safeSet=x=>x.ok?x.ok:x.opts.map((_,i)=>i);           // multi: which options are safe (all, for feelings)
+const isSafe=(x,picks)=>picks.length>0&&picks.every(i=>safeSet(x).includes(i));
+function newQ(){
+  tried=[];
+  const m=st.m,s=scnOf(m,st.qs[st.qi]);
+  if(s&&s!==st.scn){st.scn=s;return scenarioCard(m,s)}
+  renderQ();
+}
+/* scenario first: read it together before its orders appear */
+function scenarioCard(m,s){
+  sfx.tap();
+  const idx=m.scenarios.indexOf(s),n=st.qs.filter(x=>x.sc===idx).length;
+  openPanel(`<div class="mc-scn ${m.cls}">
+    <div class="mc-scn-top"><span class="mc-scn-ic">${scnIco(s.icon)}</span><div><small>${scnLabel(m,s)}</small><h3>${s.title}</h3></div></div>
+    <div class="mc-scn-card"><p>${s.text}</p></div>
+    <div class="mc-talk">${face("kid")}${face("par")}<div class="bub"><small>Read it together</small>${s.final?"No new story this time. Think about everything you've talked about so far.":"Grown-up, read it out loud. Then answer each order as if it happened to you."}</div></div>
+    <div class="mc-scn-dots" aria-hidden="true">${m.scenarios.map((_,i)=>`<i class="${i<idx?"done":i===idx?"now":""}"></i>`).join("")}<span>${n} order${n>1?"s":""} in this ${s.final?"round":"scenario"}</span></div>
+    <div class="mc-btns" style="justify-content:flex-start;margin-top:0"><button class="mc-btn" data-act="scn-go">Answer the orders →</button></div></div>`);
+}
+function renderQ(){
+  closePanel();
+  const m=st.m;q=st.qs[st.qi];kidPick=null;sel=new Set();
+  g("mc-tag").textContent="ORDER "+(st.qi+1)+" OF "+st.qs.length;
+  g("mc-retry").hidden=!tried.length;
+  const s=scnOf(m,q);
+  g("mc-ctx").className="ctx"+(s?" scn":"");
+  g("mc-ctx").hidden=!(s||m.scenario);
+  g("mc-ctx").innerHTML=s?`<span class="ic">${scnIco(s.icon)}</span><div><small>${scnLabel(m,s)} · ${s.title}</small>${s.final?"Think back on all five scenarios.":s.text}</div>`
+    :m.scenario?`<small>Scenario</small>${m.scenario}`:"";
+  g("mc-scen").textContent=q.multi?q.q:q.text;
+  g("mc-q").textContent=q.multi?(q.hint||(q.ok?"Pick all the safe things to do.":"Pick all that fit. There are no wrong answers.")):(q.q??"What do you do?");
+  g("mc-q").hidden=!g("mc-q").textContent;
+  const it=itemAt(m,st.got);
+  g("mc-next").innerHTML=`${sticker(m,it,{r:0})}<span>Cooking next<b>${it[1]}</b></span>`;
+  hud();turn(tried.length?"together":"kid");
+}
+function turn(who){
+  sel=new Set();
+  const guess=who==="parent"&&q.parQ;
+  g("mc-scen").textContent=guess?q.parQ:(q.multi?q.q:q.text);
+  g("mc-q").textContent=guess?"Guess what your child picked. Choose all you think they chose."
+    :who==="parent"&&!q.multi?(q.parHint||"Grown-up: pick the answer you'd want your child to give.")
+    :who==="parent"&&q.ok?"Grown-up: pick what you'd want your child to do."
+    :q.multi?(q.hint||(q.ok?"Pick all the safe things to do.":"Pick all that fit. There are no wrong answers.")):(q.q||"What do you do?");
+  g("mc-turn").className="mc-turn "+who;
+  g("mc-turn-title").innerHTML={kid:face("kid")+"Little Chef's turn",parent:face("par")+(guess?"Head Chef guesses":"Head Chef's turn"),together:face("kid")+face("par")+"Choose together"}[who];
+  g("mc-peek").textContent={kid:"Grown-up, no peeking!",parent:"Little Chef, no peeking!",together:"Talk it out, then pick"}[who];
+  if(q.multi){
+    g("mc-opts").innerHTML=q.opts.map((o,i)=>`<button class="mc-opt multi${tried.includes(i)?" tried":""}" data-act="toggle" data-i="${i}" aria-pressed="false"><span class="l">${LET[i]}</span><span>${o}</span></button>`).join("")
+      +`<button class="mc-btn mc-lock" data-act="lock-${who}" disabled>${who==="together"?"Cook our answers":"Lock in my answers"}</button>`;
+  }else{
+    g("mc-opts").innerHTML=q.opts.map((o,i)=>`<button class="mc-opt${tried.includes(i)?" tried":""}" data-act="${who==="together"?"choose":"pick-"+who}" data-i="${i}"><span class="l">${LET[i]}</span><span>${o}</span></button>`).join("");
+  }
+}
+function toggle(b){
+  const i=+b.dataset.i;sfx.tap();
+  if(sel.has(i))sel.delete(i);else sel.add(i);
+  b.setAttribute("aria-pressed",sel.has(i));
+  g("mc-opts").querySelector(".mc-lock").disabled=!sel.size;
+}
+const sorted=()=>[...sel].sort((a,b)=>a-b);
+function pickKid(p){sfx.tap();kidPick=p;
+  openPanel(`<div class="mc-hero">${face("kid")}</div><h3>Little Chef locked in!</h3><p>Now pass the device to your grown-up.</p>
+    <div class="mc-btns"><button class="mc-btn par" data-act="to-parent">I'm the grown-up, ready</button></div>`)}
+function pickParent(p){sfx.tap();st.parPick=p;
+  openPanel(`<div class="mc-hero">${face("kid")}${face("par")}</div><h3>Both chefs locked in!</h3><p>Put the device where you can both see it.</p>
+    <div class="mc-btns"><button class="mc-btn" data-act="reveal">Reveal answers</button></div>`)}
+/* side-by-side picks: each chef's answers as tiles, shared answers get a "Both" tick */
+const CHAT='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v10H9l-5 4z"/></svg>';
+const TICK='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+const tiles=(p,other)=>`<div class="mc-tiles">${p.map(i=>{const both=other.includes(i);return `<span class="mc-tile${both?" both":""}"><span class="lt">${LET[i]}</span><span class="tx">${q.opts[i]}</span>${both?`<span class="bt">${TICK}Both</span>`:""}</span>`}).join("")}</div>`;
+function picks(){
+  const k=q.multi?kidPick:[kidPick],p=q.multi?st.parPick:[st.parPick];
+  const n=k.filter(i=>p.includes(i)).length,guess=q.multi&&q.parQ;
+  const all=n===k.length&&n===p.length;
+  const msg=all?(guess?"<b>Spot on!</b> You guessed it. Little Chef, tell your grown-up a bit more.":"<b>Same picks!</b> Talk about why you both chose them.")
+    :n?`<b>${n} in common.</b> Talk about the ones that are different.`
+    :guess?"<b>Not quite, and that's the fun part.</b> Little Chef, tell your grown-up why you picked yours.":"<b>Different picks, and that's okay.</b> Take turns saying why you chose yours.";
+  return `<div class="mc-cmp ${all?"all":n?"some":"none"}">
+    <div class="mc-picks">
+      <div class="mc-pc k"><div class="hd">${face("kid")}<span><small>Little Chef</small>picked</span></div>${tiles(k,p)}</div>
+      <div class="mc-pc p"><div class="hd">${face("par")}<span><small>Head Chef</small>${guess?"guessed":"picked"}</span></div>${tiles(p,k)}</div>
+    </div>
+    <div class="mc-meter"><span class="mi">${n?TICK:CHAT}</span><span>${msg}</span></div></div>`;
+}
+function reveal(){
+  sfx.drum();
+  if(!q.multi){
+    if(kidPick===st.parPick){resolve(kidPick,true);return}
+    return chat();
+  }
+  const same=kidPick.join()===st.parPick.join();
+  if(!q.ok){
+    award(same,`${picks()}${q.share?`<div class="mc-talk">${face("par")}<div class="bub p"><small>Grown-up, now share</small>How do you really feel when you see images like these?</div></div>`:""}`);return}
+  if(isSafe(q,kidPick)&&isSafe(q,st.parPick)){award(same,picks());return}
+  openPanel(`<div class="mc-hero">${face("kid")}${face("par")}</div><h3>Chef's Chat!</h3>${picks()}
+    <p>Some of these picks aren't the safest. Talk about which ones keep you safe, then pick together.</p>
+    <div class="mc-btns"><button class="mc-btn" data-act="together">Pick together</button></div>`);
+}
+function chat(){
+  openPanel(`<div class="mc-hero">${face("kid")}${face("par")}</div><h3>Chef's Chat!</h3><p>You picked different answers. Take your time and talk about it.</p>${picks()}
+    <div class="mc-chat"><div class="k"><b>Little Chef:</b> why did you pick yours?</div><div class="p"><b>Grown-up:</b> why did you pick yours?</div></div>
+    <p class="muted">When you agree, choose your answer together:</p>
+    <div class="mc-chat-opts">${q.opts.map((o,i)=>`<button class="mc-opt" data-act="choose" data-i="${i}"><span class="l">${LET[i]}</span><span>${o}</span></button>`).join("")}</div>`);
+}
+/* result pop-ups: a header with the sticker, then clearly separated parts:
+   the answer, the main message, the talk prompt, a grown-up tip, and the source in small print */
+const ICON={
+  book:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/>',
+  adult:'<circle cx="12" cy="7" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/>',
+  chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>'};
+const secIcon=k=>`<span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true">${ICON[k]}</svg></span>`;
+const ans=(label,text)=>`<div class="mc-ans"><small>${label}</small>${text}</div>`;
+function talkBody(){
+  return `${q.talk?`<div class="mc-talk">${face("kid")}${face("par")}<div class="bub"><small>Talk about it</small>${q.talk}</div></div>`:""}
+    ${q.kid?`<div class="mc-talk">${face("kid")}<div class="bub k"><small>Ask your Little Chef</small>${q.kid}</div></div><div class="mc-talk">${face("par")}<div class="bub p"><small>Grown-up, share</small>${q.par}</div></div>`:""}`;
+}
+function learnBody(){
+  const [fact,name,url]=q.src||[];
+  return `${q.reflect?`<div class="mc-sec">${secIcon("book")}<div><small>Read this together</small><p>${q.reflect}</p></div></div>`:""}
+    ${fact?`<div class="mc-whycard">${secIcon("chart")}<div><small>Why it matters</small><p>${fact}</p><a href="${url}" target="_blank" rel="noopener">Source: ${name} ↗</a></div></div>`:""}
+    ${q.tip?`<div class="mc-sec tip">${secIcon("adult")}<div><small>For grown-ups</small><p>${q.tip}</p></div></div>`:""}
+`;
+}
+function award(synced,top){
+  const m=st.m,it=itemAt(m,st.got);
+  sfx.ding();
+  const slot=g("mc-tray").children[st.got];slot.classList.add("on");slot.innerHTML=sticker(m,it);
+  st.got++;st.qi++;setFill();hud();
+  const done=st.got>=st.qs.length;
+  const next=`<button class="mc-btn" data-act="${done?"finish":"newq"}">${done?`Finish the ${m.dish.toLowerCase()} →`:"Next order →"}</button>`;
+  const learn=learnBody().trim();
+  /* page 2: the takeaway, only after the chat has happened */
+  st.learn=learn?`<div class="mc-res">
+    <div class="mc-res-head slim"><span class="mc-step">2 of 2</span><div><h3>The takeaway</h3><p>Order ${st.qi} · ${q.multi?q.q:q.text}</p></div></div>
+    ${learn}
+    <div class="mc-btns">${next}</div></div>`:"";
+  /* page 1: the reveal and the chat */
+  openPanel(`<div class="mc-res">
+    <div class="mc-res-head">${sticker(m,it,{r:-4})}<div><h3>Fresh! ${synced?"Same answer!":"Great teamwork!"}</h3><p>You got the <b>${it[1]}</b> sticker.</p></div>${learn?'<span class="mc-step">1 of 2</span>':""}</div>
+    ${top||""}
+    ${talkBody()}
+    <div class="mc-btns">${learn?`<button class="mc-btn" data-act="learn">We've talked. What's the takeaway? →</button>`:next}</div></div>`);
+}
+function rotten(top,note){
+  const m=st.m,it=itemAt(m,st.got);
+  sfx.splat();
+  const e=g("mc-empty");if(e)e.remove();
+  g("mc-stage").insertAdjacentHTML("beforeend",sticker(m,it,{rot:true,style:`left:${rnd(8,72)}%;top:${rnd(8,68)}%`}));
+  const k=g("mc-kitchen");k.classList.remove("mc-shake");void k.offsetWidth;k.classList.add("mc-shake");
+  const name=ROT[Math.random()*ROT.length|0]+" "+it[1].toLowerCase();
+  openPanel(`<div class="mc-res">
+    <div class="mc-res-head">${sticker(m,it,{rot:true,r:6})}<div><h3>Eww! ${name}!</h3><p>A rotten sticker landed on your ${m.dish.toLowerCase()}.</p></div></div>
+    ${top||""}
+    <div class="mc-sec warn">${secIcon("book")}<div><small>Not the safest choice</small><p>${note||"Talk about it, then try the same order again."}</p></div></div>
+    <div class="mc-talk">${face("kid")}${face("par")}<div class="bub"><small>Think together</small>What could happen if you chose that?</div></div>
+    <div class="mc-btns"><button class="mc-btn" data-act="retry">Try again</button></div></div>`);
+}
+function resolve(choice,synced){
+  const both=synced?ans("You both picked",q.opts[choice]):ans("You picked together",q.opts[choice]);
+  if(choice===q.a)award(synced,both);
+  else{tried.push(choice);rotten(both)}
+}
+function resolveMulti(p){
+  if(isSafe(q,p)){award(false,ans("You picked together",p.map(i=>q.opts[i]).join(" · ")));return}
+  p.filter(i=>!safeSet(q).includes(i)).forEach(i=>{if(!tried.includes(i))tried.push(i)});
+  rotten("","Some of those picks aren't safe, so they're crossed out now. Talk about it, then pick again.");
+}
+function hud(){g("mc-count").textContent=`${st.got} of ${st.qs.length} stickers`}
+
+function finish(){
+  const m=st.m;
+  const bk=book();
+  bk[m.id]={done:true};
+  save("rt_stickers",bk);
+  const all=MODS.every(x=>bk[x.id]);
+  sfx.win();confetti(40);
+  openPanel(`<h3>${m.dish} complete!</h3>
+    <div class="mc-snap">${g("mc-stage").outerHTML.replace(' id="mc-stage"',"")}</div>
+    <p><b>${m.dish} sticker added to your sticker book!</b> You cooked it together. Every chat along the way counts.</p>
+    ${m.takeaways.length?`<ol class="mc-take">${m.takeaways.map(t=>`<li>${t}</li>`).join("")}</ol>`:""}
+    ${m.help?`<p class="muted">If anything in this dish worried you, these can help:</p><div class="mc-help">${m.help.lines.map(([l,n])=>`<div>${l}<strong>${n}</strong></div>`).join("")}</div>
+      <p class="muted">Or see <a href="index.html#act">${m.help.link}</a>.</p>`:""}
+    <div class="mc-btns">${all?`<button class="mc-btn" data-act="finale">See your full sticker book</button>`:`<button class="mc-btn" data-act="menu-book">Stick it in my sticker book →</button>`}</div>`);
+}
+function finale(){
+  const bk=book();sfx.win();confetti(80);
+  openPanel(`<h3>Master Chefs of the Internet!</h3><p class="muted">Your sticker book is full. You cooked the whole meal together.</p>
+    <div class="mc-bookrow">${MODS.map(m=>`<div class="one"><img src="${dishImg(m)}" alt="">${m.dish}</div>`).join("")}</div>
+    <ol class="mc-take"><li><b>Stay calm</b>, and thank your child for telling you.</li><li>Teach them to <b>close it, block it, report it</b>.</li><li><b>Set up parental controls and family rules together.</b></li><li>Keep talking, not just when something goes wrong.</li></ol>
+    <div class="mc-qr"><div class="qr" id="mc-qr"></div><div><b>Grown-ups: scan for more tips</b><br>Digital for Life: how to talk to your child about inappropriate content</div></div>
+    <div class="mc-btns"><button class="mc-btn" data-act="menu">Back to the dishes</button></div>`);
+  try{new QRCode(g("mc-qr"),{text:"https://www.digitalforlife.gov.sg/learn/resources/all-resources/how-to-talk-to-your-child-about-inappropriate-content",width:200,height:200,colorDark:"#17362B",colorLight:"#ffffff"})}catch(e){g("mc-qr").hidden=true}
+}
+function toMenu(){closePanel();st=null;renderMenu();show("mc-menu");toTop()}
+function confetti(n){const c0=["#DC6545","#7C5CD6","#1F8FA6","#FFE37F","#2F8F4E"],box=g("mc");if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<n;i++){const c=document.createElement("div");c.className="mc-conf";c.style.left=Math.random()*100+"%";c.style.background=c0[i%c0.length];box.appendChild(c);c.animate([{transform:"translateY(0) rotate(0)"},{transform:`translateY(${box.offsetHeight+40}px) rotate(${720*Math.random()}deg)`}],{duration:1800+Math.random()*1500,delay:Math.random()*400,easing:"ease-in"}).onfinish=()=>c.remove()}}
+function openPanel(h,cls){g("mc-panel").className="mc-panel"+(cls?" "+cls:"");g("mc-panel").innerHTML=h;g("mc-ov").classList.add("on");g("mc-panel").scrollTop=0;}
+function closePanel(){g("mc-ov").classList.remove("on")}
+
+g("game").addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]");if(!b)return;
+  const a=b.dataset.act,i=+b.dataset.i;
+  if(a==="start")startModule(b.dataset.id);
+  else if(a==="newq")newQ();
+  else if(a==="learn"){sfx.tap();openPanel(st.learn)}
+  else if(a==="scn-go"){sfx.tap();renderQ()}
+  else if(a==="retry"){sfx.tap();renderQ()}
+  else if(a==="toggle")toggle(b);
+  else if(a==="lock-kid")pickKid(sorted());
+  else if(a==="lock-parent")pickParent(sorted());
+  else if(a==="lock-together"){sfx.tap();resolveMulti(sorted())}
+  else if(a==="together"){closePanel();turn("together")}
+  else if(a==="pick-kid")pickKid(i);
+  else if(a==="to-parent"){closePanel();turn("parent")}
+  else if(a==="pick-parent")pickParent(i);
+  else if(a==="reveal")reveal();
+  else if(a==="choose"){sfx.tap();resolve(i,false)}
+  else if(a==="finish")finish();
+  else if(a==="finale")finale();
+  else if(a==="menu")toMenu();
+  else if(a==="menu-book"){const id=st&&st.m.id;toMenu();openBook(id)}
+  else if(a==="book"){sfx.tap();openBook()}
+  else if(a==="about")about();
+  else if(a==="close")closePanel();
+  else if(a==="quit")openPanel(`<h3>Leave this dish?</h3><p class="muted">Your progress on this dish won't be saved. Stickers already in your sticker book stay.</p>
+    <div class="mc-btns"><button class="mc-btn" data-act="close">Keep cooking</button><button class="mc-btn alt" data-act="menu">Leave dish</button></div>`);
+  else if(a==="clear")openPanel(`<h3>Clear the sticker book?</h3><p class="muted">Use this when a new family sits down. It removes all dish stickers on this device.</p>
+    <div class="mc-btns"><button class="mc-btn" data-act="close">Keep them</button><button class="mc-btn alt" data-act="clear-yes">Clear sticker book</button></div>`);
+  else if(a==="clear-yes"){save("rt_stickers",{});toMenu()}
+});
+/* sources list on the page footer */
+const SL=g("mc-sources");
+if(SL)SL.innerHTML=MODS.filter(m=>m.qs.length).map(m=>`<div class="srcg ${m.cls}"><h5><i></i>${m.dish} · ${m.topic}</h5><ul>${m.qs.map((x,i)=>x.src?`<li><span class="cite"><a href="${x.src[2]}" target="_blank" rel="noopener">${x.src[1]}</a></span><span class="used">Order ${i+1}: ${x.src[0]}</span></li>`:"").join("")}</ul></div>`).join("");
+renderMenu();
+typeTitle();
+about();
+})();
+</script>
+
+</body></html>
