@@ -449,6 +449,24 @@ details.more > summary:hover{background:var(--sun-2)}
 .tdot:nth-of-type(2){animation-delay:.15s}.tdot:nth-of-type(3){animation-delay:.3s}
 @media (prefers-reduced-motion:reduce){.scene .bubble{opacity:1}}
 @media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none}.pop{animation:none}}
+
+/* ===== phones: compact top bar with a menu button ===== */
+.menu-btn{display:none}
+.urgent .short{display:none}
+@media (max-width:760px){
+  .nav .wrap{gap:8px;padding-block:10px}
+  .logo{font-size:18px;padding:4px 12px 4px 5px;white-space:nowrap;gap:6px}
+  .logo img{width:36px;height:36px;margin:-2px 0}
+  .nav .btn.urgent{margin-left:auto;padding:10px 14px;font-size:14px;white-space:nowrap}
+  .urgent .long{display:none} .urgent .short{display:inline}
+  .menu-btn{display:grid;place-items:center;flex:0 0 44px;height:44px;border:0;border-radius:50%;background:var(--card);box-shadow:var(--shadow);padding:0}
+  .menu-btn svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round}
+  .menu-btn .x{display:none}
+  .nav.open .menu-btn .bars{display:none} .nav.open .menu-btn .x{display:block}
+  .nav.open .navlinks{display:flex;flex-direction:column;gap:6px;position:absolute;top:100%;left:0;right:0;margin:0;background:var(--sky);padding:6px 16px 16px;box-shadow:0 14px 24px rgba(23,54,43,.14)}
+  .nav.open .navlinks a{background:var(--card);border-radius:14px;padding:13px 16px;font-size:17px}
+  .num button,.hfoot button{padding:9px 14px;font-size:14px}
+}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -474,14 +492,15 @@ details.more > summary:hover{background:var(--sun-2)}
 <nav class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="#top"><img src="logo.png" alt="" width="46" height="46">Real Talk</a>
-    <div class="navlinks">
+    <div class="navlinks" id="navlinks">
       <a href="#top">Home</a>
       <a href="#know">Know</a>
       <a href="#talk">Talk</a>
       <a href="#act">Act</a>
       <a href="play.html">Play together</a>
     </div>
-    <a class="btn urgent" href="#act">Something happened online?</a>
+    <a class="btn urgent" href="#act"><span class="long">Something happened online?</span><span class="short">Need help?</span></a>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 </nav>
 
@@ -932,4 +951,9 @@ addEventListener("scroll",()=>nav.classList.toggle("scrolled",scrollY>10),{passi
 
 </script>
 
+<script>(function(){const n=document.getElementById("nav"),b=document.getElementById("menu-btn");if(!b)return;
+const set=o=>{n.classList.toggle("open",o);b.setAttribute("aria-expanded",o)};
+b.addEventListener("click",()=>set(!n.classList.contains("open")));
+n.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>set(false)));
+document.addEventListener("click",e=>{if(!n.contains(e.target))set(false)});})();</script>
 </body></html>

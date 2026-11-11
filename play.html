@@ -683,7 +683,6 @@ details.more > summary:hover{background:var(--sun-2)}
   .mc-dish{grid-template-columns:100px 1fr}
   .mc-dish .art{height:100px}
   .mc-dish .art img{max-height:84px}
-  .mc-tray{grid-template-columns:repeat(5,1fr);gap:6px}
 }
 
 .mc-type{white-space:pre}
@@ -830,19 +829,62 @@ details.more > summary:hover{background:var(--sun-2)}
 .mc-why a{color:var(--leaf);font-weight:700}
 .mc-res .mc-btns{margin-top:2px}
 @media (max-width:480px){.mc-res-head .mc-stk{--s:60px}.mc-panel .mc-sec p{font-size:16px}}
+
+/* ===== phones: the question comes first; the kitchen shrinks to a slim progress strip ===== */
+@media (max-width:860px){
+  #mc-play{padding:10px}
+  .mc-top{gap:8px}
+  .mc-back{padding:8px 12px}
+  .mc-prog{font-size:16px}
+  .mc-board{gap:10px;margin-top:10px}
+  .mc-kitchen{display:grid;grid-template-columns:84px 1fr;grid-template-rows:auto auto;align-items:center;gap:6px 12px;padding:10px 12px;border-radius:var(--r-md)}
+  .mc-dishstage{grid-row:1/3;grid-column:1;height:84px;min-height:0;margin:0}
+  .mc-dishstage .mc-stk.rot{--s:26px}
+  .mc-empty{display:none}
+  .mc-next{grid-column:2;padding:0;font-size:12.5px;gap:8px}
+  .mc-next b{font-size:15px}
+  .mc-next .mc-stk{--s:32px;padding:2px}
+  .mc-tray{grid-column:2;padding:0;margin:0;border-top:0;gap:3px}
+  .mc-tray .sl{border-width:1.5px}
+  .mc-right{padding:12px 0 0;gap:10px}
+  .mc-order{padding:20px 14px 14px}
+  .mc-turn{padding:12px}
+  .mc-opt{padding:12px;min-height:52px}
+  .mc-lock{width:100%;justify-content:center}
+  .mc-intro .mc-steps li{padding:8px 10px}
+}
+
+/* ===== phones: compact top bar with a menu button ===== */
+.menu-btn{display:none}
+.urgent .short{display:none}
+@media (max-width:760px){
+  .nav .wrap{gap:8px;padding-block:10px}
+  .logo{font-size:18px;padding:4px 12px 4px 5px;white-space:nowrap;gap:6px}
+  .logo img{width:36px;height:36px;margin:-2px 0}
+  .nav .btn.urgent{margin-left:auto;padding:10px 14px;font-size:14px;white-space:nowrap}
+  .urgent .long{display:none} .urgent .short{display:inline}
+  .menu-btn{display:grid;place-items:center;flex:0 0 44px;height:44px;border:0;border-radius:50%;background:var(--card);box-shadow:var(--shadow);padding:0}
+  .menu-btn svg{width:22px;height:22px;fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round}
+  .menu-btn .x{display:none}
+  .nav.open .menu-btn .bars{display:none} .nav.open .menu-btn .x{display:block}
+  .nav.open .navlinks{display:flex;flex-direction:column;gap:6px;position:absolute;top:100%;left:0;right:0;margin:0;background:var(--sky);padding:6px 16px 16px;box-shadow:0 14px 24px rgba(23,54,43,.14)}
+  .nav.open .navlinks a{background:var(--card);border-radius:14px;padding:13px 16px;font-size:17px}
+  .num button,.hfoot button{padding:9px 14px;font-size:14px}
+}
 </style>
 </head><body>
 <nav class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="index.html"><img src="logo.png" alt="" width="46" height="46">Real Talk</a>
-    <div class="navlinks">
+    <div class="navlinks" id="navlinks">
       <a href="index.html#top">Home</a>
       <a href="index.html#know">Know</a>
       <a href="index.html#talk">Talk</a>
       <a href="index.html#act">Act</a>
       <a href="play.html" class="active" aria-current="page">Play together</a>
     </div>
-    <a class="btn urgent" href="index.html#act">Something happened online?</a>
+    <a class="btn urgent" href="index.html#act"><span class="long">Something happened online?</span><span class="short">Need help?</span></a>
+    <button class="menu-btn" id="menu-btn" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><svg class="bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
 </nav>
 <!-- ============ GAME ============ -->
@@ -1191,7 +1233,7 @@ function openBook(fresh){
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a}
 function prepQ(x){if(x.multi)return {...x};const o=shuffle([...x.opts.keys()]);return {...x,opts:o.map(i=>x.opts[i]),a:o.indexOf(x.a)}}
 function show(id){["mc-menu","mc-play"].forEach(s=>g(s).classList.toggle("on",s===id))}
-function toTop(){const r=g("mc").getBoundingClientRect();if(r.top<70||r.top>innerHeight*.4)g("mc").scrollIntoView({behavior:"smooth",block:"start"})}
+function toTop(){const r=g("mc").getBoundingClientRect(),lim=matchMedia("(max-width:860px)").matches?100:innerHeight*.4;if(r.top<70||r.top>lim)g("mc").scrollIntoView({behavior:"smooth",block:"start"})}
 function setFill(){
   const f=g("mc-stage").querySelector(".fill"),n=st.got/st.qs.length;
   if(st.m.shape==="bowl")f.style.setProperty("--deg",(n*360)+"deg");else f.style.setProperty("--pct",(n*100)+"%");
@@ -1261,6 +1303,7 @@ function renderQ(){
 }
 function turn(who){
   sel=new Set();
+  if(matchMedia("(max-width:860px)").matches)requestAnimationFrame(toTop);
   const guess=who==="parent"&&q.parQ;
   g("mc-scen").textContent=guess?q.parQ:(q.multi?q.q:q.text);
   g("mc-q").textContent=guess?"Guess what your child picked. Choose all you think they chose."
@@ -1462,4 +1505,9 @@ about();
 })();
 </script>
 
+<script>(function(){const n=document.getElementById("nav"),b=document.getElementById("menu-btn");if(!b)return;
+const set=o=>{n.classList.toggle("open",o);b.setAttribute("aria-expanded",o)};
+b.addEventListener("click",()=>set(!n.classList.contains("open")));
+n.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>set(false)));
+document.addEventListener("click",e=>{if(!n.contains(e.target))set(false)});})();</script>
 </body></html>
