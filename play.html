@@ -1120,6 +1120,8 @@ const MODS=[
 const LET="ABCDEF",ROT=["Mouldy","Rotten","Slimy","Stinky","Fuzzy"];
 const g=id=>document.getElementById(id);
 const mod=id=>MODS.find(m=>m.id===id);
+/* anonymous game events for the GoatCounter dashboard (counts only, nothing personal) */
+function track(path,title){try{if(window.goatcounter&&goatcounter.count)goatcounter.count({path:"game/"+path,title,event:true})}catch(e){}}
 let st=null,q=null,tried=[],kidPick=null;
 
 /* storage (per device) */
@@ -1241,7 +1243,7 @@ function setFill(){
 }
 
 function startModule(id){
-  const m=mod(id);sfx.tap();
+  const m=mod(id);sfx.tap();track("start-"+id,"Started "+m.dish);
   st={m,qs:(m.ordered?m.qs:shuffle(m.qs)).map(prepQ),qi:0,got:0};
   g("mc-kitchen").className="mc-kitchen "+m.cls;
   g("mc-stage").className="mc-dishstage "+m.shape;
@@ -1437,7 +1439,7 @@ function resolveMulti(p){
 function hud(){g("mc-count").textContent=`${st.got} of ${st.qs.length} stickers`}
 
 function finish(){
-  const m=st.m;
+  const m=st.m;track("finish-"+m.id,"Finished "+m.dish);
   const bk=book();
   bk[m.id]={done:true};
   save("rt_stickers",bk);
@@ -1486,12 +1488,13 @@ g("game").addEventListener("click",e=>{
   else if(a==="finish")finish();
   else if(a==="finale")finale();
   else if(a==="menu")toMenu();
+  else if(a==="leave"){if(st)track(`quit-${st.m.id}-at-order-${st.qi+1}`,`Left ${st.m.dish} at order ${st.qi+1}`);toMenu()}
   else if(a==="menu-book"){const id=st&&st.m.id;toMenu();openBook(id)}
-  else if(a==="book"){sfx.tap();openBook()}
+  else if(a==="book"){sfx.tap();track("sticker-book","Opened sticker book");openBook()}
   else if(a==="about")about();
   else if(a==="close")closePanel();
   else if(a==="quit")openPanel(`<h3>Leave this dish?</h3><p class="muted">Your progress on this dish won't be saved. Stickers already in your sticker book stay.</p>
-    <div class="mc-btns"><button class="mc-btn" data-act="close">Keep cooking</button><button class="mc-btn alt" data-act="menu">Leave dish</button></div>`);
+    <div class="mc-btns"><button class="mc-btn" data-act="close">Keep cooking</button><button class="mc-btn alt" data-act="leave">Leave dish</button></div>`);
   else if(a==="clear")openPanel(`<h3>Clear the sticker book?</h3><p class="muted">Use this when a new family sits down. It removes all dish stickers on this device.</p>
     <div class="mc-btns"><button class="mc-btn" data-act="close">Keep them</button><button class="mc-btn alt" data-act="clear-yes">Clear sticker book</button></div>`);
   else if(a==="clear-yes"){save("rt_stickers",{});toMenu()}
@@ -1510,4 +1513,6 @@ const set=o=>{n.classList.toggle("open",o);b.setAttribute("aria-expanded",o)};
 b.addEventListener("click",()=>set(!n.classList.contains("open")));
 n.querySelectorAll(".navlinks a").forEach(a=>a.addEventListener("click",()=>set(false)));
 document.addEventListener("click",e=>{if(!n.contains(e.target))set(false)});})();</script>
+<!-- Visitor counts: GoatCounter (no cookies, no personal data). Dashboard: https://xinensleeping.goatcounter.com -->
+<script data-goatcounter="https://xinensleeping.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body></html>
